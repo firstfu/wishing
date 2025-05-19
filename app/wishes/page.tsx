@@ -19,16 +19,14 @@ function LoadingState() {
 }
 
 // 許願列表主組件
-export default async function WishesPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  // 使用 await 來確保 searchParams 已完全解析
-  const params = await searchParams;
-
-  const search = typeof params.search === "string" ? params.search : "";
-  const category = typeof params.category === "string" ? params.category : "";
-  const sort = typeof params.sort === "string" ? params.sort : "latest";
-  const page = typeof params.page === "string" ? parseInt(params.page) : 1;
-  const minPrice = typeof params.minPrice === "string" ? parseInt(params.minPrice) : undefined;
-  const maxPrice = typeof params.maxPrice === "string" ? parseInt(params.maxPrice) : undefined;
+export default function WishesPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  // 不需要 await searchParams，直接使用
+  const search = typeof searchParams.search === "string" ? searchParams.search : "";
+  const category = typeof searchParams.category === "string" ? searchParams.category : "";
+  const sort = typeof searchParams.sort === "string" ? searchParams.sort : "latest";
+  const page = typeof searchParams.page === "string" ? parseInt(searchParams.page) : 1;
+  const minPrice = typeof searchParams.minPrice === "string" ? parseInt(searchParams.minPrice) : undefined;
+  const maxPrice = typeof searchParams.maxPrice === "string" ? parseInt(searchParams.maxPrice) : undefined;
 
   return (
     <div className="bg-background">

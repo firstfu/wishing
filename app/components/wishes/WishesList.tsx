@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import WishCard from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
@@ -14,20 +15,48 @@ interface WishesListProps {
   maxPrice?: number;
 }
 
-export default async function WishesList({ search = "", category = "", sort = "latest", page = 1, minPrice, maxPrice }: WishesListProps) {
-  // 獲取許願數據
-  const { wishes, total } = await getWishesByFilter(
-    search,
-    category,
-    sort,
-    page,
-    9, // 每頁數量
-    minPrice,
-    maxPrice
-  );
+export default function WishesList({ search = "", category = "", sort = "latest", page = 1, minPrice, maxPrice }: WishesListProps) {
+  const [wishesData, setWishesData] = useState<{ wishes: any[]; total: number }>({ wishes: [], total: 0 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const data = await getWishesByFilter(
+          search,
+          category,
+          sort,
+          page,
+          9, // 每頁數量
+          minPrice,
+          maxPrice
+        );
+        setWishesData(data);
+      } catch (error) {
+        console.error("獲取許願資料失敗:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [search, category, sort, page, minPrice, maxPrice]);
+
+  if (loading) {
+    return (
+      <div className="animate-pulse">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(9)].map((_, index) => (
+            <div key={index} className="h-64 bg-muted rounded-lg"></div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   // 計算分頁信息
-  const totalPages = Math.ceil(total / 9);
+  const totalPages = Math.ceil(wishesData.total / 9);
   const hasNextPage = page < totalPages;
   const hasPrevPage = page > 1;
 
@@ -59,7 +88,7 @@ export default async function WishesList({ search = "", category = "", sort = "l
   }
 
   // 沒有結果時的提示
-  if (wishes.length === 0) {
+  if (wishesData.wishes.length === 0) {
     return (
       <div className="text-center py-12">
         <div className="mb-4 text-5xl">🔍</div>
@@ -75,12 +104,12 @@ export default async function WishesList({ search = "", category = "", sort = "l
   return (
     <div>
       <p className="text-muted-foreground mb-6">
-        找到 <strong>{total}</strong> 個符合條件的許願
+        找到 <strong>{wishesData.total}</strong> 個符合條件的許願
       </p>
 
       {/* 許願卡片網格 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {wishes.map(wish => (
+        {wishesData.wishes.map(wish => (
           <WishCard key={wish.id} wish={wish} />
         ))}
       </div>
