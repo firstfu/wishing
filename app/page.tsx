@@ -15,6 +15,7 @@ import CategoryTags from "@/app/components/wishes/CategoryTags";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 import FeaturedWishesCarousel from "@/app/components/wishes/FeaturedWishesCarousel";
+import Image from "next/image";
 
 // 載入狀態組件
 function LoadingState() {
@@ -164,27 +165,113 @@ export default function Home() {
   return (
     <>
       {/* 頂部橫幅/Hero 區塊 */}
-      <section className="bg-gradient-banner relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
-        <div className="container mx-auto px-4 py-16 md:py-24 relative">
-          <div className="max-w-3xl animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-sm">
-              在<span className="text-white font-extrabold">許願池</span>發現與實現夢想
-            </h1>
-            <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">在這裡發布您的願望，尋找可能的幫助，或幫助他人達成心願，讓美好的事物傳遞下去</p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/wishes/create">
-                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
-                  發布許願
-                </Button>
-              </Link>
-              <Link href="/wishes">
-                <Button size="lg" variant="outline" className="rounded-full px-6 py-6 text-pink-600  border-white font-bold hover:bg-white/10 hover:border-white transition-all">
-                  探索許願
-                </Button>
-              </Link>
+      <section className="relative overflow-hidden min-h-[85vh] flex items-center">
+        {/* 背景漸層 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400"></div>
+
+        {/* 幾何形狀裝飾元素 */}
+        <div className="absolute top-20 right-[5%] w-64 h-64 bg-gradient-to-tr from-pink-300/30 to-purple-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-[10%] w-72 h-72 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-[20%] w-16 h-16 bg-white/10 rounded-full"></div>
+        <div className="absolute top-1/3 right-[25%] w-24 h-24 bg-white/10 rounded-full"></div>
+        <div className="absolute bottom-[30%] right-[15%] w-12 h-12 bg-white/10 rounded-full"></div>
+
+        {/* 圓點網格裝飾 */}
+        <div className="absolute inset-0 bg-[url('/grid-dots.svg')] opacity-20"></div>
+
+        {/* 半透明波浪效果 */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/10 to-transparent"></div>
+
+        {/* 內容區域 */}
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* 左側文字內容 */}
+            <div className="lg:w-1/2 text-white">
+              <div className="inline-block px-3 py-1 bg-white/20 rounded-full backdrop-blur-sm mb-6">
+                <span className="text-sm font-medium">✨ 實現願望的地方</span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                在<span className="relative bg-clip-text text-transparent bg-gradient-to-r from-white to-pink-100 font-black px-1">許願池</span>
+                <br />
+                發現與實現夢想
+              </h1>
+
+              <p className="text-lg md:text-xl mb-8 max-w-lg opacity-90">在這裡發布您的願望，尋找可能的幫助，或幫助他人達成心願，讓美好的事物傳遞下去</p>
+
+              <div className="flex flex-wrap gap-4">
+                <Link href="/wishes/create">
+                  <Button size="lg" className="rounded-full px-8 py-7 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold transition-all">
+                    發布許願
+                  </Button>
+                </Link>
+                <Link href="/wishes">
+                  <Button size="lg" variant="outline" className="rounded-full px-8 py-7 text-white border-white/60 font-bold hover:bg-white/10 hover:border-white transition-all">
+                    探索許願
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="mt-12 flex items-center space-x-4">
+                <p className="text-sm font-medium">已有 12,000+ 願望實現</p>
+                <div className="flex -space-x-2">
+                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">A</div>
+                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">B</div>
+                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">C</div>
+                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-purple-400/80 flex items-center justify-center text-xs">+</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 右側漂浮卡片效果 */}
+            <div className="lg:w-1/2 relative">
+              <div className="absolute top-4 left-4 w-full h-full rounded-2xl bg-gradient-to-br from-purple-200/20 to-pink-200/20 backdrop-blur-xl border border-white/10"></div>
+              <div className="absolute top-2 left-2 w-full h-full rounded-2xl bg-gradient-to-br from-purple-300/20 to-pink-300/20 backdrop-blur-xl border border-white/10"></div>
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-xl">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center">
+                      <span className="text-white font-medium">心</span>
+                    </div>
+                    <div>
+                      <h3 className="text-white font-bold">許願池精選</h3>
+                      <p className="text-white/70 text-sm">幫助他人實現願望</p>
+                    </div>
+                  </div>
+                  <span className="px-3 py-1.5 bg-white/20 rounded-full text-white text-xs font-medium">即時更新</span>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-5 mb-4 hover:bg-white/20 transition">
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="bg-pink-500/80 text-white text-xs px-2 py-0.5 rounded-full">教育</span>
+                    <p className="text-white/60 text-xs">2小時前</p>
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">尋找數學家教，高中數學補強</h4>
+                  <p className="text-white/70 text-sm">希望能找到有耐心的數學家教，幫助我準備大學入學考試...</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-5 hover:bg-white/20 transition">
+                  <div className="flex justify-between items-start mb-3">
+                    <span className="bg-purple-500/80 text-white text-xs px-2 py-0.5 rounded-full">社區</span>
+                    <p className="text-white/60 text-xs">1天前</p>
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">組織社區老人共餐活動</h4>
+                  <p className="text-white/70 text-sm">我希望在社區組織定期的老人共餐活動，需要志工和食材...</p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* 底部波浪曲線 */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
+            <path
+              fill="#ffffff"
+              fillOpacity="1"
+              d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            ></path>
+          </svg>
         </div>
       </section>
 

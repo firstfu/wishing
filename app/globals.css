@@ -142,6 +142,33 @@ html {
   background-size: 20px 20px;
 }
 
+/* Hero 區塊的背景漸層 */
+.hero-gradient {
+  background: linear-gradient(135deg, #7928ca, #ff0080);
+}
+
+/* 玻璃擬態效果 */
+.backdrop-blur-xl {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 浮動元素陰影 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+  transform: translateY(-5px);
+}
+
 /* 淡入動畫 */
 @keyframes fade-in {
   from {
@@ -188,4 +215,38 @@ html {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* 圓形裝飾元素動畫 */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* 波浪動畫 */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-wave {
+  animation: wave 8s ease-in-out infinite;
 }
