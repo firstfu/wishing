@@ -5,21 +5,6 @@ import WishesFilter from "@/app/components/wishes/WishesFilter";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 
-// 定義搜尋參數類型
-interface SearchParams {
-  search?: string;
-  category?: string;
-  sort?: string;
-  page?: string;
-  minPrice?: string;
-  maxPrice?: string;
-}
-
-interface PageProps {
-  params: Record<string, string>;
-  searchParams: SearchParams;
-}
-
 // 載入狀態組件
 function LoadingState() {
   return (
