@@ -1,0 +1,61 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 許願池元件與狀態管理
+
+## 元件層次結構
+
+### 頁面層元件
+- 頁面根元件 (page.tsx)
+- 頁面布局元件 (layout.tsx)
+
+### UI 元件
+- **通用元件**
+  - Button - 按鈕元件
+  - Input - 輸入框
+  - Card - 卡片容器
+  - Modal - 模態對話框
+  - Dropdown - 下拉選單
+  - Toast - 提示訊息
+
+- **業務元件**
+  - WishCard - 許願卡片
+  - CommentList - 留言列表
+  - UserAvatar - 用戶頭像
+  - CategoryBadge - 分類標籤
+  - MessageItem - 訊息項目
+
+## 元件資料夾結構
+```
+/components
+  /ui           # 基礎 UI 元件
+  /wishCard     # 許願卡片相關元件
+  /layout       # 布局相關元件
+  /form         # 表單相關元件
+  /messages     # 訊息相關元件
+  /profile      # 個人頁面相關元件
+```
+
+## 元件命名規範
+- 使用 PascalCase 命名元件文件和組件名稱
+- 元件目錄結構採用功能模組方式組織
+- 共用元件與特定頁面元件分離
+
+## 狀態管理策略
+
+### 客戶端狀態
+- 表單狀態：使用 React Hook Form
+- UI 狀態：使用 React 的 useState 和 useReducer
+- 跨元件共享狀態：使用 React Context API
+
+### 服務端狀態
+- 資料請求：使用 SWR 進行資料獲取和快取
+- 認證狀態：使用 NextAuth.js 管理登入狀態
+
+### 狀態設計原則
+- 將狀態維持在需要它的最低層級
+- 避免過度全局狀態
+- 善用 React Query/SWR 的自動重新驗證功能
+- 使用不可變數據模式更新狀態

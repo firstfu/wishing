@@ -1,0 +1,37 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 許願池頁面與路由結構
+
+## 主要頁面
+
+### 公開頁面
+- **首頁** (`/`) - 展示熱門許願和分類瀏覽
+- **許願列表** (`/wishes`) - 查看所有許願，支援篩選與搜尋
+- **許願詳情** (`/wishes/[id]`) - 單一許願的詳細資訊與留言區
+- **登入頁** (`/auth/login`) - 用戶登入
+- **註冊頁** (`/auth/register`) - 新用戶註冊
+
+### 需要認證的頁面
+- **發布許願** (`/wishes/create`) - 建立新的許願
+- **個人中心** (`/profile`) - 個人資訊與概覽
+- **我的許願** (`/profile/wishes`) - 管理已發布的許願
+- **我的訊息** (`/profile/messages`) - 查看所有對話
+- **對話詳情** (`/profile/messages/[userId]`) - 與特定用戶的訊息交流
+- **交易紀錄** (`/profile/transactions`) - 檢視交易歷史
+
+## 頁面元件結構
+每個頁面由以下幾種元件組成：
+- 頁面容器 (page.tsx)
+- 頁面特定布局 (layout.tsx)
+- 共用元件 (components/)
+- 頁面特定元件
+
+## 頁面交互關係
+- 首頁是主要入口，連結到許願列表、詳情、發布頁
+- 認證流程包括登入、註冊和重置密碼
+- 個人中心作為用戶管理自身內容的樞紐
+
+詳細頁面結構可參考 [wishing_pool_pages_overview.md](mdc:docs/wishing_pool_pages_overview.md) 和 [wishing_pool_page_structure_prd.md](mdc:docs/wishing_pool_page_structure_prd.md)
