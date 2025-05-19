@@ -200,17 +200,13 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/wishes/create">
-                  <Button size="lg" className="rounded-full px-8 py-7 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold transition-all">
-                    發布許願
+                  <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                    立即發布許願
                   </Button>
                 </Link>
                 <Link href="/wishes">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="rounded-full px-8 py-7 text-pink-600 border-white/60 font-bold hover:bg-white/10 hover:border-white transition-all"
-                  >
-                    探索許願
+                  <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                    瀏覽許願
                   </Button>
                 </Link>
               </div>

@@ -63,6 +63,15 @@ export default function WishesPage(props: any) {
           {/* 篩選側邊欄 */}
           <div className="lg:w-1/4">
             <WishesFilter category={category} minPrice={minPrice} maxPrice={maxPrice} />
+
+            {/* 側邊欄中添加發布許願按鈕 */}
+            <div className="mt-8 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-pink-100">
+              <h3 className="font-bold text-lg mb-2 text-pink-800">還沒找到合適的？</h3>
+              <p className="text-sm text-gray-600 mb-4">發布您自己的許願，讓社群了解您的需求</p>
+              <Link href="/wishes/create" className="w-full block">
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-md hover:shadow-pink-500/20">發布許願</Button>
+              </Link>
+            </div>
           </div>
 
           {/* 許願列表 */}

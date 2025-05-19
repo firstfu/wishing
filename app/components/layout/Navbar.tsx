@@ -49,19 +49,18 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-3">
+          <Link href="/wishes/create">
+            <Button variant="outline" size="sm" className="rounded-full px-4">
+              發布許願
+            </Button>
+          </Link>
+
           {isLoggedIn ? (
-            <>
-              <Link href="/wishes/create">
-                <Button variant="outline" size="sm" className="rounded-full px-4">
-                  發布許願
-                </Button>
-              </Link>
-              <Link href="/profile">
-                <div className="w-9 h-9 bg-primary/10 text-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors">
-                  <span className="font-medium text-sm">U</span>
-                </div>
-              </Link>
-            </>
+            <Link href="/profile">
+              <div className="w-9 h-9 bg-primary/10 text-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors">
+                <span className="font-medium text-sm">U</span>
+              </div>
+            </Link>
           ) : (
             <>
               <Link href="/auth/login">

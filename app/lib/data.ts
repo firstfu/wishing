@@ -274,3 +274,37 @@ export async function getTrendingWishes() {
     },
   ];
 }
+
+// 創建新許願
+export interface CreateWishInput {
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+}
+
+export async function createWish(wishData: CreateWishInput): Promise<Wish> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 1200));
+
+  // 生成唯一ID (實際專案中應由後端生成)
+  const id = `wish-${Date.now()}`;
+
+  // 創建新許願
+  const newWish: Wish = {
+    id,
+    title: wishData.title,
+    description: wishData.description,
+    price: wishData.price,
+    category: wishData.category,
+    isPinned: false,
+    createdAt: new Date().toISOString(),
+    user: {
+      id: "user-self", // 在實際專案中，這裡會是實際的用戶ID
+      name: "當前用戶", // 在實際專案中，這裡會是實際的用戶名稱
+    },
+  };
+
+  // 返回創建的許願
+  return newWish;
+}
