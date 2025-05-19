@@ -19,13 +19,13 @@ function LoadingState() {
 }
 
 // 許願列表主組件
-export default async function WishesPage({ searchParams }: { searchParams: URLSearchParams }) {
-  const search = searchParams.get("search") || "";
-  const category = searchParams.get("category") || "";
-  const sort = searchParams.get("sort") || "latest";
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const minPrice = searchParams.get("minPrice") ? parseInt(searchParams.get("minPrice")!) : undefined;
-  const maxPrice = searchParams.get("maxPrice") ? parseInt(searchParams.get("maxPrice")!) : undefined;
+export default async function WishesPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
+  const search = typeof searchParams.search === "string" ? searchParams.search : "";
+  const category = typeof searchParams.category === "string" ? searchParams.category : "";
+  const sort = typeof searchParams.sort === "string" ? searchParams.sort : "latest";
+  const page = typeof searchParams.page === "string" ? parseInt(searchParams.page) : 1;
+  const minPrice = typeof searchParams.minPrice === "string" ? parseInt(searchParams.minPrice) : undefined;
+  const maxPrice = typeof searchParams.maxPrice === "string" ? parseInt(searchParams.maxPrice) : undefined;
 
   return (
     <div className="bg-background">
