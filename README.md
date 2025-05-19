@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 許願池 | Wishing Pool
 
-## Getting Started
+這是一個使用 [Next.js](https://nextjs.org) 創建的許願池平台，讓使用者可以發布願望並獲得他人幫助。
 
-First, run the development server:
+## 開始使用
+
+首先，運行開發伺服器：
 
 ```bash
 npm run dev
-# or
+# 或
 yarn dev
-# or
+# 或
 pnpm dev
-# or
+# 或
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+在瀏覽器中打開 [http://localhost:3000](http://localhost:3000) 查看結果。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+您可以通過修改 `app/page.tsx` 開始編輯頁面。當您編輯文件時，頁面會自動更新。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 專案概述
 
-## Learn More
+許願池是一個連接需求與服務的平台，讓使用者能夠：
 
-To learn more about Next.js, take a look at the following resources:
+- 發布他們的願望與需求
+- 瀏覽並幫助實現他人的願望
+- 透過社交功能（留言、私訊）進行溝通
+- 實現願望後提供反饋與評價
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 技術框架
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+本專案使用以下技術：
 
-## Deploy on Vercel
+- **前端**：Next.js 15.3 (App Router)、React 19、Tailwind CSS、shadcn/ui
+- **後端**：Next.js API Routes、Prisma、PostgreSQL
+- **認證**：NextAuth.js
+- **部署**：Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 開發計劃
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+專案開發分為三個主要階段：
+
+- **第一階段**：核心功能開發（許願功能、社交功能）
+- **第二階段**：功能強化與優化（進階功能、整合測試）
+- **第三階段**：發布與持續改進
+
+詳細開發計劃請參考 [docs/wishing_pool_development_plan.md](docs/wishing_pool_development_plan.md)。
+
+## 部署
+
+最簡單的部署方式是使用 [Vercel 平台](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)。
+
+更多部署相關資訊請參考 [Next.js 部署文檔](https://nextjs.org/docs/app/building-your-application/deploying)。
