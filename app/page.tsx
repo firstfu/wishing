@@ -89,7 +89,11 @@ function TrendingWishesDisplay() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {trendingWishes.map(wish => (
-        <Link href={`/wishes/${wish.id}`} key={wish.id} className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all duration-200">
+        <Link
+          href={`/wishes/${wish.id}`}
+          key={wish.id}
+          className="group bg-card rounded-xl overflow-hidden border border-muted shadow-sm hover:shadow-md transition-all duration-200"
+        >
           <div className="relative bg-gradient-to-tr from-pink-100 to-purple-50 p-6 h-48 flex flex-col justify-between">
             <div className="flex justify-between items-start">
               <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-white/90 text-pink-600 hover:bg-white ring-1 ring-inset ring-pink-200">
