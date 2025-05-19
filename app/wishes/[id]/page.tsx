@@ -6,6 +6,7 @@ import CommentList from "@/app/components/wishes/CommentList";
 import RelatedWishes from "@/app/components/wishes/RelatedWishes";
 import { Badge } from "@/app/components/ui/Badge";
 import Link from "next/link";
+import CommentsSectionClient from "@/app/components/wishes/CommentsSectionClient";
 
 // 載入狀態元件
 function LoadingState() {
@@ -27,10 +28,8 @@ async function RelatedWishesSection({ wishId, category }: { wishId: string; cate
 
 // 獲取許願留言
 async function CommentsSection({ wishId }: { wishId: string }) {
-  const { comments, total } = await getWishComments(wishId);
-
-  // 客戶端加載更多功能會在客戶端組件中實現
-  return <CommentList comments={comments} total={total} currentPage={1} onLoadMore={() => {}} />;
+  const { comments, total } = await getWishComments(wishId, 1);
+  return <CommentsSectionClient wishId={wishId} initialComments={comments} total={total} />;
 }
 
 // 許願詳情頁面主元件
