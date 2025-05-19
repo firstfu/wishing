@@ -52,7 +52,7 @@
 
 ### 前端
 
-- **框架**：Next.js 14.1（最新版本，使用 App Router）
+- **框架**：Next.js 15.3（最新版本，使用 App Router）
 - **樣式**：Tailwind CSS
 - **狀態管理**：React Context API + SWR
 - **UI 元件庫**：shadcn/ui

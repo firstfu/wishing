@@ -1,0 +1,27 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 許願池專案程式碼標準
+
+## TypeScript
+- 盡可能使用 TypeScript 類型，避免使用 `any`
+- 為共用的資料結構定義介面或類型
+- 使用類型推斷簡化程式碼，但關鍵位置仍應明確標註類型
+
+## React & Next.js
+- 使用函數式元件和 React Hooks
+- 路由元件使用 Server Components，除非需要客戶端交互
+- 客戶端交互元件使用 "use client" 指令
+- 適當拆分元件，保持每個元件專注於單一職責
+
+## 樣式
+- 使用 Tailwind CSS 進行樣式設計
+- 遵循移動優先的響應式設計原則
+- 複雜元件使用 CSS 模組或 styled-components
+
+## 效能考量
+- 使用 Next.js 的 Image 元件優化圖片
+- 合理使用 React.memo() 和 useMemo() / useCallback() 減少不必要的重渲染
+- 使用 SWR 進行資料獲取和快取管理

@@ -1,0 +1,23 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 許願池專案結構
+
+## 核心目錄
+- [app/](mdc:app) - Next.js 應用程式目錄，包含所有頁面、元件和布局
+- [docs/](mdc:docs) - 開發文件，包含專案規劃和架構說明
+- [public/](mdc:public) - 靜態資源目錄
+
+## 主要文件
+- [package.json](mdc:package.json) - 專案依賴和腳本
+- [next.config.ts](mdc:next.config.ts) - Next.js 配置
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript 配置
+
+## 技術棧
+本專案使用:
+- Next.js 15.3.2 (使用 App Router)
+- React 19
+- TypeScript
+- Tailwind CSS

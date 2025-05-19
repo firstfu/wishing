@@ -1,0 +1,25 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# Next.js 應用程式結構
+
+本專案使用 Next.js 15 的 App Router 結構。
+
+## 核心文件
+- [app/layout.tsx](mdc:app/layout.tsx) - 根布局，包含全域樣式和字體設定
+- [app/page.tsx](mdc:app/page.tsx) - 首頁組件
+- [app/globals.css](mdc:app/globals.css) - 全域 CSS 樣式
+
+## 命名約定
+- 路由文件: `page.tsx`
+- 布局文件: `layout.tsx`
+- CSS 模組: `*.module.css`
+- 元件: PascalCase (如 `WishCard.tsx`)
+- Hooks: 使用 `use` 前綴 (如 `useWishData.ts`)
+
+## 目錄結構約定
+- `/components` - 共用元件
+- `/lib` - 工具函數和共用邏輯
+- `/(routes)` - 按功能區分的路由目錄
