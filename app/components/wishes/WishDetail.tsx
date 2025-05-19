@@ -1,3 +1,4 @@
+// wishes/WishDetail.tsx - 願望詳情元件
 import { Wish } from "./WishCard";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
@@ -60,9 +61,7 @@ export default function WishDetail({ wish }: WishDetailProps) {
 
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center text-lg font-medium">
-              {wish.user.name.charAt(0)}
-            </div>
+            <div className="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center text-lg font-medium">{wish.user.name.charAt(0)}</div>
             <div>
               <div className="font-medium">{wish.user.name}</div>
               <div className="text-xs text-muted-foreground">用戶 ID: {wish.user.id}</div>

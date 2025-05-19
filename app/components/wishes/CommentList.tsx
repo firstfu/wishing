@@ -1,3 +1,4 @@
+// wishes/CommentList.tsx - 留言清單元件
 import { Comment } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 
@@ -32,9 +33,7 @@ export default function CommentList({ comments, total, onLoadMore, isLoadingMore
             <div key={comment.id} className="border border-border rounded-lg p-4 bg-card">
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">
-                    {comment.user.name.charAt(0)}
-                  </div>
+                  <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">{comment.user.name.charAt(0)}</div>
                   <div className="font-medium">{comment.user.name}</div>
                 </div>
                 <div className="text-xs text-muted-foreground">

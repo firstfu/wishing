@@ -1,3 +1,4 @@
+// ui/Badge.tsx - 標籤元件
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/app/lib/utils";
 

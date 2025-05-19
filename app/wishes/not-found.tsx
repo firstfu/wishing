@@ -1,3 +1,4 @@
+// wishes/not-found.tsx - 願望頁面未找到
 import Link from "next/link";
 import { Button } from "@/app/components/ui/Button";
 

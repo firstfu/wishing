@@ -6,6 +6,8 @@ import WishCard, { Wish } from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 
+// wishes/WishesList.tsx - 願望清單元件
+
 interface WishesListProps {
   search?: string;
   category?: string;

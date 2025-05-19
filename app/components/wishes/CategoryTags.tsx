@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+// wishes/CategoryTags.tsx - 類別標籤元件
+
 // 分類定義，包含顏色
 const categories = [
   { id: "technology", name: "科技", icon: "💻", color: "from-blue-500 to-indigo-500" },

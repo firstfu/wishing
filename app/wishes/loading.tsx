@@ -1,3 +1,4 @@
+// wishes/loading.tsx - 願望頁面載入中
 export default function Loading() {
   return (
     <div className="bg-background">

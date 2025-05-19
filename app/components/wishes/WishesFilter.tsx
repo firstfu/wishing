@@ -5,6 +5,8 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 import { getCategories } from "@/app/lib/data";
 
+// wishes/WishesFilter.tsx - 願望篩選元件
+
 // 篩選器組件Props類型定義
 interface WishesFilterProps {
   category?: string;

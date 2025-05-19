@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import WishCard, { Wish } from "./WishCard";
 
+// wishes/FeaturedWishesCarousel.tsx - 精選願望輪播元件
+
 interface FeaturedWishesCarouselProps {
   wishes: Wish[];
 }
@@ -65,9 +67,7 @@ export default function FeaturedWishesCarousel({ wishes }: FeaturedWishesCarouse
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-primary w-6" : "bg-muted hover:bg-muted-foreground/30"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-primary w-6" : "bg-muted hover:bg-muted-foreground/30"}`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

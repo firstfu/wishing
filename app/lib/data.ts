@@ -1,4 +1,4 @@
-// 模擬數據
+// data.ts - 資料相關函式與常數
 import { Wish } from "../components/wishes/WishCard";
 
 // 生成隨機許願

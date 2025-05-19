@@ -1,3 +1,4 @@
+// wishes/RelatedWishes.tsx - 相關願望元件
 import { Wish } from "./WishCard";
 import Link from "next/link";
 

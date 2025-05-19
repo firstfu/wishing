@@ -2,6 +2,8 @@
 
 import WishCard, { Wish } from "./WishCard";
 
+// wishes/LatestWishesList.tsx - 最新願望清單元件
+
 interface LatestWishesListProps {
   wishes: Wish[];
 }

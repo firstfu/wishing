@@ -1,3 +1,4 @@
+// wishes/page.tsx - 願望列表頁面
 import { Suspense } from "react";
 import WishesHeader from "@/app/components/wishes/WishesHeader";
 import WishesList from "@/app/components/wishes/WishesList";

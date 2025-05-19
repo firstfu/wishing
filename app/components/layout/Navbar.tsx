@@ -1,3 +1,4 @@
+// layout/Navbar.tsx - 導覽列元件
 "use client";
 
 import Link from "next/link";
@@ -27,9 +28,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 rounded-full bg-gradient flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">
-              WP
-            </div>
+            <div className="w-8 h-8 rounded-full bg-gradient flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">WP</div>
             <span className="text-xl font-bold bg-gradient text-transparent bg-clip-text">許願池</span>
           </Link>
         </div>

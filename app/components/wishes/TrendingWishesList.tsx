@@ -1,3 +1,4 @@
+// wishes/TrendingWishesList.tsx - 熱門願望清單元件
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/app/components/ui/Badge";
