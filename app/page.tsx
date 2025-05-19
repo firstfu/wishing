@@ -206,7 +206,11 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/wishes">
-                  <Button size="lg" variant="outline" className="rounded-full px-8 py-7 text-white border-white/60 font-bold hover:bg-white/10 hover:border-white transition-all">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full px-8 py-7 text-pink-600 border-white/60 font-bold hover:bg-white/10 hover:border-white transition-all"
+                  >
                     探索許願
                   </Button>
                 </Link>
