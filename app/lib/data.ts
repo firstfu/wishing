@@ -209,3 +209,61 @@ export async function getWishComments(wishId: string, page: number = 1, limit: n
     total,
   };
 }
+
+// 獲取熱門許願
+export async function getTrendingWishes() {
+  // 模擬API調用，實際專案中應從資料庫獲取
+  return [
+    {
+      id: "trend1",
+      title: "一起來海邊淨灘",
+      description: "希望能找到志同道合的朋友，一起到北海岸進行淨灘活動，為環保盡一份心力。",
+      price: 0,
+      category: "環保",
+      status: "open",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      user: {
+        id: "user1",
+        name: "環保達人",
+        avatar: "/avatars/user1.jpg",
+      },
+      viewCount: 358,
+      commentCount: 24,
+    },
+    {
+      id: "trend2",
+      title: "需要程式開發導師指導",
+      description: "正在自學React和Next.js，希望能找到有經驗的開發者給予一些指導和建議。",
+      price: 500,
+      category: "教育",
+      status: "open",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      user: {
+        id: "user2",
+        name: "程式新手",
+        avatar: "/avatars/user2.jpg",
+      },
+      viewCount: 246,
+      commentCount: 18,
+    },
+    {
+      id: "trend3",
+      title: "找尋共同創業夥伴",
+      description: "有一個關於永續時尚的創業想法，正在尋找有設計或行銷背景的夥伴一起實現。",
+      price: 0,
+      category: "創業",
+      status: "open",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      user: {
+        id: "user3",
+        name: "綠色創業家",
+        avatar: "/avatars/user3.jpg",
+      },
+      viewCount: 302,
+      commentCount: 29,
+    },
+  ];
+}
