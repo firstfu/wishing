@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { getLatestWishes } from "@/app/lib/data";
-import LatestWishesList from "@/app/components/wishes/LatestWishesList";
+import LatestWishesListClientWrapper from "@/app/components/wishes/LatestWishesListClientWrapper";
 import CategoryTags from "@/app/components/wishes/CategoryTags";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
@@ -136,7 +136,7 @@ function TrendingWishesDisplay() {
 // 異步獲取最新許願數據
 async function LatestWishes() {
   const latestWishes = await getLatestWishes();
-  return <LatestWishesList wishes={latestWishes} />;
+  return <LatestWishesListClientWrapper wishes={latestWishes} />;
 }
 
 export default function Home() {
