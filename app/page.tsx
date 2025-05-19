@@ -9,11 +9,12 @@
 // 本檔案為 Next.js App Router 首頁，負責網站主入口的內容展示
 
 import { Suspense } from "react";
-import { getLatestWishes } from "@/app/lib/data";
+import { getLatestWishes, getFeaturedWishes } from "@/app/lib/data";
 import LatestWishesListClientWrapper from "@/app/components/wishes/LatestWishesListClientWrapper";
 import CategoryTags from "@/app/components/wishes/CategoryTags";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
+import FeaturedWishesCarousel from "@/app/components/wishes/FeaturedWishesCarousel";
 
 // 載入狀態組件
 function LoadingState() {
@@ -153,6 +154,12 @@ async function LatestWishes() {
   return <LatestWishesListClientWrapper wishes={latestWishes} />;
 }
 
+// 置頂許願 Server Component
+async function FeaturedWishes() {
+  const featuredWishes = await getFeaturedWishes();
+  return <FeaturedWishesCarousel wishes={featuredWishes} />;
+}
+
 export default function Home() {
   return (
     <>
@@ -193,6 +200,21 @@ export default function Home() {
             </h2>
           </div>
           <CategoryTags />
+        </section>
+
+        {/* 置頂許願區 */}
+        <section className="mb-16 animate-fade-in animation-delay-300">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              <span className="relative inline-block">
+                置頂許願
+                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-[#ff69b4] rounded-full"></span>
+              </span>
+            </h2>
+          </div>
+          <Suspense fallback={<div className="h-40 bg-muted rounded-lg animate-pulse"></div>}>
+            <FeaturedWishes />
+          </Suspense>
         </section>
 
         {/* 熱門許願區 */}
