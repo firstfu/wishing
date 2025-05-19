@@ -8,54 +8,243 @@ alwaysApply: false
 ## 元件層次結構
 
 ### 頁面層元件
-- 頁面根元件 (page.tsx)
-- 頁面布局元件 (layout.tsx)
+- **頁面根元件** (page.tsx) - 處理資料獲取和頁面布局
+- **頁面布局元件** (layout.tsx) - 提供共享的頁面結構
 
 ### UI 元件
 - **通用元件**
-  - Button - 按鈕元件
-  - Input - 輸入框
-  - Card - 卡片容器
-  - Modal - 模態對話框
-  - Dropdown - 下拉選單
-  - Toast - 提示訊息
+  - `Button` - 按鈕元件，支援多種變體和尺寸
+  - `Input` - 輸入框，支援驗證和錯誤提示
+  - `Card` - 卡片容器，用於內容展示
+  - `Modal` - 模態對話框，支援各種交互場景
+  - `Dropdown` - 下拉選單，支援選項分組和搜尋
+  - `Toast` - 提示訊息，用於反饋操作結果
 
 - **業務元件**
-  - WishCard - 許願卡片
-  - CommentList - 留言列表
-  - UserAvatar - 用戶頭像
-  - CategoryBadge - 分類標籤
-  - MessageItem - 訊息項目
+  - `WishCard` - 許願卡片，展示許願摘要
+  - `CommentList` - 留言列表，支援分頁和回覆
+  - `UserAvatar` - 用戶頭像，支援加載狀態
+  - `CategoryBadge` - 分類標籤，用於標記許願類別
+  - `MessageItem` - 訊息項目，用於聊天界面
+
+## 元件設計範例
+
+### 按鈕元件
+
+```tsx
+// components/ui/Button.tsx
+import { forwardRef } from 'react';
+import { VariantProps, cva } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-white hover:bg-primary/90",
+        secondary: "bg-secondary text-white hover:bg-secondary/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-8 px-3 text-sm",
+        lg: "h-12 px-6 text-lg",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  isLoading?: boolean;
+}
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, isLoading, children, ...props }, ref) => {
+    return (
+      <button
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref}
+        disabled={isLoading || props.disabled}
+        {...props}
+      >
+        {isLoading ? (
+          <span className="mr-2">
+            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+              <circle
+                className="opacity-25"
+                cx="12" cy="12" r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+                fill="none"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              />
+            </svg>
+          </span>
+        ) : null}
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+```
 
 ## 元件資料夾結構
 ```
 /components
   /ui           # 基礎 UI 元件
+    Button.tsx
+    Input.tsx
+    Modal.tsx
+    ...
   /wishCard     # 許願卡片相關元件
+    WishCard.tsx
+    WishCardSkeleton.tsx
+    ...
   /layout       # 布局相關元件
+    Navbar.tsx
+    Footer.tsx
+    ...
   /form         # 表單相關元件
+    WishForm.tsx
+    CommentForm.tsx
+    ...
   /messages     # 訊息相關元件
+    MessageList.tsx
+    MessageInput.tsx
+    ...
   /profile      # 個人頁面相關元件
+    UserStats.tsx
+    TransactionHistory.tsx
+    ...
 ```
 
-## 元件命名規範
-- 使用 PascalCase 命名元件文件和組件名稱
+## 元件命名規範與最佳實踐
+- 使用 **PascalCase** 命名元件文件和組件名稱
 - 元件目錄結構採用功能模組方式組織
 - 共用元件與特定頁面元件分離
+- 元件應專注於單一職責
+- 使用適當的類型定義提高可維護性
+- 元件應具有良好的錯誤邊界處理
 
 ## 狀態管理策略
 
 ### 客戶端狀態
-- 表單狀態：使用 React Hook Form
-- UI 狀態：使用 React 的 useState 和 useReducer
-- 跨元件共享狀態：使用 React Context API
+- **表單狀態**：使用 React Hook Form 進行表單管理
+  ```tsx
+  import { useForm } from 'react-hook-form';
+  import { zodResolver } from '@hookform/resolvers/zod';
+  import { z } from 'zod';
+
+  const wishSchema = z.object({
+    title: z.string().min(5).max(100),
+    description: z.string().min(20),
+    price: z.number().positive(),
+    category: z.string(),
+  });
+
+  type WishFormValues = z.infer<typeof wishSchema>;
+
+  export function WishForm() {
+    const { register, handleSubmit, formState: { errors } } = useForm<WishFormValues>({
+      resolver: zodResolver(wishSchema),
+    });
+
+    const onSubmit = (data: WishFormValues) => {
+      // 處理表單提交
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* 表單內容 */}
+      </form>
+    );
+  }
+  ```
+
+- **UI 狀態**：使用 React 的 useState 和 useReducer
+- **跨元件共享狀態**：使用 React Context API
+  ```tsx
+  // contexts/WishContext.tsx
+  import { createContext, useContext, useReducer, ReactNode } from 'react';
+
+  type WishState = {
+    wishes: Wish[];
+    isLoading: boolean;
+    error: string | null;
+  };
+
+  const WishContext = createContext<{ state: WishState; dispatch: React.Dispatch<Action> } | undefined>(undefined);
+
+  export function WishProvider({ children }: { children: ReactNode }) {
+    const [state, dispatch] = useReducer(wishReducer, initialState);
+    return (
+      <WishContext.Provider value={{ state, dispatch }}>
+        {children}
+      </WishContext.Provider>
+    );
+  }
+
+  export function useWish() {
+    const context = useContext(WishContext);
+    if (context === undefined) {
+      throw new Error('useWish must be used within a WishProvider');
+    }
+    return context;
+  }
+  ```
 
 ### 服務端狀態
-- 資料請求：使用 SWR 進行資料獲取和快取
-- 認證狀態：使用 NextAuth.js 管理登入狀態
+- **資料請求**：使用 SWR 進行資料獲取和快取
+  ```tsx
+  import useSWR from 'swr';
+
+  const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+  export function useWishes(page = 1, limit = 10) {
+    const { data, error, isLoading, mutate } = useSWR(
+      `/api/v1/wishes?page=${page}&limit=${limit}`,
+      fetcher
+    );
+
+    return {
+      wishes: data?.wishes || [],
+      isLoading,
+      isError: error,
+      mutate,
+      pagination: data?.meta?.pagination,
+    };
+  }
+  ```
+
+- **認證狀態**：使用 NextAuth.js 管理登入狀態
 
 ### 狀態設計原則
 - 將狀態維持在需要它的最低層級
 - 避免過度全局狀態
 - 善用 React Query/SWR 的自動重新驗證功能
 - 使用不可變數據模式更新狀態
+- 實現適當的載入和錯誤狀態處理
+
+## 效能最佳化策略
+- 使用 `React.memo` 減少不必要的重渲染
+- 合理使用 `useMemo` 和 `useCallback` 記憶計算結果和函數
+- 實現虛擬滾動處理大量列表數據
+- 使用骨架屏幕提升感知性能
+- 實施代碼分割和懶加載優化初始載入時間

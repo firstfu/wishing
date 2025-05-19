@@ -5,33 +5,224 @@ alwaysApply: false
 ---
 # 許願池頁面與路由結構
 
-## 主要頁面
+## Next.js App Router 路由設計
+
+許願池專案使用 Next.js 的 App Router 實現路由。每個路由目錄需包含 `page.tsx` 文件作為頁面組件。
+
+```
+app/
+├── page.tsx                 # 首頁 (/)
+├── wishes/
+│   ├── page.tsx             # 許願列表頁 (/wishes)
+│   ├── [id]/
+│   │   └── page.tsx         # 許願詳情頁 (/wishes/[id])
+│   └── create/
+│       └── page.tsx         # 建立許願頁 (/wishes/create)
+├── auth/
+│   ├── login/
+│   │   └── page.tsx         # 登入頁 (/auth/login)
+│   └── register/
+│       └── page.tsx         # 註冊頁 (/auth/register)
+└── profile/
+    ├── page.tsx             # 個人中心首頁 (/profile)
+    ├── wishes/
+    │   └── page.tsx         # 我的許願頁 (/profile/wishes)
+    ├── messages/
+    │   ├── page.tsx         # 訊息列表頁 (/profile/messages)
+    │   └── [userId]/
+    │       └── page.tsx     # 訊息對話頁 (/profile/messages/[userId])
+    └── transactions/
+        └── page.tsx         # 交易記錄頁 (/profile/transactions)
+```
+
+## 主要頁面詳細說明
 
 ### 公開頁面
-- **首頁** (`/`) - 展示熱門許願和分類瀏覽
-- **許願列表** (`/wishes`) - 查看所有許願，支援篩選與搜尋
-- **許願詳情** (`/wishes/[id]`) - 單一許願的詳細資訊與留言區
-- **登入頁** (`/auth/login`) - 用戶登入
-- **註冊頁** (`/auth/register`) - 新用戶註冊
+
+#### **首頁** (`/`)
+- **用途**：網站主入口，提供許願池的概覽和熱門內容
+- **主要元件**：
+  - 熱門分類展示
+  - 置頂許願輪播
+  - 最新許願列表
+  - 搜尋功能
+- **資料獲取**：使用 Server Components 從後端獲取熱門和最新許願
+- **實現示例**：
+  ```tsx
+  // app/page.tsx
+  import { getFeaturedWishes, getLatestWishes } from '@/lib/api/wishes';
+  import FeaturedWishesCarousel from '@/components/wishes/FeaturedWishesCarousel';
+  import LatestWishesList from '@/components/wishes/LatestWishesList';
+  import CategoryTags from '@/components/wishes/CategoryTags';
+
+  export default async function Home() {
+    // 使用 Server Component 獲取資料
+    const featuredWishes = await getFeaturedWishes();
+    const latestWishes = await getLatestWishes();
+
+    return (
+      <main className="container mx-auto px-4 py-8">
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4">熱門分類</h2>
+          <CategoryTags />
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold mb-4">置頂許願</h2>
+          <FeaturedWishesCarousel wishes={featuredWishes} />
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold mb-4">最新許願</h2>
+          <LatestWishesList wishes={latestWishes} />
+        </section>
+      </main>
+    );
+  }
+  ```
+
+#### **許願列表頁** (`/wishes`)
+- **用途**：瀏覽和篩選所有許願
+- **主要元件**：
+  - 搜尋欄位
+  - 篩選器（分類、價格範圍、狀態）
+  - 許願列表
+  - 分頁控制
+- **交互功能**：透過客戶端狀態管理實現篩選和分頁
+- **認證要求**：不需要認證
+
+#### **許願詳情頁** (`/wishes/[id]`)
+- **用途**：查看單個許願的詳細信息和留言
+- **主要元件**：
+  - 許願詳細資訊
+  - 發布者資訊
+  - 留言列表
+  - 留言表單（需登入）
+  - 聯絡發布者按鈕
+- **動態參數**：`[id]` - 許願的唯一識別碼
+- **認證要求**：部分功能需要認證（留言、聯絡）
 
 ### 需要認證的頁面
-- **發布許願** (`/wishes/create`) - 建立新的許願
-- **個人中心** (`/profile`) - 個人資訊與概覽
-- **我的許願** (`/profile/wishes`) - 管理已發布的許願
-- **我的訊息** (`/profile/messages`) - 查看所有對話
-- **對話詳情** (`/profile/messages/[userId]`) - 與特定用戶的訊息交流
-- **交易紀錄** (`/profile/transactions`) - 檢視交易歷史
 
-## 頁面元件結構
-每個頁面由以下幾種元件組成：
-- 頁面容器 (page.tsx)
-- 頁面特定布局 (layout.tsx)
-- 共用元件 (components/)
-- 頁面特定元件
+#### **發布許願頁** (`/wishes/create`)
+- **用途**：創建新的許願
+- **主要元件**：
+  - 許願表單
+  - 分類選擇器
+  - 圖片上傳
+- **認證中間件**：需要用戶登入，使用中間件保護路由
+  ```tsx
+  // middleware.ts
+  export { default } from 'next-auth/middleware';
 
-## 頁面交互關係
-- 首頁是主要入口，連結到許願列表、詳情、發布頁
-- 認證流程包括登入、註冊和重置密碼
-- 個人中心作為用戶管理自身內容的樞紐
+  export const config = {
+    matcher: [
+      '/wishes/create',
+      '/profile/:path*',
+    ],
+  };
+  ```
+- **表單驗證**：使用 zod 和 react-hook-form 進行客戶端驗證
+
+#### **個人中心** (`/profile`)
+- **用途**：用戶個人資料和活動概覽
+- **主要元件**：
+  - 用戶資料卡
+  - 帳戶余額
+  - 最近許願摘要
+  - 未讀消息提示
+- **資料獲取**：使用 Server Components 獲取用戶資料，並用 SWR 處理即時數據
+- **認證要求**：需要用戶登入
+
+#### **我的許願頁** (`/profile/wishes`)
+- **用途**：管理用戶已發布的許願
+- **主要元件**：
+  - 許願列表
+  - 狀態篩選器
+  - 操作按鈕（編輯、刪除、置頂）
+- **操作功能**：
+  - 編輯許願內容
+  - 刪除許願
+  - 購買置頂服務
+- **認證要求**：需要用戶登入
+
+## 頁面布局與共享組件
+
+### 布局結構
+- **根布局** (`app/layout.tsx`) - 包含全局樣式、元數據和頁面共用結構
+- **嵌套布局** - 特定路由可以有自己的布局：
+  ```tsx
+  // app/profile/layout.tsx
+  export default function ProfileLayout({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-4">
+        <aside className="md:col-span-1">
+          <ProfileSidebar />
+        </aside>
+        <main className="md:col-span-3">
+          {children}
+        </main>
+      </div>
+    );
+  }
+  ```
+
+### 頁面共用元件
+- **Navbar** - 頂部導航欄，顯示在所有頁面
+- **Footer** - 頁腳，包含網站資訊和連結
+- **LoadingUI** - 載入狀態顯示
+- **ErrorBoundary** - 錯誤處理組件
+
+## 頁面交互關係與用戶流程
+
+### 主要用戶流程
+- **瀏覽流程**：首頁 → 許願列表 → 許願詳情
+- **發布流程**：登入 → 發布許願 → 查看我的許願
+- **交流流程**：許願詳情 → 留言/私訊 → 對話頁面
+- **交易流程**：個人中心 → 儲值 → 購買置頂服務
+
+### 頁面間導航關係圖
+```
+首頁 (/)
+ ├─→ 許願列表 (/wishes) ─→ 許願詳情 (/wishes/[id])
+ │                            ├─→ 發送私訊 (/profile/messages/[userId])
+ │                            └─→ 登入頁 (/auth/login) [若未登入]
+ ├─→ 發布許願 (/wishes/create) [需要登入]
+ └─→ 登入頁 (/auth/login) ←→ 註冊頁 (/auth/register)
+       └─→ 個人中心 (/profile) [登入後]
+            ├─→ 我的許願 (/profile/wishes)
+            ├─→ 我的訊息 (/profile/messages) ─→ 對話詳情 (/profile/messages/[userId])
+            └─→ 交易紀錄 (/profile/transactions)
+```
+
+## 頁面優化策略
+
+### 效能優化
+- 使用 Server Components 減少客戶端 JavaScript
+- 實現增量靜態生成 (ISR) 優化熱門頁面載入速度
+- 使用 `loading.tsx` 提供即時載入狀態
+
+### SEO 優化
+- 每個頁面使用適當的元數據
+  ```tsx
+  // app/wishes/[id]/page.tsx
+  export async function generateMetadata({ params }: { params: { id: string } }) {
+    const wish = await getWishById(params.id);
+
+    return {
+      title: `${wish.title} | 許願池`,
+      description: wish.description.substring(0, 160),
+      openGraph: {
+        images: wish.images,
+      },
+    };
+  }
+  ```
+- 使用語義化 HTML 提升可訪問性
+- 實現結構化數據提升搜索引擎理解
 
 詳細頁面結構可參考 [wishing_pool_pages_overview.md](mdc:docs/wishing_pool_pages_overview.md) 和 [wishing_pool_page_structure_prd.md](mdc:docs/wishing_pool_page_structure_prd.md)
