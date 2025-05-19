@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Button } from "@/app/components/ui/Button";
 
 interface WishesHeaderProps {
   search?: string;

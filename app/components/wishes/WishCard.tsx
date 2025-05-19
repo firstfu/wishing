@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Button } from "../ui/Button";
 
 // 許願的類型定義
 export interface Wish {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import WishCard from "@/app/components/wishes/WishCard";
+import WishCard, { Wish } from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 
@@ -16,7 +16,7 @@ interface WishesListProps {
 }
 
 export default function WishesList({ search = "", category = "", sort = "latest", page = 1, minPrice, maxPrice }: WishesListProps) {
-  const [wishesData, setWishesData] = useState<{ wishes: any[]; total: number }>({ wishes: [], total: 0 });
+  const [wishesData, setWishesData] = useState<{ wishes: Wish[]; total: number }>({ wishes: [], total: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function WishesList({ search = "", category = "", sort = "latest"
   const pageNumbers = [];
   const maxPageButtons = 5;
   let startPage = Math.max(1, page - Math.floor(maxPageButtons / 2));
-  let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+  const endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
 
   if (endPage - startPage + 1 < maxPageButtons) {
     startPage = Math.max(1, endPage - maxPageButtons + 1);
