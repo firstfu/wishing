@@ -5,15 +5,20 @@ import WishesFilter from "@/app/components/wishes/WishesFilter";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 
-// 定義頁面接收的 searchParams 類型
-type SearchParams = {
+// 定義搜尋參數類型
+interface SearchParams {
   search?: string;
   category?: string;
   sort?: string;
   page?: string;
   minPrice?: string;
   maxPrice?: string;
-};
+}
+
+interface PageProps {
+  params: Record<string, string>;
+  searchParams: SearchParams;
+}
 
 // 載入狀態組件
 function LoadingState() {
@@ -29,7 +34,12 @@ function LoadingState() {
 }
 
 // 許願列表主組件
-export default function WishesPage({ searchParams }: { searchParams: SearchParams }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function WishesPage(props: any) {
+  // 從 props 中解構 searchParams
+  const { searchParams = {} } = props;
+
+  // 處理搜尋參數
   const search = typeof searchParams.search === "string" ? searchParams.search : "";
   const category = typeof searchParams.category === "string" ? searchParams.category : "";
   const sort = typeof searchParams.sort === "string" ? searchParams.sort : "latest";
