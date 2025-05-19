@@ -3,19 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #0070f3;
+  --primary: #6366f1;
   --primary-foreground: #ffffff;
-  --secondary: #2563eb;
+  --secondary: #4f46e5;
   --secondary-foreground: #ffffff;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
+  --accent: #f4f4f5;
+  --accent-foreground: #111827;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
   --card: #ffffff;
   --card-foreground: #171717;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #0070f3;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #6366f1;
 }
 
 @theme inline {
@@ -40,21 +40,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #0070f3;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --primary: #818cf8;
     --primary-foreground: #ffffff;
-    --secondary: #3b82f6;
+    --secondary: #6366f1;
     --secondary-foreground: #ffffff;
-    --accent: #1f1f1f;
-    --accent-foreground: #ededed;
-    --muted: #1f1f1f;
-    --muted-foreground: #a3a3a3;
-    --card: #171717;
-    --card-foreground: #ededed;
-    --border: #333333;
-    --input: #333333;
-    --ring: #0070f3;
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --border: #334155;
+    --input: #334155;
+    --ring: #818cf8;
   }
 }
 
@@ -62,4 +62,82 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* 添加平滑的滾動效果 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 美化卡片陰影效果 */
+.shadow-custom {
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 漸變按鈕背景 */
+.bg-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* 文字漸變顏色 */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-transparent {
+  color: transparent;
+}
+
+/* 背景網格紋路 */
+.bg-grid-white {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1h98v98H1V1zm1 0v98h98V1H2z' fill='%23FFFFFF' fill-rule='evenodd' fill-opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* 淡入動畫 */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+/* 動畫延遲類 */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+/* 卡片懸浮動畫 */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

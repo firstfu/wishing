@@ -3,50 +3,73 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/Button";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   // 模擬登入狀態，後續會替換為實際的認證邏輯
   const isLoggedIn = false;
+  const [scrolled, setScrolled] = useState(false);
+
+  // 監聽滾動事件
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    <nav
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "bg-background/90 backdrop-blur-md shadow-sm border-b border-border/40" : "bg-background border-b border-border"
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-primary">許願池</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="w-8 h-8 rounded-full bg-gradient flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">
+              WP
+            </div>
+            <span className="text-xl font-bold bg-gradient text-transparent bg-clip-text">許願池</span>
           </Link>
         </div>
 
-        <div className="hidden md:flex items-center space-x-2">
-          <Link href="/wishes" className="px-3 py-2 hover:text-primary">
+        <div className="hidden md:flex items-center space-x-6">
+          <Link href="/wishes" className="text-foreground/80 hover:text-primary transition-colors font-medium">
             許願列表
           </Link>
-          {/* 其他頂部導航項目 */}
+          <Link href="#" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            熱門許願
+          </Link>
+          <Link href="#" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+            關於我們
+          </Link>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           {isLoggedIn ? (
             <>
               <Link href="/wishes/create">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="rounded-full px-4">
                   發布許願
                 </Button>
               </Link>
               <Link href="/profile">
-                <Button variant="ghost" size="sm">
-                  個人中心
-                </Button>
+                <div className="w-9 h-9 bg-primary/10 text-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors">
+                  <span className="font-medium text-sm">U</span>
+                </div>
               </Link>
             </>
           ) : (
             <>
               <Link href="/auth/login">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="rounded-full px-4">
                   登入
                 </Button>
               </Link>
               <Link href="/auth/register">
-                <Button variant="default" size="sm">
+                <Button variant="default" size="sm" className="rounded-full px-4 bg-gradient hover:shadow-md hover:shadow-primary/20">
                   註冊
                 </Button>
               </Link>
