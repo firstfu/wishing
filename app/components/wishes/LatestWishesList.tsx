@@ -2,10 +2,19 @@
 
 import WishCard, { Wish } from "./WishCard";
 
-// wishes/LatestWishesList.tsx - 最新許願清單元件
-//
-// 顯示最新發布的許願，資料由 getLatestWishes 取得。
-// 用於首頁、其他推薦區塊，支援無資料提示。
+// 許願池 LatestWishesList 元件
+// ---------------------------------------------
+// 用途：
+//   - 顯示最新發布的許願，資料由 getLatestWishes 取得。
+//   - 用於首頁、其他推薦區塊，支援無資料提示。
+// 主要 Props：
+//   - wishes: Wish[] 許願清單（必填）
+// 用法範例：
+//   <LatestWishesList wishes={wishes} />
+// 設計重點：
+//   - 無資料時顯示提示
+//   - 使用 WishCard 呈現每筆許願
+// ---------------------------------------------
 
 interface LatestWishesListProps {
   wishes: Wish[];

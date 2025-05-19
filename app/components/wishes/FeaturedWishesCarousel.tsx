@@ -3,10 +3,20 @@
 import { useState, useEffect } from "react";
 import WishCard, { Wish } from "./WishCard";
 
-// wishes/FeaturedWishesCarousel.tsx - 精選許願輪播元件
-//
-// 顯示置頂/精選許願的輪播，資料由 getFeaturedWishes 取得。
-// 支援自動輪播、手動切換、無資料提示。
+// 許願池 FeaturedWishesCarousel 元件
+// ---------------------------------------------
+// 用途：
+//   - 顯示置頂/精選許願的輪播，資料由 getFeaturedWishes 取得。
+//   - 支援自動輪播、手動切換、無資料提示。
+// 主要 Props：
+//   - wishes: Wish[] 許願清單（必填）
+// 用法範例：
+//   <FeaturedWishesCarousel wishes={wishes} />
+// 設計重點：
+//   - 自動輪播與手動切換
+//   - 無資料時顯示提示
+//   - 使用 WishCard 呈現每筆許願
+// ---------------------------------------------
 
 interface FeaturedWishesCarouselProps {
   wishes: Wish[];

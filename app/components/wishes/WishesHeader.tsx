@@ -3,10 +3,22 @@
 import { useState, FormEvent } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
-// wishes/WishesHeader.tsx - 許願列表搜尋與排序元件
-//
-// 提供搜尋框與排序選項，支援即時查詢與切換排序，更新 URL 參數。
-// 用於 /wishes 頁面頂部，與 WishesList、WishesFilter 搭配。
+// 許願池 WishesHeader 元件
+// ---------------------------------------------
+// 用途：
+//   - 許願列表搜尋與排序元件。
+//   - 提供搜尋框與排序選項，支援即時查詢與切換排序，更新 URL 參數。
+//   - 用於 /wishes 頁面頂部，與 WishesList、WishesFilter 搭配。
+// 主要 Props：
+//   - search: 預設搜尋字串（選填）
+//   - sort: 預設排序方式（選填，預設 latest）
+// 用法範例：
+//   <WishesHeader search={search} sort={sort} />
+// 設計重點：
+//   - 支援即時搜尋與排序切換
+//   - 變更時自動更新 URL 參數
+//   - 響應式設計，適合桌機與行動裝置
+// ---------------------------------------------
 
 interface WishesHeaderProps {
   search?: string;

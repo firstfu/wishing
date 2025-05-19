@@ -6,10 +6,25 @@ import WishCard, { Wish } from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 
-// wishes/WishesList.tsx - 許願清單元件
-//
-// 根據搜尋、分類、價格、排序等參數取得許願資料，並顯示分頁、無結果提示。
-// 主要用於 /wishes 頁面，支援分頁切換、動態資料載入、骨架屏。
+// 許願池 WishesList 元件
+// ---------------------------------------------
+// 用途：
+//   - 根據搜尋、分類、價格、排序等參數取得許願資料，並顯示分頁、無結果提示。
+//   - 主要用於 /wishes 頁面，支援分頁切換、動態資料載入、骨架屏。
+// 主要 Props：
+//   - search: 搜尋字串（選填）
+//   - category: 分類（選填）
+//   - sort: 排序方式（選填，預設 latest）
+//   - page: 當前頁碼（選填，預設 1）
+//   - minPrice: 最低價格（選填）
+//   - maxPrice: 最高價格（選填）
+// 用法範例：
+//   <WishesList search={search} category={category} sort={sort} page={page} minPrice={minPrice} maxPrice={maxPrice} />
+// 設計重點：
+//   - 動態取得資料，支援 loading 狀態
+//   - 分頁控制與 URL 參數同步
+//   - 無結果時顯示提示
+// ---------------------------------------------
 
 interface WishesListProps {
   search?: string;

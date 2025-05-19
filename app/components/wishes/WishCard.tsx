@@ -2,10 +2,24 @@
 
 import Link from "next/link";
 
-// wishes/WishCard.tsx - 許願卡片元件
-//
-// 顯示單一許願摘要資訊，支援 default/compact 兩種版型。
-// 用於列表、輪播、相關推薦等區塊，支援分類顏色、價格格式化。
+// 許願池 WishCard 元件
+// ---------------------------------------------
+// 用途：
+//   - 顯示單一許願摘要資訊，支援 default/compact 兩種版型。
+//   - 用於許願列表、輪播、推薦等區塊。
+//   - 顯示分類顏色、價格格式化、發布者資訊。
+// 主要 Props：
+//   - wish: Wish 物件（必填）
+//   - variant: "default" | "compact"（選填，預設 default）
+// 用法範例：
+//   <WishCard wish={wish} />
+//   <WishCard wish={wish} variant="compact" />
+// 設計重點：
+//   - 支援分類顏色與中文翻譯
+//   - 價格格式化為新台幣
+//   - 置頂標記顯示
+//   - 使用 Next.js Link 進行路由跳轉
+// ---------------------------------------------
 
 // 許願的類型定義
 export interface Wish {
