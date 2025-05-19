@@ -36,25 +36,23 @@ export default function Home() {
   return (
     <>
       {/* 頂部橫幅/Hero 區塊 */}
-      <section className="bg-gradient relative overflow-hidden">
+      <section className="bg-gradient-banner relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[center_top_-1px]"></div>
+        <div className="absolute inset-0 bg-pattern-dots"></div>
         <div className="container mx-auto px-4 py-16 md:py-24 relative">
           <div className="max-w-3xl animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              在<span className="text-yellow-300">許願池</span>發現與實現夢想
+              在<span className="text-pink-200">許願池</span>發現與實現夢想
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8">在這裡發布您的願望，尋找可能的幫助，或幫助他人達成心願，讓美好的事物傳遞下去</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/wishes/create">
-                <Button
-                  size="lg"
-                  className="rounded-full px-6 py-6 bg-white text-primary hover:bg-white/90 hover:shadow-lg hover:shadow-white/20 transition-all"
-                >
+                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-primary hover:bg-white/90 hover:shadow-lg hover:shadow-pink-200/30 transition-all">
                   發布許願
                 </Button>
               </Link>
               <Link href="/wishes">
-                <Button size="lg" variant="outline" className="rounded-full px-6 py-6 text-white border-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="rounded-full px-6 py-6 text-white border-white hover:bg-white/20 hover:border-pink-200 transition-all">
                   探索許願
                 </Button>
               </Link>
@@ -123,7 +121,8 @@ export default function Home() {
 
         {/* 加入我們的號召區 */}
         <section className="rounded-2xl p-8 md:p-12 bg-accent relative overflow-hidden animate-fade-in animation-delay-800">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/5"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-secondary/10"></div>
+          <div className="absolute inset-0 bg-pattern-dots opacity-50"></div>
           <div className="relative z-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">加入我們的社群</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">成為我們溫暖社群的一員，在這裡分享、幫助與交流，讓每個願望都有被實現的機會。</p>
