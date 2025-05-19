@@ -35,21 +35,24 @@ export default function WishesPage(props: any) {
   return (
     <div className="bg-background">
       {/* 頂部橫幅 */}
-      <div className="bg-gradient relative py-12 mb-8">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[center_top_-1px]"></div>
-        <div className="container mx-auto px-4 relative">
+      <section className="bg-gradient-banner relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+        <div className="container mx-auto px-4 py-16 md:py-24 relative">
           <div className="max-w-3xl animate-fade-in">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-white">尋找許願</h1>
-            <p className="text-white/90 mb-6">瀏覽所有許願，或使用篩選器找到您感興趣的內容</p>
-            <Link href="/wishes/create">
-              <Button size="lg" className="rounded-full px-6 bg-white text-primary hover:bg-white/90">
-                發布許願
-              </Button>
-            </Link>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-sm">
+              尋找<span className="text-white font-extrabold">許願</span>
+            </h1>
+            <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">瀏覽所有許願，或使用篩選器找到您感興趣的內容</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/wishes/create">
+                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                  發布許願
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
-      </div>
+      </section>
 
       <div className="container mx-auto px-4 pb-16">
         {/* 搜尋和篩選頭部 */}
