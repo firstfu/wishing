@@ -46,13 +46,80 @@ export async function getLatestWishes(): Promise<Wish[]> {
 export async function getCategories() {
   await new Promise(resolve => setTimeout(resolve, 300));
   return [
-    { id: "technology", name: "科技" },
-    { id: "education", name: "教育" },
-    { id: "lifestyle", name: "生活" },
-    { id: "health", name: "健康" },
-    { id: "food", name: "美食" },
-    { id: "travel", name: "旅遊" },
-    { id: "entertainment", name: "娛樂" },
-    { id: "sports", name: "運動" },
+    { id: "technology", name: "科技", icon: "💻" },
+    { id: "education", name: "教育", icon: "📚" },
+    { id: "lifestyle", name: "生活", icon: "🏡" },
+    { id: "health", name: "健康", icon: "💪" },
+    { id: "food", name: "美食", icon: "🍜" },
+    { id: "travel", name: "旅遊", icon: "✈️" },
+    { id: "entertainment", name: "娛樂", icon: "🎮" },
+    { id: "sports", name: "運動", icon: "⚽" },
   ];
+}
+
+// 根據搜尋條件獲取許願
+export async function getWishesByFilter(
+  search: string = "",
+  category: string = "",
+  sort: string = "latest",
+  page: number = 1,
+  limit: number = 9,
+  minPrice?: number,
+  maxPrice?: number
+): Promise<{ wishes: Wish[]; total: number }> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 600));
+
+  // 生成大量許願數據用於測試
+  const allWishes = [...generateWishes(20, true), ...generateWishes(30)];
+
+  // 過濾許願
+  let filteredWishes = allWishes;
+
+  // 關鍵字搜尋
+  if (search) {
+    const searchLower = search.toLowerCase();
+    filteredWishes = filteredWishes.filter(wish => wish.title.toLowerCase().includes(searchLower) || wish.description.toLowerCase().includes(searchLower));
+  }
+
+  // 分類過濾
+  if (category) {
+    filteredWishes = filteredWishes.filter(wish => wish.category === category);
+  }
+
+  // 價格範圍過濾
+  if (minPrice !== undefined) {
+    filteredWishes = filteredWishes.filter(wish => wish.price >= minPrice);
+  }
+
+  if (maxPrice !== undefined) {
+    filteredWishes = filteredWishes.filter(wish => wish.price <= maxPrice);
+  }
+
+  // 排序
+  switch (sort) {
+    case "oldest":
+      filteredWishes.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+      break;
+    case "price_low":
+      filteredWishes.sort((a, b) => a.price - b.price);
+      break;
+    case "price_high":
+      filteredWishes.sort((a, b) => b.price - a.price);
+      break;
+    default: // latest
+      filteredWishes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      break;
+  }
+
+  // 分頁
+  const total = filteredWishes.length;
+  const start = (page - 1) * limit;
+  const end = start + limit;
+  const paginatedWishes = filteredWishes.slice(start, end);
+
+  return {
+    wishes: paginatedWishes,
+    total,
+  };
 }
