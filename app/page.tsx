@@ -15,7 +15,6 @@ import CategoryTags from "@/app/components/wishes/CategoryTags";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 import FeaturedWishesCarousel from "@/app/components/wishes/FeaturedWishesCarousel";
-import Image from "next/image";
 
 // 載入狀態組件
 function LoadingState() {

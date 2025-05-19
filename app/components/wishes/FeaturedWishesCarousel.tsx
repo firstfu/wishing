@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
+
 import { Wish } from "./WishCard";
 import { cn } from "@/app/lib/utils";
 import { Badge } from "@/app/components/ui/Badge";
