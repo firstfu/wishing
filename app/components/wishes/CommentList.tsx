@@ -1,6 +1,5 @@
 import { Comment } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
-import { useState } from "react";
 
 interface CommentListProps {
   comments: Comment[];
@@ -10,7 +9,7 @@ interface CommentListProps {
   isLoadingMore?: boolean;
 }
 
-export default function CommentList({ comments, total, currentPage, onLoadMore, isLoadingMore = false }: CommentListProps) {
+export default function CommentList({ comments, total, onLoadMore, isLoadingMore = false }: CommentListProps) {
   return (
     <div className="space-y-6">
       <h2 className="text-xl font-bold">留言區 ({total})</h2>

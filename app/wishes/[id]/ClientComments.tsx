@@ -14,7 +14,6 @@ export default function ClientComments({ initialComments, totalComments, wishId 
   const [comments, setComments] = useState<Comment[]>(initialComments);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const COMMENTS_PER_PAGE = 10;
 
   const handleLoadMore = async () => {
     setIsLoadingMore(true);
