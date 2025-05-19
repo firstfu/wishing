@@ -37,29 +37,27 @@ export default function Home() {
     <>
       {/* 頂部橫幅/Hero 區塊 */}
       <section className="bg-gradient-banner relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[center_top_-1px]"></div>
-        <div className="absolute inset-0 bg-pattern-dots"></div>
+        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
         <div className="container mx-auto px-4 py-16 md:py-24 relative">
           <div className="max-w-3xl animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-              在<span className="text-pink-200">許願池</span>發現與實現夢想
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-sm">
+              在<span className="text-white font-extrabold">許願池</span>發現與實現夢想
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">在這裡發布您的願望，尋找可能的幫助，或幫助他人達成心願，讓美好的事物傳遞下去</p>
+            <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">在這裡發布您的願望，尋找可能的幫助，或幫助他人達成心願，讓美好的事物傳遞下去</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/wishes/create">
-                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-primary hover:bg-white/90 hover:shadow-lg hover:shadow-pink-200/30 transition-all">
+                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
                   發布許願
                 </Button>
               </Link>
               <Link href="/wishes">
-                <Button size="lg" variant="outline" className="rounded-full px-6 py-6 text-white border-white hover:bg-white/20 hover:border-pink-200 transition-all">
+                <Button size="lg" variant="outline" className="rounded-full px-6 py-6 text-white border-white font-bold hover:bg-white/10 hover:border-white transition-all">
                   探索許願
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
       </section>
 
       <div className="container mx-auto px-4 py-12">
@@ -69,7 +67,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold">
               <span className="relative inline-block">
                 熱門分類
-                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-gradient rounded-full"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-[#ff69b4] rounded-full"></span>
               </span>
             </h2>
           </div>
@@ -82,7 +80,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold">
               <span className="relative inline-block">
                 置頂許願
-                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-gradient rounded-full"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-[#ff69b4] rounded-full"></span>
               </span>
             </h2>
           </div>
@@ -97,10 +95,10 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold">
               <span className="relative inline-block">
                 最新許願
-                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-gradient rounded-full"></span>
+                <span className="absolute -bottom-1 left-0 w-1/2 h-1 bg-[#ff69b4] rounded-full"></span>
               </span>
             </h2>
-            <Link href="/wishes" className="text-primary hover:text-primary/80 font-medium flex items-center gap-1 group">
+            <Link href="/wishes" className="text-[#ff69b4] hover:text-[#ff69b4]/80 font-medium flex items-center gap-1 group">
               查看全部
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +119,8 @@ export default function Home() {
 
         {/* 加入我們的號召區 */}
         <section className="rounded-2xl p-8 md:p-12 bg-accent relative overflow-hidden animate-fade-in animation-delay-800">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-secondary/10"></div>
-          <div className="absolute inset-0 bg-pattern-dots opacity-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#ffb6c1]/20 to-[#ff69b4]/15"></div>
+          <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
           <div className="relative z-10">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">加入我們的社群</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mb-6">成為我們溫暖社群的一員，在這裡分享、幫助與交流，讓每個願望都有被實現的機會。</p>
