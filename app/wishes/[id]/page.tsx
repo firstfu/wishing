@@ -1,24 +1,10 @@
 // wishes/[id]/page.tsx - 許願詳情頁面
 import { Suspense } from "react";
 import { getWishById, getWishComments, getRelatedWishes } from "@/app/lib/data";
-import WishDetail from "@/app/components/wishes/WishDetail";
-import CommentList from "@/app/components/wishes/CommentList";
 import RelatedWishes from "@/app/components/wishes/RelatedWishes";
 import { Badge } from "@/app/components/ui/Badge";
 import Link from "next/link";
 import CommentsSectionClient from "@/app/components/wishes/CommentsSectionClient";
-
-// 載入狀態元件
-function LoadingState() {
-  return (
-    <div className="animate-pulse space-y-8">
-      <div className="h-8 bg-muted rounded-lg w-1/3"></div>
-      <div className="h-24 bg-muted rounded-lg"></div>
-      <div className="h-64 bg-muted rounded-lg"></div>
-      <div className="h-32 bg-muted rounded-lg"></div>
-    </div>
-  );
-}
 
 // 獲取相關許願
 async function RelatedWishesSection({ wishId, category }: { wishId: string; category: string }) {
