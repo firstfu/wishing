@@ -1,4 +1,7 @@
 // wishes/TrendingWishesList.tsx - 熱門願望清單元件
+//
+// 顯示熱門/趨勢許願（如首頁熱門區塊），資料由 getTrendingWishes 取得。
+// 支援分類、瀏覽數、留言數、用戶資訊等展示，點擊可進入詳情。
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/app/components/ui/Badge";

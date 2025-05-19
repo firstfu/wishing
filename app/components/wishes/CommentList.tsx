@@ -1,4 +1,7 @@
-// wishes/CommentList.tsx - 留言清單元件
+// wishes/CommentList.tsx - 許願留言清單元件
+//
+// 顯示許願的留言列表，支援留言表單、載入更多、無留言提示。
+// 用於詳情頁留言區，資料結構對應 Comment，支援分頁。
 import { Comment } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 

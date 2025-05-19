@@ -1,4 +1,7 @@
-// layout/Footer.tsx - 頁尾元件
+// layout/Footer.tsx - 全站頁尾元件
+//
+// 提供網站資訊、快速連結、關於我們、聯絡方式、社群連結等。
+// 支援響應式設計，顯示於所有頁面底部。
 "use client";
 
 import Link from "next/link";

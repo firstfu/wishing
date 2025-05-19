@@ -1,4 +1,7 @@
-// ui/Badge.tsx - 標籤元件
+// ui/Badge.tsx - 標籤/徽章元件
+//
+// 提供多種顏色變體（variant），用於標示分類、狀態等。
+// 支援自訂 className，適用於各種 UI 場景。
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/app/lib/utils";
 

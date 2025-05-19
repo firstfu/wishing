@@ -3,7 +3,10 @@
 import { useState, FormEvent } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
-// wishes/WishesHeader.tsx - 願望頁首元件
+// wishes/WishesHeader.tsx - 許願列表搜尋與排序元件
+//
+// 提供搜尋框與排序選項，支援即時查詢與切換排序，更新 URL 參數。
+// 用於 /wishes 頁面頂部，與 WishesList、WishesFilter 搭配。
 
 interface WishesHeaderProps {
   search?: string;

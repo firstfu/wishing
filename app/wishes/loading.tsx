@@ -1,4 +1,7 @@
-// wishes/loading.tsx - 願望頁面載入中
+// wishes/loading.tsx - 許願頁面載入中骨架屏
+//
+// 本檔案為 /wishes 路由的 loading 狀態組件，於資料尚未取得時顯示骨架屏。
+// 包含頂部橫幅、搜尋欄、篩選側欄、許願清單等區塊的預設載入動畫。
 export default function Loading() {
   return (
     <div className="bg-background">

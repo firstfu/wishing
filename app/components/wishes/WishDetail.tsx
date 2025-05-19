@@ -1,4 +1,7 @@
-// wishes/WishDetail.tsx - 願望詳情元件
+// wishes/WishDetail.tsx - 許願詳情元件
+//
+// 顯示單一許願的完整資訊，包括分類、發布者、描述、價格、操作按鈕等。
+// 用於 /wishes/[id] 詳情頁，支援分類顏色、價格格式化、返回列表。
 import { Wish } from "./WishCard";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";

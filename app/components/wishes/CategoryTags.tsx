@@ -3,6 +3,9 @@
 import Link from "next/link";
 
 // wishes/CategoryTags.tsx - 類別標籤元件
+//
+// 顯示所有許願分類，支援 icon、顏色、連結跳轉。
+// 用於首頁熱門分類區塊，點擊可篩選對應分類。
 
 // 分類定義，包含顏色
 const categories = [

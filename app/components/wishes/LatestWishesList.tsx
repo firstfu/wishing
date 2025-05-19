@@ -2,7 +2,10 @@
 
 import WishCard, { Wish } from "./WishCard";
 
-// wishes/LatestWishesList.tsx - 最新願望清單元件
+// wishes/LatestWishesList.tsx - 最新許願清單元件
+//
+// 顯示最新發布的許願，資料由 getLatestWishes 取得。
+// 用於首頁、其他推薦區塊，支援無資料提示。
 
 interface LatestWishesListProps {
   wishes: Wish[];

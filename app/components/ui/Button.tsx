@@ -1,4 +1,7 @@
-// ui/Button.tsx - 按鈕元件
+// ui/Button.tsx - 通用按鈕元件
+//
+// 提供多種樣式（variant）、尺寸（size）、載入狀態（isLoading）等功能。
+// 支援 forwardRef，適用於表單、操作按鈕等多種場景。
 "use client";
 
 import { forwardRef } from "react";

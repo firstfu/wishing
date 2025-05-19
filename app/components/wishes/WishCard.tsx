@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 
-// wishes/WishCard.tsx - 願望卡片元件
+// wishes/WishCard.tsx - 許願卡片元件
+//
+// 顯示單一許願摘要資訊，支援 default/compact 兩種版型。
+// 用於列表、輪播、相關推薦等區塊，支援分類顏色、價格格式化。
 
 // 許願的類型定義
 export interface Wish {

@@ -1,4 +1,7 @@
-// wishes/not-found.tsx - 願望頁面未找到
+// wishes/not-found.tsx - 許願頁面未找到提示
+//
+// 本檔案為 /wishes/[id] 路由找不到資料時顯示的組件。
+// 呈現友善的 404 訊息、返回首頁與許願列表的按鈕。
 import Link from "next/link";
 import { Button } from "@/app/components/ui/Button";
 

@@ -1,4 +1,7 @@
-// wishes/RelatedWishes.tsx - 相關願望元件
+// wishes/RelatedWishes.tsx - 相關許願推薦元件
+//
+// 顯示與當前許願同分類的推薦清單，資料由 getRelatedWishes 取得。
+// 用於詳情頁右側，顯示標題、描述、發布者、價格等。
 import { Wish } from "./WishCard";
 import Link from "next/link";
 

@@ -6,7 +6,10 @@ import WishCard, { Wish } from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
 
-// wishes/WishesList.tsx - 願望清單元件
+// wishes/WishesList.tsx - 許願清單元件
+//
+// 根據搜尋、分類、價格、排序等參數取得許願資料，並顯示分頁、無結果提示。
+// 主要用於 /wishes 頁面，支援分頁切換、動態資料載入、骨架屏。
 
 interface WishesListProps {
   search?: string;

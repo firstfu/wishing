@@ -1,4 +1,7 @@
-// layout/Navbar.tsx - 導覽列元件
+// layout/Navbar.tsx - 全站導覽列元件
+//
+// 提供全站主選單、Logo、登入/註冊/個人中心等入口。
+// 支援滾動時背景透明/模糊效果，並根據登入狀態顯示不同按鈕。
 "use client";
 
 import Link from "next/link";

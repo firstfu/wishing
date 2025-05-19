@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import WishCard, { Wish } from "./WishCard";
 
-// wishes/FeaturedWishesCarousel.tsx - 精選願望輪播元件
+// wishes/FeaturedWishesCarousel.tsx - 精選許願輪播元件
+//
+// 顯示置頂/精選許願的輪播，資料由 getFeaturedWishes 取得。
+// 支援自動輪播、手動切換、無資料提示。
 
 interface FeaturedWishesCarouselProps {
   wishes: Wish[];

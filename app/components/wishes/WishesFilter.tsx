@@ -5,7 +5,10 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 import { getCategories } from "@/app/lib/data";
 
-// wishes/WishesFilter.tsx - 願望篩選元件
+// wishes/WishesFilter.tsx - 許願篩選側邊欄元件
+//
+// 提供分類、價格區間等篩選功能，支援套用/重設，並自動更新 URL 參數。
+// 用於 /wishes 頁面，資料來源 getCategories，支援 sticky 側邊欄。
 
 // 篩選器組件Props類型定義
 interface WishesFilterProps {
