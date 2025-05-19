@@ -5,6 +5,16 @@ import WishesFilter from "@/app/components/wishes/WishesFilter";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 
+// 定義頁面接收的 searchParams 類型
+type SearchParams = {
+  search?: string;
+  category?: string;
+  sort?: string;
+  page?: string;
+  minPrice?: string;
+  maxPrice?: string;
+};
+
 // 載入狀態組件
 function LoadingState() {
   return (
@@ -19,8 +29,7 @@ function LoadingState() {
 }
 
 // 許願列表主組件
-export default function WishesPage({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
-  // 不需要 await searchParams，直接使用
+export default function WishesPage({ searchParams }: { searchParams: SearchParams }) {
   const search = typeof searchParams.search === "string" ? searchParams.search : "";
   const category = typeof searchParams.category === "string" ? searchParams.category : "";
   const sort = typeof searchParams.sort === "string" ? searchParams.sort : "latest";
