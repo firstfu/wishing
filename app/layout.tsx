@@ -1,3 +1,12 @@
+// 許願池專案全域根布局組件
+// - 設定全站字體、全域樣式與 SEO metadata
+// - 提供全站共用的 Navbar 與 Footer
+// - 所有頁面內容會渲染於 <main> 內
+//
+// 位置：app/layout.tsx
+//
+// 本檔案為 Next.js App Router 架構的全域布局，所有子頁面都會套用此結構
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

@@ -1,3 +1,13 @@
+// 許願池首頁頁面組件
+// - 展示 Hero 區塊、熱門分類、熱門許願、最新許願與社群號召
+// - 熱門許願為靜態假資料，最新許願動態取得
+// - 使用多個共用元件（如 CategoryTags、LatestWishesListClientWrapper）
+// - 採用 Server Component，部分區塊用 Suspense 處理載入狀態
+//
+// 位置：app/page.tsx
+//
+// 本檔案為 Next.js App Router 首頁，負責網站主入口的內容展示
+
 import { Suspense } from "react";
 import { getLatestWishes } from "@/app/lib/data";
 import LatestWishesListClientWrapper from "@/app/components/wishes/LatestWishesListClientWrapper";
