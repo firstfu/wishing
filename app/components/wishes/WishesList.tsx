@@ -1,8 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
 import Link from "next/link";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import WishCard from "@/app/components/wishes/WishCard";
 import { getWishesByFilter } from "@/app/lib/data";
 import { Button } from "@/app/components/ui/Button";
@@ -33,21 +31,18 @@ export default async function WishesList({ search = "", category = "", sort = "l
   const hasNextPage = page < totalPages;
   const hasPrevPage = page > 1;
 
-  // 構建分頁URL生成器
-  const createPageURL = useCallback(
-    (pageNumber: number) => {
-      const params = new URLSearchParams();
-      if (search) params.set("search", search);
-      if (category) params.set("category", category);
-      if (sort && sort !== "latest") params.set("sort", sort);
-      if (minPrice) params.set("minPrice", minPrice.toString());
-      if (maxPrice) params.set("maxPrice", maxPrice.toString());
-      params.set("page", pageNumber.toString());
+  // 構建分頁URL生成器 - 改為普通函數
+  const createPageURL = (pageNumber: number) => {
+    const params = new URLSearchParams();
+    if (search) params.set("search", search);
+    if (category) params.set("category", category);
+    if (sort && sort !== "latest") params.set("sort", sort);
+    if (minPrice) params.set("minPrice", minPrice.toString());
+    if (maxPrice) params.set("maxPrice", maxPrice.toString());
+    params.set("page", pageNumber.toString());
 
-      return `?${params.toString()}`;
-    },
-    [search, category, sort, minPrice, maxPrice]
-  );
+    return `?${params.toString()}`;
+  };
 
   // 生成頁碼數組
   const pageNumbers = [];
