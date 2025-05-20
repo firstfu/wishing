@@ -43,7 +43,7 @@ export default function Navbar() {
           <Link href="#" className="text-foreground/80 hover:text-primary transition-colors font-medium">
             熱門許願
           </Link>
-          <Link href="#" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+          <Link href="/about" className="text-foreground/80 hover:text-primary transition-colors font-medium">
             關於我們
           </Link>
         </div>
