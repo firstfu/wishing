@@ -50,18 +50,23 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/about/our-story" className="text-muted-foreground hover:text-primary transition-colors">
                   我們的故事
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/about/terms" className="text-muted-foreground hover:text-primary transition-colors">
                   使用條款
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/about/privacy" className="text-muted-foreground hover:text-primary transition-colors">
                   隱私政策
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                  關於我們
                 </Link>
               </li>
             </ul>
