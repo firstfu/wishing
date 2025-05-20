@@ -213,12 +213,6 @@ export default function Home() {
 
               <div className="mt-12 flex items-center space-x-4">
                 <p className="text-sm font-medium">已有 12,000+ 願望實現</p>
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">A</div>
-                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">B</div>
-                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-pink-400/80 flex items-center justify-center text-xs">C</div>
-                  <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-purple-400/80 flex items-center justify-center text-xs">+</div>
-                </div>
               </div>
             </div>
 
