@@ -5,6 +5,7 @@ import RelatedWishes from "@/app/components/wishes/RelatedWishes";
 import { Badge } from "@/app/components/ui/Badge";
 import Link from "next/link";
 import CommentsSectionClient from "@/app/components/wishes/CommentsSectionClient";
+import WishActions from "@/app/components/wishes/WishActions";
 
 // 獲取相關許願
 async function RelatedWishesSection({ wishId, category }: { wishId: string; category: string }) {
@@ -158,26 +159,7 @@ export default async function WishPage({ params }: { params: Promise<{ id: strin
 
                 {/* 操作按鈕 */}
                 <div className="flex flex-wrap gap-4 pt-6 border-t border-border">
-                  <button className="flex-1 md:flex-none py-3 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-200 flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                      <path
-                        fillRule="evenodd"
-                        d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    聯繫發布者
-                  </button>
-                  <button className="flex-1 md:flex-none py-3 px-6 rounded-full border border-purple-200 dark:border-purple-800 bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-300 font-medium hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-200 flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                      <path
-                        fillRule="evenodd"
-                        d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    分享許願
-                  </button>
+                  <WishActions wishId={id} wishTitle={wish.title} userId={wish.user.id} userName={wish.user.name} />
                   <Link href="/wishes" className="ml-auto inline-flex items-center">
                     <button className="py-2 px-4 rounded-full text-muted-foreground hover:text-foreground text-sm flex items-center gap-1 hover:bg-accent transition-colors">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
