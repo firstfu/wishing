@@ -115,6 +115,36 @@ export default function WishesPage(props: any) {
                 <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-md hover:shadow-pink-500/20">發布許願</Button>
               </Link>
             </div>
+
+            {/* 用戶推薦卡片 */}
+            <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">王</span>
+                </div>
+                <div>
+                  <div className="font-medium">王大華</div>
+                  <div className="text-xs text-gray-500">台北市 • 軟體工程師</div>
+                </div>
+              </div>
+
+              <div className="flex mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-yellow-400">
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+
+              <blockquote className="text-sm text-gray-600 italic mb-2">
+                「我在許願池找到了幫我解決程式問題的專家，他們不只解決了技術問題，還教會了我解決類似問題的思路。這種專業交流在其他平台上很難找到。」
+              </blockquote>
+              <p className="text-xs text-blue-600 font-medium">最近完成了3個願望</p>
+            </div>
           </div>
 
           {/* 許願列表 */}

@@ -248,8 +248,8 @@ export default function Home() {
                     <span className="bg-purple-500/80 text-white text-xs px-2 py-0.5 rounded-full">社區</span>
                     <p className="text-white/60 text-xs">1天前</p>
                   </div>
-                  <h4 className="text-white font-semibold mb-2">組織社區老人共餐活動</h4>
-                  <p className="text-white/70 text-sm">我希望在社區組織定期的老人共餐活動，需要志工和食材...</p>
+                  <h4 className="text-white font-semibold mb-2">社區老人共餐活動志工招募</h4>
+                  <p className="text-white/70 text-sm">我們正在尋找願意每週末幫忙準備餐點的志工，為社區長者...</p>
                 </div>
               </div>
             </div>
@@ -353,18 +353,224 @@ export default function Home() {
           </Suspense>
         </section>
 
-        {/* 加入我們的號召區 */}
-        <section className="rounded-2xl p-8 md:p-12 bg-accent relative overflow-hidden animate-fade-in animation-delay-800">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ffb6c1]/20 to-[#ff69b4]/15"></div>
-          <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
-          <div className="relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">加入我們的社群</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mb-6">成為我們溫暖社群的一員，在這裡分享、幫助與交流，讓每個願望都有被實現的機會。</p>
-            <Link href="/auth/register">
-              <Button size="lg" className="rounded-full px-6 bg-gradient">
-                立即註冊
+        {/* 用戶推薦區塊 */}
+        <section className="py-16 md:py-24 container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">用戶心得分享</h2>
+            <p className="text-lg text-muted-foreground">聽聽他們如何透過許願池實現願望，建立連結</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* 用戶推薦 1 */}
+            <div className="bg-card border border-border rounded-xl p-8 shadow-sm hover:shadow-md transition">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 flex items-center justify-center">
+                    <span className="text-white text-xl font-semibold">陳</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold">陳小明</h4>
+                  <p className="text-sm text-muted-foreground">台北市 • 大學生</p>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="flex mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-amber-400">
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">2023年12月15日</p>
+              </div>
+
+              <blockquote className="italic text-gray-700 mb-6">
+                「透過許願池，我找到了願意免費指導我程式設計的資深工程師。他不僅教我技術，還給了我很多職涯建議。這種無私的幫助讓我非常感動，也讓我想要將這份善意傳遞下去。」
+              </blockquote>
+
+              <div className="pt-4 border-t border-border">
+                <p className="text-emerald-600 font-medium text-sm">願望已完成：程式設計指導</p>
+              </div>
+            </div>
+
+            {/* 用戶推薦 2 */}
+            <div className="bg-card border border-border rounded-xl p-8 shadow-sm hover:shadow-md transition">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-400 to-cyan-500 flex items-center justify-center">
+                    <span className="text-white text-xl font-semibold">林</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold">林美玲</h4>
+                  <p className="text-sm text-muted-foreground">高雄市 • 小學老師</p>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="flex mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-amber-400">
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">2024年3月4日</p>
+              </div>
+
+              <blockquote className="italic text-gray-700 mb-6">
+                「我為我班上的弱勢學生發布了募集二手書籍的願望，沒想到短短兩週就收到超過300本書！許願池連結了我和許多有愛心的陌生人，讓這些孩子有了更多學習資源，真的非常感謝。」
+              </blockquote>
+
+              <div className="pt-4 border-t border-border">
+                <p className="text-emerald-600 font-medium text-sm">願望已完成：弱勢學童二手書募集</p>
+              </div>
+            </div>
+
+            {/* 用戶推薦 3 */}
+            <div className="bg-card border border-border rounded-xl p-8 shadow-sm hover:shadow-md transition">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center">
+                    <span className="text-white text-xl font-semibold">張</span>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-bold">張志偉</h4>
+                  <p className="text-sm text-muted-foreground">台中市 • 咖啡廳老闆</p>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="flex mb-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-5 h-5 ${i < 4 ? "text-amber-400" : "text-gray-300"}`}>
+                      <path
+                        fillRule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground">2024年1月18日</p>
+              </div>
+
+              <blockquote className="italic text-gray-700 mb-6">
+                「我在許願池上分享了希望為咖啡廳尋找在地藝術家合作的願望，結果認識了幾位才華洋溢的年輕畫家。現在我的咖啡廳每個月都有新的藝術展，不僅為空間增添活力，也幫助這些藝術家展示作品。」
+              </blockquote>
+
+              <div className="pt-4 border-t border-border">
+                <p className="text-emerald-600 font-medium text-sm">願望已完成：尋找在地藝術家合作</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/wishes">
+              <Button size="lg" className="rounded-full px-8 bg-gradient text-white hover:shadow-lg transition-all">
+                發現更多成功故事
               </Button>
             </Link>
+          </div>
+        </section>
+
+        {/* 社群號召區塊 */}
+        <section className="py-16 bg-gradient text-white relative overflow-hidden">
+          {/* 背景裝飾 */}
+          <div className="absolute inset-0 bg-[url('/grid-dots.svg')] opacity-20"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl"></div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">加入我們的願望實現者社群</h2>
+              <p className="text-xl mb-10 opacity-90">成為改變的一部分，無論是需要幫助或願意伸出援手，都能在這裡找到歸屬</p>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/wishes/create">
+                  <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                    立即發布許願
+                  </Button>
+                </Link>
+                <Link href="/wishes">
+                  <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                    探索願望
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <p className="text-4xl font-bold mb-2">12,000+</p>
+                  <p className="text-white/70">已實現願望</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold mb-2">25,000+</p>
+                  <p className="text-white/70">註冊用戶</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold mb-2">8,500+</p>
+                  <p className="text-white/70">成功配對</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold mb-2">4.8/5</p>
+                  <p className="text-white/70">用戶滿意度</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>

@@ -216,6 +216,37 @@ export default async function WishPage({ params }: { params: Promise<{ id: strin
               </div>
             </div>
 
+            {/* 用戶推薦卡片 */}
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-100 dark:border-amber-800/30 rounded-2xl overflow-hidden shadow-md p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center">
+                  <span className="text-white text-lg font-medium">許</span>
+                </div>
+                <div>
+                  <h4 className="font-bold">許雅婷</h4>
+                  <p className="text-xs text-muted-foreground">台南市 • 插畫家</p>
+                </div>
+              </div>
+
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-amber-400">
+                    <path
+                      fillRule="evenodd"
+                      d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+
+              <blockquote className="text-sm italic text-gray-700 dark:text-gray-300 mb-3">
+                「許願池改變了我接案的方式！作為插畫家，我過去總是被動等待委託，現在我可以在這裡看到各種各樣的需求，也更容易找到對我作品風格感興趣的客戶。」
+              </blockquote>
+
+              <p className="text-xs text-amber-600 dark:text-amber-400 font-medium">已完成 12 個願望</p>
+            </div>
+
             {/* 發布新願望卡片 */}
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 border border-purple-100 dark:border-purple-800/30 rounded-2xl overflow-hidden shadow-md p-6">
               <h3 className="text-lg font-bold mb-3 text-purple-800 dark:text-purple-300">有自己的願望嗎？</h3>
