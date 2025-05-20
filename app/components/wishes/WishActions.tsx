@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 import Modal from "@/app/components/ui/Modal";
 import Link from "next/link";
+import { sendMessage } from "@/app/lib/data";
 
 // 許願池 WishActions 元件
 // ---------------------------------------------
@@ -30,6 +32,8 @@ interface WishActionsProps {
 }
 
 export default function WishActions({ wishId, wishTitle, userId, userName }: WishActionsProps) {
+  const router = useRouter();
+
   // 模態窗口狀態
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -49,18 +53,19 @@ export default function WishActions({ wishId, wishTitle, userId, userName }: Wis
 
     setIsSending(true);
 
-    // 這裡可以加入實際的 API 請求，發送私訊給發布者
     try {
-      // 模擬 API 請求
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // 使用 sendMessage API 發送訊息
+      await sendMessage(userId, message, wishId);
 
       setIsSent(true);
       // 重置表單
       setMessage("");
-      // 3秒後關閉模態窗口
+      // 3秒後關閉模態窗口並導航到訊息頁面
       setTimeout(() => {
         setIsContactModalOpen(false);
         setIsSent(false);
+        // 導航到與此用戶的對話頁
+        router.push(`/profile/messages/${userId}`);
       }, 3000);
     } catch (error) {
       console.error("發送訊息失敗:", error);
@@ -136,6 +141,7 @@ export default function WishActions({ wishId, wishTitle, userId, userName }: Wis
             </div>
             <h3 className="text-xl font-bold text-green-600 mb-2">訊息已發送！</h3>
             <p className="text-gray-600">您的訊息已成功傳送給 {userName}，請耐心等待回覆。</p>
+            <p className="text-gray-500 text-sm mt-3">即將跳轉至對話頁面...</p>
           </div>
         ) : (
           <form onSubmit={handleContactSubmit} className="space-y-4">

@@ -308,3 +308,142 @@ export async function createWish(wishData: CreateWishInput): Promise<Wish> {
   // 返回創建的許願
   return newWish;
 }
+
+// 訊息相關介面與功能
+export interface Message {
+  id: string;
+  content: string;
+  createdAt: string;
+  senderId: string;
+  receiverId: string;
+  wishId?: string;
+  isRead: boolean;
+}
+
+export interface Conversation {
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  lastMessage: string;
+  lastMessageTime: string;
+  unreadCount: number;
+  relatedWishId?: string;
+  relatedWishTitle?: string;
+}
+
+// 獲取對話列表
+export async function getConversations(): Promise<Conversation[]> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 800));
+
+  // 模擬對話列表資料
+  const conversations: Conversation[] = [
+    {
+      userId: "user-1",
+      userName: "王小明",
+      lastMessage: "請問你的願望還有效嗎？我很感興趣！",
+      lastMessageTime: new Date(Date.now() - 1000 * 60 * 30).toISOString(), // 30分鐘前
+      unreadCount: 2,
+      relatedWishId: "wish-1",
+      relatedWishTitle: "我需要幫助：解決程式問題",
+    },
+    {
+      userId: "user-2",
+      userName: "李小花",
+      lastMessage: "好的，我明天有空，我們可以討論詳細細節。",
+      lastMessageTime: new Date(Date.now() - 1000 * 60 * 60 * 3).toISOString(), // 3小時前
+      unreadCount: 0,
+      relatedWishId: "wish-2",
+      relatedWishTitle: "我需要幫助：搬家",
+    },
+    {
+      userId: "user-3",
+      userName: "張大山",
+      lastMessage: "您好，關於您的許願，我可以提供專業的建議。",
+      lastMessageTime: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1天前
+      unreadCount: 1,
+      relatedWishId: "wish-3",
+      relatedWishTitle: "我需要幫助：尋找兼職機會",
+    },
+    {
+      userId: "user-4",
+      userName: "陳小雲",
+      lastMessage: "謝謝您的回覆，我已經找到合適的人選了。",
+      lastMessageTime: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2天前
+      unreadCount: 0,
+    },
+    {
+      userId: "user-5",
+      userName: "林小樹",
+      lastMessage: "價格可以再談，希望能夠合作愉快！",
+      lastMessageTime: new Date(Date.now() - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5天前
+      unreadCount: 0,
+      relatedWishId: "wish-pinned-2",
+      relatedWishTitle: "置頂許願：我想要學習編程",
+    },
+  ];
+
+  // 按最後訊息時間排序（最新的在前）
+  return conversations.sort((a, b) => new Date(b.lastMessageTime).getTime() - new Date(a.lastMessageTime).getTime());
+}
+
+// 獲取與特定用戶的訊息歷史
+export async function getMessages(userId: string, wishId?: string): Promise<Message[]> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 600));
+
+  // 為了演示，根據userId生成不同數量的訊息
+  const count = parseInt(userId.split("-")[1] || "3") * 2 + 3;
+
+  // 生成假訊息數據
+  const messages: Message[] = [];
+  const currentUserId = "current-user"; // 模擬當前用戶ID
+
+  for (let i = 0; i < count; i++) {
+    const isFromCurrentUser = i % 2 === 0;
+    const messageDate = new Date(Date.now() - (count - i) * 1000 * 60 * 30); // 每條訊息間隔30分鐘
+
+    messages.push({
+      id: `msg-${userId}-${i}`,
+      content: isFromCurrentUser
+        ? `這是發送給${userId}的第${Math.floor(i / 2) + 1}條訊息。${wishId ? `關於您的願望「${wishId}」，` : ""}我想了解更多詳情。`
+        : `您好！這是來自${userId}的回覆。我很樂意提供幫助，請問您有什麼具體的問題嗎？`,
+      createdAt: messageDate.toISOString(),
+      senderId: isFromCurrentUser ? currentUserId : userId,
+      receiverId: isFromCurrentUser ? userId : currentUserId,
+      wishId: wishId,
+      isRead: messageDate.getTime() < Date.now() - 1000 * 60 * 60, // 1小時前的訊息標記為已讀
+    });
+  }
+
+  // 按時間排序（舊的在前）
+  return messages.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+}
+
+// 發送新訊息
+export async function sendMessage(receiverId: string, content: string, wishId?: string): Promise<Message> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 500));
+
+  // 創建新訊息
+  const newMessage: Message = {
+    id: `msg-${Date.now()}`,
+    content,
+    createdAt: new Date().toISOString(),
+    senderId: "current-user", // 模擬當前用戶ID
+    receiverId,
+    wishId,
+    isRead: false,
+  };
+
+  return newMessage;
+}
+
+// 標記訊息為已讀
+export async function markMessagesAsRead(senderId: string): Promise<boolean> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 300));
+
+  // 模擬標記已讀操作
+  return true;
+}
