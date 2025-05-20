@@ -2,8 +2,18 @@ export default function WishDetailLoading() {
   return (
     <>
       {/* 頂部背景漸變條 */}
-      <div className="h-32 bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400 relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+      <div className="h-40 relative overflow-hidden">
+        {/* 背景漸層 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400"></div>
+
+        {/* 幾何形狀裝飾元素 */}
+        <div className="absolute top-5 right-[5%] w-24 h-24 bg-gradient-to-tr from-pink-300/30 to-purple-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-5 left-[8%] w-28 h-28 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-[12%] w-8 h-8 bg-white/10 rounded-full"></div>
+        <div className="absolute top-1/4 right-[15%] w-10 h-10 bg-white/10 rounded-full"></div>
+
+        {/* 圓點網格裝飾 */}
+        <div className="absolute inset-0 bg-[url('/grid-dots.svg')] opacity-20"></div>
       </div>
 
       {/* 主內容區域 */}

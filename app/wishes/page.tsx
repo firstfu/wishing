@@ -36,26 +36,59 @@ export default function WishesPage(props: any) {
   return (
     <div className="bg-background">
       {/* 頂部橫幅 */}
-      <section className="bg-gradient-banner relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+      <section className="relative overflow-hidden">
+        {/* 背景漸層 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400"></div>
+
+        {/* 幾何形狀裝飾元素 */}
+        <div className="absolute top-10 right-[5%] w-32 h-32 bg-gradient-to-tr from-pink-300/30 to-purple-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-[10%] w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-[15%] w-12 h-12 bg-white/10 rounded-full"></div>
+        <div className="absolute top-1/3 right-[20%] w-16 h-16 bg-white/10 rounded-full"></div>
+
+        {/* 圓點網格裝飾 */}
+        <div className="absolute inset-0 bg-[url('/grid-dots.svg')] opacity-20"></div>
+
+        {/* 內容區域 */}
         <div className="container mx-auto px-4 py-16 md:py-24 relative">
           <div className="max-w-3xl animate-fade-in">
+            <div className="inline-block px-3 py-1 bg-white/20 rounded-full backdrop-blur-sm mb-6">
+              <span className="text-sm font-medium text-white">✨ 尋找許願</span>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-sm">
-              尋找<span className="text-white font-extrabold">許願</span>
+              探索<span className="relative bg-clip-text text-transparent bg-gradient-to-r from-white to-pink-100 font-black px-1">願望世界</span>
             </h1>
             <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">瀏覽所有許願，或使用篩選器找到您感興趣的內容</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/wishes/create">
-                <Button size="lg" className="rounded-full px-6 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
+                    <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+                  </svg>
                   發布許願
+                </Button>
+              </Link>
+              <Link href="#wishList">
+                <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
+                    <path
+                      fillRule="evenodd"
+                      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 012 10z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  瀏覽列表
                 </Button>
               </Link>
             </div>
           </div>
         </div>
+
+        {/* 半透明波浪效果 */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white/10 to-transparent"></div>
       </section>
 
-      <div className="container mx-auto px-4 pb-16">
+      <div id="wishList" className="container mx-auto px-4 pb-16">
         {/* 搜尋和篩選頭部 */}
         <WishesHeader search={search} sort={sort} />
 

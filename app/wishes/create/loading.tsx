@@ -3,14 +3,28 @@ export default function CreateWishLoading() {
   return (
     <div className="bg-background">
       {/* 頂部橫幅 */}
-      <section className="bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400 relative overflow-hidden">
-        <div className="absolute inset-0 bg-pattern-dots opacity-20"></div>
+      <section className="relative overflow-hidden">
+        {/* 背景漸層 */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-pink-400"></div>
+
+        {/* 幾何形狀裝飾元素 */}
+        <div className="absolute top-10 right-[5%] w-28 h-28 bg-gradient-to-tr from-pink-300/30 to-purple-300/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-[5%] w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
+
+        {/* 圓點網格裝飾 */}
+        <div className="absolute inset-0 bg-[url('/grid-dots.svg')] opacity-20"></div>
+
+        {/* 內容區域 */}
         <div className="container mx-auto px-4 py-12 md:py-16 relative">
           <div className="max-w-3xl animate-fade-in">
+            <div className="inline-block px-3 py-1 bg-white/20 rounded-full backdrop-blur-sm mb-6 w-32 h-6"></div>
             <div className="h-10 w-48 bg-white/20 rounded-lg mb-4"></div>
             <div className="h-6 w-96 bg-white/20 rounded-lg"></div>
           </div>
         </div>
+
+        {/* 半透明波浪效果 */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white/10 to-transparent"></div>
       </section>
 
       <div className="container mx-auto px-4 py-8 md:py-12">
