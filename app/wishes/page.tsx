@@ -10,9 +10,9 @@
 // - 分頁：支援載入更多許願
 // ====================================================================
 import { Suspense } from "react";
-import WishesHeader from "@/app/components/wishes/WishesHeader";
-import WishesList from "@/app/components/wishes/WishesList";
-import WishesFilter from "@/app/components/wishes/WishesFilter";
+import WishesHeader from "@/app/wishes/components/WishesHeader";
+import WishesList from "@/app/wishes/components/WishesList";
+import WishesFilter from "@/app/wishes/components/WishesFilter";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 

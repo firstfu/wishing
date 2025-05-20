@@ -10,7 +10,7 @@
 // ====================================================================
 import { Suspense } from "react";
 import { getCategories } from "@/app/lib/data";
-import WishForm from "@/app/components/wishes/WishForm";
+import WishForm from "@/app/wishes/create/components/WishForm";
 
 // 載入狀態組件
 function LoadingState() {

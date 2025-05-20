@@ -10,35 +10,9 @@
 
 "use client";
 
-import { useState } from "react";
-import { Comment, getWishComments } from "@/app/lib/data";
-import CommentList from "@/app/components/wishes/CommentList";
+// 此文件被移動到 app/wishes/[id]/components/CommentsSectionClient.tsx
+// 保留此文件以便於向後兼容，避免已有引用中斷
 
-interface ClientCommentsProps {
-  initialComments: Comment[];
-  totalComments: number;
-  wishId: string;
-}
+import CommentsSectionClient from "./components/CommentsSectionClient";
 
-export default function ClientComments({ initialComments, totalComments, wishId }: ClientCommentsProps) {
-  const [comments, setComments] = useState<Comment[]>(initialComments);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
-
-  const handleLoadMore = async () => {
-    setIsLoadingMore(true);
-    try {
-      const nextPage = currentPage + 1;
-      const { comments: newComments } = await getWishComments(wishId, nextPage);
-
-      setComments(prevComments => [...prevComments, ...newComments]);
-      setCurrentPage(nextPage);
-    } catch (error) {
-      console.error("載入更多留言時發生錯誤:", error);
-    } finally {
-      setIsLoadingMore(false);
-    }
-  };
-
-  return <CommentList comments={comments} total={totalComments} currentPage={currentPage} onLoadMore={handleLoadMore} isLoadingMore={isLoadingMore} />;
-}
+export default CommentsSectionClient;

@@ -10,11 +10,11 @@
 // ====================================================================
 import { Suspense } from "react";
 import { getWishById, getWishComments, getRelatedWishes } from "@/app/lib/data";
-import RelatedWishes from "@/app/components/wishes/RelatedWishes";
+import RelatedWishes from "@/app/wishes/[id]/components/RelatedWishes";
 import { Badge } from "@/app/components/ui/Badge";
 import Link from "next/link";
-import CommentsSectionClient from "@/app/components/wishes/CommentsSectionClient";
-import WishActions from "@/app/components/wishes/WishActions";
+import CommentsSectionClient from "@/app/wishes/[id]/components/CommentsSectionClient";
+import WishActions from "@/app/wishes/[id]/components/WishActions";
 
 // 獲取相關許願
 async function RelatedWishesSection({ wishId, category }: { wishId: string; category: string }) {
