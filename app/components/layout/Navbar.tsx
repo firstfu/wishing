@@ -44,7 +44,7 @@ export default function Navbar() {
           <Link href="/wishes" className="text-foreground/80 hover:text-primary transition-colors font-medium">
             許願列表
           </Link>
-          <Link href="#" className="text-foreground/80 hover:text-primary transition-colors font-medium">
+          <Link href="/wishes?sort=trending" className="text-foreground/80 hover:text-primary transition-colors font-medium">
             熱門許願
           </Link>
           <Link href="/about" className="text-foreground/80 hover:text-primary transition-colors font-medium">
