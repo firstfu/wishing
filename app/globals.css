@@ -234,6 +234,20 @@ html {
   animation: pulse-slow 8s ease-in-out infinite;
 }
 
+/* 慢速旋轉動畫 */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
 /* 波浪動畫 */
 @keyframes wave {
   0% {
@@ -245,6 +259,14 @@ html {
   100% {
     transform: translateY(0);
   }
+}
+
+.animation-delay-900 {
+  animation-delay: 900ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
 }
 
 .animate-wave {
