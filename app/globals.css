@@ -272,3 +272,97 @@ html {
 .animate-wave {
   animation: wave 8s ease-in-out infinite;
 }
+
+/* 抖動動畫，用於錯誤提示 */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* 閃爍動畫效果 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* 3D 懸浮按鈕效果 */
+.btn-3d {
+  transition: all 0.2s;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-3d:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 光暈背景效果 */
+.bg-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-glow::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
+  animation: rotate 15s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 微妙的背景移動 */
+@keyframes bg-pan {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-bg-pan {
+  animation: bg-pan 20s ease infinite alternate;
+  background-size: 200% 200%;
+}
