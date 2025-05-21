@@ -22,14 +22,23 @@ export default function AboutPage() {
           <div className="text-center mb-12 animate-fade-in">
             <h1 className="text-3xl md:text-5xl font-bold mb-4">關於我們</h1>
             <div className="w-20 h-1 bg-gradient mx-auto rounded-full mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">許願池是一個連接有需求和有能力的人的平台，我們致力於創造一個更加友善、互助的社群。</p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              許願池是一個連接有需求和有能力的人的平台，我們致力於創造一個更加友善、互助的社群。
+            </p>
           </div>
 
           {/* 使命和願景 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 animate-fade-in animation-delay-200">
             <div className="bg-card border border-border p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-primary"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -45,7 +54,14 @@ export default function AboutPage() {
 
             <div className="bg-card border border-border p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-primary"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -68,7 +84,14 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-background p-6 rounded-lg border border-border hover:border-primary transition-colors">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -82,7 +105,14 @@ export default function AboutPage() {
 
               <div className="bg-background p-6 rounded-lg border border-border hover:border-primary transition-colors">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -96,7 +126,14 @@ export default function AboutPage() {
 
               <div className="bg-background p-6 rounded-lg border border-border hover:border-primary transition-colors">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -110,7 +147,14 @@ export default function AboutPage() {
 
               <div className="bg-background p-6 rounded-lg border border-border hover:border-primary transition-colors">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -124,56 +168,122 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* 團隊成員 */}
+          {/* 團隊成員 - 改為使用SVG圖 */}
           <div className="mb-16 animate-fade-in animation-delay-600">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">認識我們的團隊</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">我們的團隊</h2>
             <div className="w-16 h-1 bg-gradient mx-auto rounded-full mb-8"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* 團隊成員1 */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden group hover:shadow-md transition-all">
-                <div className="h-48 bg-gradient-banner relative overflow-hidden">
-                  <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
-                </div>
-                <div className="p-6 relative">
-                  <div className="w-16 h-16 rounded-full bg-card border-4 border-background absolute -top-8 left-6"></div>
-                  <div className="pt-4">
-                    <h3 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">陳小明</h3>
-                    <p className="text-primary text-sm mb-3">創辦人 & 執行長</p>
-                    <p className="text-muted-foreground text-sm">擁有10年的科技產業經驗，曾在多家知名企業擔任產品主管。小明相信科技可以解決社會問題，這也是他創立許願池的初衷。</p>
-                  </div>
-                </div>
-              </div>
+            <div className="flex justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" className="w-full max-w-3xl mx-auto" style={{ maxHeight: "350px" }}>
+                <defs>
+                  <linearGradient id="teamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--color-primary)" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="var(--color-secondary)" stopOpacity="0.2" />
+                  </linearGradient>
+                  <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--color-muted)" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="var(--color-muted)" stopOpacity="0.1" />
+                  </linearGradient>
+                  <pattern id="teamPattern" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <circle cx="20" cy="20" r="1" fill="var(--color-primary)" fillOpacity="0.3" />
+                  </pattern>
+                </defs>
 
-              {/* 團隊成員2 */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden group hover:shadow-md transition-all">
-                <div className="h-48 bg-gradient-banner relative overflow-hidden">
-                  <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
-                </div>
-                <div className="p-6 relative">
-                  <div className="w-16 h-16 rounded-full bg-card border-4 border-background absolute -top-8 left-6"></div>
-                  <div className="pt-4">
-                    <h3 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">林美玲</h3>
-                    <p className="text-primary text-sm mb-3">產品經理</p>
-                    <p className="text-muted-foreground text-sm">專注於用戶體驗和產品設計，美玲致力於打造簡單易用的產品介面，讓每個人都能輕鬆使用許願池。</p>
-                  </div>
-                </div>
-              </div>
+                {/* 背景和裝飾元素 */}
+                <rect width="800" height="400" fill="url(#bgGradient)" rx="12" />
+                <rect width="800" height="400" fill="url(#teamPattern)" rx="12" />
 
-              {/* 團隊成員3 */}
-              <div className="bg-card border border-border rounded-xl overflow-hidden group hover:shadow-md transition-all">
-                <div className="h-48 bg-gradient-banner relative overflow-hidden">
-                  <div className="absolute inset-0 bg-pattern-dots opacity-30"></div>
-                </div>
-                <div className="p-6 relative">
-                  <div className="w-16 h-16 rounded-full bg-card border-4 border-background absolute -top-8 left-6"></div>
-                  <div className="pt-4">
-                    <h3 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">王大偉</h3>
-                    <p className="text-primary text-sm mb-3">技術總監</p>
-                    <p className="text-muted-foreground text-sm">資深全端工程師，大偉帶領技術團隊構建穩定、安全的平台架構，確保用戶資料和互動的安全性。</p>
-                  </div>
-                </div>
-              </div>
+                {/* 團隊圖形表示 */}
+                <g transform="translate(400, 200)">
+                  {/* 中心圓 */}
+                  <circle cx="0" cy="0" r="60" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                  <text x="0" y="8" textAnchor="middle" fill="var(--color-foreground)" fontSize="18" fontWeight="600">
+                    願景實現
+                  </text>
+
+                  {/* 圍繞的六個圓 */}
+                  <g>
+                    {/* 技術團隊 */}
+                    <circle cx="-170" cy="-50" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="-170" y="-55" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      技術團隊
+                    </text>
+                    <text x="-170" y="-35" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      開發 & 維護
+                    </text>
+                    <line x1="-110" y1="-30" x2="-30" y2="-10" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+
+                  <g>
+                    {/* 設計團隊 */}
+                    <circle cx="-120" cy="100" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="-120" y="95" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      設計團隊
+                    </text>
+                    <text x="-120" y="115" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      使用者體驗
+                    </text>
+                    <line x1="-80" y1="60" x2="-30" y2="20" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+
+                  <g>
+                    {/* 社群團隊 */}
+                    <circle cx="170" cy="-50" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="170" y="-55" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      社群團隊
+                    </text>
+                    <text x="170" y="-35" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      社群經營
+                    </text>
+                    <line x1="110" y1="-30" x2="30" y2="-10" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+
+                  <g>
+                    {/* 支援團隊 */}
+                    <circle cx="120" cy="100" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="120" y="95" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      支援團隊
+                    </text>
+                    <text x="120" y="115" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      用戶支援
+                    </text>
+                    <line x1="80" y1="60" x2="30" y2="20" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+
+                  <g>
+                    {/* 行銷團隊 */}
+                    <circle cx="0" cy="-150" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="0" y="-155" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      行銷團隊
+                    </text>
+                    <text x="0" y="-135" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      市場推廣
+                    </text>
+                    <line x1="0" y1="-100" x2="0" y2="-60" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+
+                  <g>
+                    {/* 營運團隊 */}
+                    <circle cx="0" cy="150" r="50" fill="url(#teamGradient)" stroke="var(--color-primary)" strokeWidth="2" />
+                    <text x="0" y="145" textAnchor="middle" fill="var(--color-foreground)" fontSize="16" fontWeight="600">
+                      營運團隊
+                    </text>
+                    <text x="0" y="165" textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="12">
+                      業務發展
+                    </text>
+                    <line x1="0" y1="100" x2="0" y2="60" stroke="var(--color-border)" strokeWidth="1" />
+                  </g>
+                </g>
+
+                {/* 小裝飾元素 */}
+                <circle cx="50" cy="50" r="30" fill="none" stroke="var(--color-primary)" strokeWidth="1" strokeOpacity="0.3" />
+                <circle cx="750" cy="350" r="30" fill="none" stroke="var(--color-primary)" strokeWidth="1" strokeOpacity="0.3" />
+                <circle cx="750" cy="50" r="20" fill="none" stroke="var(--color-secondary)" strokeWidth="1" strokeOpacity="0.3" />
+                <circle cx="50" cy="350" r="20" fill="none" stroke="var(--color-secondary)" strokeWidth="1" strokeOpacity="0.3" />
+              </svg>
             </div>
+            <p className="text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
+              我們擁有專業且充滿熱情的團隊，共同致力於實現許願池的願景與使命，為用戶打造最好的互助平台體驗。
+            </p>
           </div>
 
           {/* 聯絡我們 */}
@@ -181,13 +291,22 @@ export default function AboutPage() {
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-4">聯絡我們</h2>
               <div className="w-16 h-1 bg-gradient mx-auto rounded-full mb-6"></div>
-              <p className="text-muted-foreground max-w-2xl mx-auto">如果您有任何問題、建議或合作提案，我們很樂意聽取您的意見。請透過以下方式與我們取得聯繫。</p>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                如果您有任何問題、建議或合作提案，我們很樂意聽取您的意見。請透過以下方式與我們取得聯繫。
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -204,7 +323,14 @@ export default function AboutPage() {
 
               <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -221,7 +347,14 @@ export default function AboutPage() {
 
               <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-primary"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                   </svg>
