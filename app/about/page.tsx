@@ -296,8 +296,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
+            <div className="flex justify-center">
+              <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center max-w-md mx-auto">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -319,49 +319,6 @@ export default function AboutPage() {
                 <a href="mailto:contact@wishingpool.com" className="text-primary hover:underline font-medium">
                   contact@wishingpool.com
                 </a>
-              </div>
-
-              <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 text-primary"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">電話</h3>
-                <p className="text-muted-foreground mb-3">工作日 9:00 - 18:00，我們很樂意與您通話</p>
-                <a href="tel:+886212345678" className="text-primary hover:underline font-medium">
-                  +886 2 12345678
-                </a>
-              </div>
-
-              <div className="p-6 rounded-lg bg-background border border-border hover:border-primary transition-colors flex flex-col items-center text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 text-primary"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">地址</h3>
-                <p className="text-muted-foreground mb-3">歡迎預約參觀我們的辦公室</p>
-                <p className="text-primary font-medium">台北市信義區松仁路100號10樓</p>
               </div>
             </div>
           </div>
