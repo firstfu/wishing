@@ -5,12 +5,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "../ui/Button";
 import { useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  // 模擬登入狀態，後續會替換為實際的認證邏輯
-  const isLoggedIn = false;
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === "authenticated";
   const [scrolled, setScrolled] = useState(false);
 
   // 監聽滾動事件
@@ -31,7 +33,9 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-8 h-8 rounded-full bg-gradient flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">WP</div>
+            <div className="w-8 h-8 rounded-full group-hover:scale-110 transition-transform overflow-hidden">
+              <Image src="/wishing-icon.svg" alt="許願池" width={32} height={32} className="w-full h-full" />
+            </div>
             <span className="text-xl font-bold bg-gradient text-transparent bg-clip-text">許願池</span>
           </Link>
         </div>
@@ -49,31 +53,33 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center space-x-3">
-          <Link href="/wishes/create">
+          <Link href={isLoggedIn ? "/wishes/create" : "/auth/signin"}>
             <Button variant="outline" size="sm" className="rounded-full px-4">
-              發布許願
+              {isLoggedIn ? "發布許願" : "發布許願 (請先登入)"}
             </Button>
           </Link>
 
           {isLoggedIn ? (
-            <Link href="/profile">
-              <div className="w-9 h-9 bg-primary/10 text-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors">
-                <span className="font-medium text-sm">U</span>
-              </div>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link href="/profile">
+                <div className="w-9 h-9 bg-primary/10 text-primary rounded-full flex items-center justify-center cursor-pointer hover:bg-primary/20 transition-colors overflow-hidden">
+                  {session?.user?.image ? (
+                    <Image src={session.user.image} alt={session.user.name || "使用者頭像"} width={36} height={36} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="font-medium text-sm">{session?.user?.name?.charAt(0) || "U"}</span>
+                  )}
+                </div>
+              </Link>
+              <Button variant="ghost" size="sm" className="text-foreground/70 hover:text-foreground" onClick={() => signOut({ callbackUrl: "/" })}>
+                登出
+              </Button>
+            </div>
           ) : (
-            <>
-              <Link href="/auth/login">
-                <Button variant="outline" size="sm" className="rounded-full px-4">
-                  登入
-                </Button>
-              </Link>
-              <Link href="/auth/register">
-                <Button variant="default" size="sm" className="rounded-full px-4 bg-gradient hover:shadow-md hover:shadow-primary/20">
-                  註冊
-                </Button>
-              </Link>
-            </>
+            <Link href="/auth/signin">
+              <Button variant="default" size="sm" className="rounded-full px-4 bg-gradient hover:shadow-md hover:shadow-primary/20">
+                登入
+              </Button>
+            </Link>
           )}
         </div>
       </div>

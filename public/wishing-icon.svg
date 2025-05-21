@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圓形 -->
+  <circle cx="256" cy="256" r="256" fill="url(#gradient)" />
+
+  <!-- 水池 -->
+  <ellipse cx="256" cy="296" rx="170" ry="80" fill="url(#water)" />
+
+  <!-- 水波紋 -->
+  <path d="M126 276c40-20 220-20 260 0" stroke="rgba(255,255,255,0.6)" stroke-width="4" fill="none" />
+  <path d="M146 256c35-15 185-15 220 0" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none" />
+
+  <!-- 許願幣1 - 下落中 -->
+  <circle cx="206" cy="186" r="28" fill="#F9A826" stroke="#fff" stroke-width="2" />
+  <path d="M206 174v24M194 186h24" stroke="#fff" stroke-width="4" stroke-linecap="round" />
+
+  <!-- 許願幣2 - 已在水中 -->
+  <circle cx="256" cy="276" r="35" fill="#F9A826" stroke="#fff" stroke-width="2" opacity="0.85" />
+  <path d="M256 261v30M241 276h30" stroke="#fff" stroke-width="5" stroke-linecap="round" />
+
+  <!-- 許願幣3 - 水中 -->
+  <circle cx="306" cy="296" r="25" fill="#F9A826" stroke="#fff" stroke-width="2" opacity="0.7" />
+  <path d="M306 286v20M296 296h20" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+
+  <!-- 投幣軌跡 -->
+  <path d="M206 120c0 0 -5 30 0 60" stroke="#FFD700" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.7" />
+
+  <!-- 漸變填充定義 -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4B9CD3" />
+      <stop offset="100%" stop-color="#2A6CA8" />
+    </linearGradient>
+    <linearGradient id="water" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#63B8FF" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#4682B4" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+</svg>

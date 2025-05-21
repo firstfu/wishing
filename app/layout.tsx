@@ -12,6 +12,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/layout/Navbar";
 import Footer from "@/app/components/layout/Footer";
+import AuthProvider from "@/app/components/auth/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "許願池 - 讓願望被看見，讓幫助更容易傳遞",
   description: "在許願池發布您的願望，獲得來自社群的幫助和支持。",
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/wishing-icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/wishing-icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({
@@ -36,9 +41,11 @@ export default function RootLayout({
   return (
     <html lang="zh-TW" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

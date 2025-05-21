@@ -5,6 +5,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -13,7 +14,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="w-8 h-8 rounded-full bg-gradient flex items-center justify-center text-white font-bold text-sm group-hover:scale-110 transition-transform">WP</div>
+              <div className="w-8 h-8 rounded-full group-hover:scale-110 transition-transform overflow-hidden">
+                <Image src="/wishing-icon.svg" alt="許願池" width={32} height={32} className="w-full h-full" />
+              </div>
               <span className="text-xl font-bold bg-gradient text-transparent bg-clip-text">許願池</span>
             </Link>
             <p className="text-muted-foreground mt-4">讓您的願望被看見，讓幫助更容易傳遞。每一個願望，都是一個可能的故事。</p>
@@ -79,7 +82,14 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-muted-foreground">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 text-primary"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -89,7 +99,14 @@ export default function Footer() {
                 contact@wishingpool.com
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 text-primary"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
