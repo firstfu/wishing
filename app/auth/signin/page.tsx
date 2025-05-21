@@ -36,16 +36,15 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-glow animate-bg-pan bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen overflow-hidden bg-background">
       {/* 背景裝飾 */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-gradient-to-br from-pink-300/30 to-indigo-300/30 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-gradient-to-br from-blue-300/30 to-purple-300/30 rounded-full blur-3xl animate-pulse-slow animation-delay-400"></div>
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-tr from-yellow-200/20 to-orange-300/20 rounded-full blur-3xl animate-pulse-slow animation-delay-800"></div>
+        <div className="absolute top-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-gradient-to-br from-secondary/20 to-primary/20 rounded-full blur-3xl animate-pulse-slow animation-delay-400"></div>
 
         {/* 裝飾圓點 */}
-        <div className="absolute inset-0 opacity-20">
-          <Image src="/grid-dots.svg" alt="裝飾點" fill className="opacity-30 object-cover" />
+        <div className="absolute inset-0 opacity-10">
+          <Image src="/grid-dots.svg" alt="裝飾點" fill className="object-cover" />
         </div>
       </div>
 
@@ -53,19 +52,17 @@ export default function SignInPage() {
         <div className={`w-full max-w-md transition-all duration-700 ease-out ${animationComplete ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           {/* 品牌標誌 */}
           <div className="text-center mb-6">
-            <div className="inline-flex justify-center items-center h-20 w-20 rounded-full bg-gradient-to-br from-primary to-purple-600 text-white shadow-lg shadow-primary/30 mb-4 animate-float">
-              <Image src="/wishing-icon.svg" alt="許願池" width={40} height={40} className="brightness-200" />
+            <div className="inline-flex justify-center items-center h-16 w-16 rounded-full bg-primary text-white shadow-md shadow-primary/20 mb-4 animate-float">
+              <Image src="/wishing-icon.svg" alt="許願池" width={32} height={32} className="brightness-200" />
             </div>
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              歡迎使用許願池
-            </h2>
-            <p className="mt-2 text-sm text-gray-600">使用 Google 帳號登入，立即開始您的願望之旅</p>
+            <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">歡迎使用許願池</h2>
+            <p className="mt-2 text-sm text-muted-foreground">使用 Google 帳號登入，立即開始您的願望之旅</p>
           </div>
 
           {/* 登入卡片 */}
-          <div className="glass-card bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-gray-300/30 p-8 space-y-6">
+          <div className="bg-card/90 backdrop-blur-sm rounded-xl shadow-md border border-border p-6 space-y-5">
             {error && (
-              <div className="bg-red-50 p-4 rounded-xl border border-red-200 animate-shake">
+              <div className="bg-red-50 p-4 rounded-lg border border-red-200 animate-shake">
                 <p className="text-sm text-red-600 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path
@@ -82,7 +79,7 @@ export default function SignInPage() {
 
             <Button
               type="button"
-              className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 border border-gray-300 rounded-xl py-3 transition-all hover:shadow-md btn-3d"
+              className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 border border-border rounded-lg py-2.5 transition-all hover:shadow-sm"
               onClick={handleGoogleSignIn}
               isLoading={isLoading}
             >
@@ -92,24 +89,19 @@ export default function SignInPage() {
 
             <div className="relative py-3">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
+                <div className="w-full border-t border-border"></div>
               </div>
               <div className="relative flex justify-center">
-                <span className="px-2 bg-white text-xs text-gray-500">或者</span>
+                <span className="px-2 bg-card text-xs text-muted-foreground">或者</span>
               </div>
             </div>
 
-            <Button
-              type="button"
-              variant="secondary"
-              className="w-full rounded-xl py-3 transition-all btn-3d bg-gradient-to-r from-primary to-purple-600 hover:opacity-90"
-              onClick={() => router.push("/wishes/mock-demo")}
-            >
+            <Button type="button" variant="secondary" className="w-full rounded-lg py-2.5 transition-all" onClick={() => router.push("/wishes/mock-demo")}>
               以訪客身份瀏覽
             </Button>
 
-            <div className="pt-4">
-              <p className="text-center text-xs text-gray-500">
+            <div className="pt-2">
+              <p className="text-center text-xs text-muted-foreground">
                 登入即表示您同意我們的{" "}
                 <a href="/about/terms" className="text-primary hover:underline font-medium">
                   服務條款
@@ -122,8 +114,8 @@ export default function SignInPage() {
             </div>
           </div>
 
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-600 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full inline-block shadow-sm animate-shimmer">
+          <div className="mt-6 text-center">
+            <p className="text-sm text-muted-foreground bg-card/50 backdrop-blur-sm px-4 py-2 rounded-full inline-block shadow-sm">
               首次登入將自動為您創建帳號，無需額外註冊步驟
             </p>
           </div>
