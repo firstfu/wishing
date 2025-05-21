@@ -1,0 +1,27 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 路由架構
+
+Wishing 應用使用 Next.js App Router 進行路由管理。
+
+## 主要頁面路由
+
+- `/` - 首頁
+- `/wishes` - 願望列表頁
+- `/wishes/[id]` - 願望詳情頁
+- `/wishes/create` - 創建新願望
+- `/wishes/mock-demo` - 願望展示 Demo
+- `/auth/signin` - 用戶登入
+- `/profile/messages/[userId]` - 用戶消息頁面
+- `/about` - 關於頁面系列
+  - `/about/our-story` - 我們的故事
+  - `/about/privacy` - 隱私政策
+  - `/about/terms` - 使用條款
+
+## API 路由
+
+- `/api/auth/[...nextauth]` - NextAuth.js 認證 API
+- `/api/auth/logout` - 登出 API

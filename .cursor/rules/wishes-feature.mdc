@@ -1,0 +1,24 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 願望功能
+
+願望功能是 Wishing 應用的核心，允許用戶創建、查看和分享願望。
+
+## 相關目錄
+
+- [app/wishes/](mdc:app/wishes) - 願望功能主目錄
+  - [app/wishes/components/](mdc:app/wishes/components) - 願望列表相關元件
+  - [app/wishes/[id]/](mdc:app/wishes/[id]/) - 願望詳情頁
+  - [app/wishes/create/](mdc:app/wishes/create) - 創建願望頁面
+  - [app/wishes/mock-demo/](mdc:app/wishes/mock-demo) - 願望展示模擬頁面
+
+## 願望功能流程
+
+1. 用戶在主頁或願望列表頁瀏覽願望
+2. 用戶可查看願望詳情 (`/wishes/[id]`)
+3. 登入用戶可創建新願望 (`/wishes/create`)
+4. 用戶可回覆或與願望互動
+5. 願望擁有者可管理自己的願望

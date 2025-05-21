@@ -1,0 +1,22 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# Wishing 項目結構
+
+這是一個基於 Next.js 的應用程式，主要功能是允許用戶創建和分享願望。
+
+## 主要目錄結構
+
+- [app/](mdc:app) - Next.js App Router 主要應用目錄
+  - [components/](mdc:app/components) - 共享元件
+  - [lib/](mdc:app/lib) - 實用函數和庫
+  - [types/](mdc:app/types) - TypeScript 類型定義
+  - [wishes/](mdc:app/wishes) - 願望相關頁面和元件
+  - [auth/](mdc:app/auth) - 認證相關頁面
+  - [api/](mdc:app/api) - API 路由
+
+## 關鍵文件
+- [next.config.ts](mdc:next.config.ts) - Next.js 配置
+- [package.json](mdc:package.json) - 項目依賴和腳本
