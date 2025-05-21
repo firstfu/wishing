@@ -5,7 +5,8 @@
 // 功能：
 // - 聯繫發布者：開啟訊息對話
 // - 分享許願：複製連結或分享到社交媒體
-// - 模態窗口：處理訊息發送和分享
+// - 標記已完成：允許願望發起人標記願望為已完成
+// - 模態窗口：處理訊息發送、分享和完成狀態更新
 // ====================================================================
 
 "use client";
@@ -15,24 +16,30 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 import Modal from "@/app/components/ui/Modal";
 import Link from "next/link";
-import { sendMessage } from "@/app/lib/data";
+import { sendMessage, updateWishStatus } from "@/app/lib/data";
 
 interface WishActionsProps {
   wishId: string;
   wishTitle: string;
   userId: string;
   userName: string;
+  isOwner?: boolean;
+  wishStatus?: "open" | "in_progress" | "completed";
 }
 
-export default function WishActions({ wishId, wishTitle, userId, userName }: WishActionsProps) {
+export default function WishActions({ wishId, wishTitle, userId, userName, isOwner = false, wishStatus = "open" }: WishActionsProps) {
   const router = useRouter();
 
   // 模態窗口狀態
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [completionMessage, setCompletionMessage] = useState("");
   const [isSending, setIsSending] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
   const [copySuccess, setCopySuccess] = useState("");
 
   // 獲取當前網頁 URL
@@ -67,6 +74,35 @@ export default function WishActions({ wishId, wishTitle, userId, userName }: Wis
     }
   };
 
+  // 標記願望為已完成處理函數
+  const handleCompleteSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setIsUpdating(true);
+
+    try {
+      // 使用 updateWishStatus API 更新許願狀態
+      const result = await updateWishStatus(wishId, "completed", completionMessage);
+
+      if (result.success) {
+        setIsCompleted(true);
+        // 重置表單
+        setCompletionMessage("");
+        // 3秒後關閉模態窗口並刷新頁面
+        setTimeout(() => {
+          setIsCompleteModalOpen(false);
+          setIsCompleted(false);
+          // 刷新頁面以顯示更新後的狀態
+          router.refresh();
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("更新願望狀態失敗:", error);
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   // 複製連結處理函數
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareUrl).then(
@@ -91,19 +127,41 @@ export default function WishActions({ wishId, wishTitle, userId, userName }: Wis
     <>
       {/* 操作按鈕 */}
       <div className="flex flex-wrap gap-4">
-        <button
-          onClick={() => setIsContactModalOpen(true)}
-          className="flex-1 md:flex-none py-3 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-200 flex items-center justify-center gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-            <path
-              fillRule="evenodd"
-              d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25Z"
-              clipRule="evenodd"
-            />
-          </svg>
-          聯繫發布者
-        </button>
+        {/* 聯繫發布者按鈕 - 僅當用戶不是願望擁有者時顯示 */}
+        {!isOwner && (
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="flex-1 md:flex-none py-3 px-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-200 flex items-center justify-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+              <path
+                fillRule="evenodd"
+                d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25a1.125 1.125 0 0 0 0-2.25Z"
+                clipRule="evenodd"
+              />
+            </svg>
+            聯繫發布者
+          </button>
+        )}
+
+        {/* 願望已完成按鈕 - 僅當用戶是願望擁有者且願望未完成時顯示 */}
+        {isOwner && wishStatus !== "completed" && (
+          <button
+            onClick={() => setIsCompleteModalOpen(true)}
+            className="flex-1 md:flex-none py-3 px-6 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium hover:shadow-lg hover:shadow-green-500/20 transition-all duration-200 flex items-center justify-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+              <path
+                fillRule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+                clipRule="evenodd"
+              />
+            </svg>
+            標記為已完成
+          </button>
+        )}
+
+        {/* 分享許願按鈕 */}
         <button
           onClick={() => setIsShareModalOpen(true)}
           className="flex-1 md:flex-none py-3 px-6 rounded-full border border-purple-200 dark:border-purple-800 bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-300 font-medium hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-200 flex items-center justify-center gap-2"
@@ -157,6 +215,58 @@ export default function WishActions({ wishId, wishTitle, userId, userName }: Wis
               </Button>
               <Button type="submit" isLoading={isSending} disabled={!message.trim() || isSending}>
                 發送訊息
+              </Button>
+            </div>
+          </form>
+        )}
+      </Modal>
+
+      {/* 標記願望已完成模態窗口 */}
+      <Modal isOpen={isCompleteModalOpen} onClose={() => setIsCompleteModalOpen(false)} title="標記願望為已完成">
+        {isCompleted ? (
+          <div className="text-center py-6">
+            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                <path
+                  fillRule="evenodd"
+                  d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-green-600 mb-2">願望已完成！</h3>
+            <p className="text-gray-600">您的願望已被標記為已完成，其他使用者可以看到此狀態。</p>
+            <p className="text-gray-500 text-sm mt-3">頁面將自動重新載入...</p>
+          </div>
+        ) : (
+          <form onSubmit={handleCompleteSubmit} className="space-y-4">
+            <div>
+              <p className="text-gray-600 mb-2">您即將將願望「{wishTitle}」標記為已完成。請分享一下是如何解決的：</p>
+              <p className="text-sm text-amber-600 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 inline-block mr-1">
+                  <path
+                    fillRule="evenodd"
+                    d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                標記為已完成後，此願望將不再接受新的解決方案。
+              </p>
+              <textarea
+                className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-green-400 dark:focus:ring-green-900/30"
+                rows={5}
+                placeholder="請描述您的願望是如何被解決的，或者為什麼要將它標記為已完成..."
+                value={completionMessage}
+                onChange={e => setCompletionMessage(e.target.value)}
+                required
+              ></textarea>
+            </div>
+            <div className="flex justify-end gap-3">
+              <Button type="button" variant="outline" onClick={() => setIsCompleteModalOpen(false)}>
+                取消
+              </Button>
+              <Button type="submit" isLoading={isUpdating} disabled={!completionMessage.trim() || isUpdating} className="bg-green-600 hover:bg-green-700">
+                確認完成
               </Button>
             </div>
           </form>

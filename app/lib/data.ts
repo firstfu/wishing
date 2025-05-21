@@ -447,3 +447,40 @@ export async function markMessagesAsRead(senderId: string): Promise<boolean> {
   // 模擬標記已讀操作
   return true;
 }
+
+// 更新許願狀態
+export async function updateWishStatus(
+  wishId: string,
+  status: "open" | "in_progress" | "completed",
+  completionMessage?: string
+): Promise<{ success: boolean; wish?: Wish }> {
+  // 模擬網絡延遲
+  await new Promise(resolve => setTimeout(resolve, 800));
+
+  try {
+    // 獲取願望
+    const wish = await getWishById(wishId);
+
+    if (!wish) {
+      return { success: false };
+    }
+
+    // 更新願望狀態（使用類型斷言）
+    (wish as any).status = status;
+
+    // 如果有完成訊息且狀態為已完成，可以儲存這個訊息
+    // 實際專案中，這裡應該將訊息保存到資料庫
+    if (status === "completed" && completionMessage) {
+      // 這裡可以將完成訊息存儲起來，例如添加到願望的屬性中
+      // 本模擬中僅返回更新後的願望
+    }
+
+    return {
+      success: true,
+      wish: wish,
+    };
+  } catch (error) {
+    console.error("更新願望狀態失敗:", error);
+    return { success: false };
+  }
+}

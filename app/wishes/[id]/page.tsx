@@ -101,7 +101,20 @@ export default async function WishPage({ params }: { params: Promise<{ id: strin
                         <span className="mr-1">⭐</span> 置頂
                       </Badge>
                     )}
-                    <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/60 dark:text-blue-300 dark:border-blue-800/60">
+                    {(wish as any).status === "completed" && (
+                      <Badge className="bg-green-500/90 hover:bg-green-500 text-white border-none">
+                        <span className="mr-1">✅</span> 已完成
+                      </Badge>
+                    )}
+                    {(wish as any).status === "in_progress" && (
+                      <Badge className="bg-blue-500/90 hover:bg-blue-500 text-white border-none">
+                        <span className="mr-1">🔄</span> 進行中
+                      </Badge>
+                    )}
+                    <Badge
+                      variant="outline"
+                      className="bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/60 dark:text-blue-300 dark:border-blue-800/60"
+                    >
                       {wish.category === "technology"
                         ? "💻 科技"
                         : wish.category === "education"
@@ -168,7 +181,14 @@ export default async function WishPage({ params }: { params: Promise<{ id: strin
 
                 {/* 操作按鈕 */}
                 <div className="flex flex-wrap gap-4 pt-6 border-t border-border">
-                  <WishActions wishId={id} wishTitle={wish.title} userId={wish.user.id} userName={wish.user.name} />
+                  <WishActions
+                    wishId={id}
+                    wishTitle={wish.title}
+                    userId={wish.user.id}
+                    userName={wish.user.name}
+                    isOwner={wish.user.id.startsWith("user-self")}
+                    wishStatus={(wish as any).status || "open"}
+                  />
                   <Link href="/wishes" className="ml-auto inline-flex items-center">
                     <button className="py-2 px-4 rounded-full text-muted-foreground hover:text-foreground text-sm flex items-center gap-1 hover:bg-accent transition-colors">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
