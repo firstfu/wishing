@@ -59,8 +59,8 @@ export default function ProfilePage() {
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-600">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <span className="text-gray-600 dark:text-gray-300">帳戶餘額：</span>
-                  <span className="font-semibold text-purple-600 dark:text-purple-300 ml-1">${user.balance}</span>
+                  <span className="text-gray-600 dark:text-gray-300">帳戶點數：</span>
+                  <span className="font-semibold text-purple-600 dark:text-purple-300 ml-1">{user.balance} 點</span>
                 </div>
                 <Link href="/profile/deposit">
                   <Button className="mt-3 md:mt-0">儲值</Button>
