@@ -1,48 +1,42 @@
 // ====================================================================
 // wishes/loading.tsx - 許願列表頁面載入狀態
 // ====================================================================
-// 作用：於資料尚未取得時顯示許願列表頁的骨架屏
+// 用途：在許願列表頁面資料載入期間顯示的骨架屏幕。
 // 功能：
-// - 頂部橫幅的預載動畫
-// - 搜尋欄的骨架屏
-// - 篩選側欄的骨架屏
-// - 許願卡片列表的骨架屏
+// - 顯示與實際內容結構相符的載入佔位元素
+// - 包含篩選器、搜尋框和願望卡片的骨架結構
+// - 使用淡入淡出動畫提升使用者體驗
+// - 自動由 Next.js 在資料載入期間顯示
+// - 採用響應式設計，在不同裝置上保持一致的載入體驗
+//
+// 本頁面用於減少用戶等待感，提供視覺上的連續性，增強整體使用體驗。
 // ====================================================================
 export default function Loading() {
   return (
-    <div className="bg-background">
-      {/* 頂部橫幅骨架屏 */}
-      <div className="bg-gradient relative py-12 mb-8">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[center_top_-1px]"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-3xl">
-            <div className="h-12 w-64 bg-white/20 rounded-md mb-4 animate-pulse"></div>
-            <div className="h-6 w-96 bg-white/20 rounded-md mb-6 animate-pulse"></div>
-            <div className="h-12 w-32 bg-white/20 rounded-full animate-pulse"></div>
-          </div>
+    <div className="container mx-auto py-8 px-4 animate-in fade-in duration-500">
+      <h1 className="text-3xl font-bold mb-8">許願列表</h1>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* 左側篩選器骨架 */}
+        <div className="hidden lg:block">
+          <div className="h-[500px] bg-muted animate-pulse rounded-lg"></div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
-      </div>
 
-      <div className="container mx-auto px-4 pb-16">
-        {/* 搜尋框骨架屏 */}
-        <div className="h-16 bg-muted rounded-lg animate-pulse mb-6"></div>
+        {/* 右側內容區 */}
+        <div className="lg:col-span-3 space-y-6">
+          {/* 搜尋框骨架 */}
+          <div className="h-16 bg-muted animate-pulse rounded-lg"></div>
 
-        <div className="flex flex-col lg:flex-row gap-8 mt-6">
-          {/* 側邊欄骨架屏 */}
-          <div className="lg:w-1/4">
-            <div className="bg-muted rounded-lg h-96 animate-pulse"></div>
+          {/* 許願卡片骨架 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(9)].map((_, index) => (
+              <div key={index} className="h-64 bg-muted animate-pulse rounded-lg"></div>
+            ))}
           </div>
 
-          {/* 列表骨架屏 */}
-          <div className="lg:w-3/4">
-            <div className="h-6 bg-muted rounded-md w-48 animate-pulse mb-6"></div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(9)].map((_, index) => (
-                <div key={index} className="h-64 bg-muted rounded-lg animate-pulse"></div>
-              ))}
-            </div>
+          {/* 分頁骨架 */}
+          <div className="flex justify-center mt-8">
+            <div className="h-10 w-64 bg-muted animate-pulse rounded-lg"></div>
           </div>
         </div>
       </div>
