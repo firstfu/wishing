@@ -79,13 +79,13 @@ function SignInContent() {
 
           <Button
             type="button"
-            className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 border border-gray-300 rounded-xl py-3 transition-all hover:shadow-md"
+            className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 border border-gray-300 rounded-xl py-4 transition-all hover:shadow-md"
             onClick={handleGoogleSignIn}
             isLoading={isLoading}
           >
             {!isLoading && (
               <div className="flex items-center">
-                <div className="w-5 h-5 mr-3">
+                <div className="w-6 h-6 mr-3">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                     <path
                       fill="#EA4335"
@@ -100,7 +100,7 @@ function SignInContent() {
                     <path fill="none" d="M0 0h48v48H0z" />
                   </svg>
                 </div>
-                <span className="text-gray-700 font-medium">使用 Google 帳號登入</span>
+                <span className="text-gray-700 font-medium text-base">使用 Google 帳號登入</span>
               </div>
             )}
           </Button>
