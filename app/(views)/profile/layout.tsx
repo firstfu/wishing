@@ -45,6 +45,14 @@ export default function ProfileLayout({ children }: ProfileLayoutProps) {
               </li>
               <li>
                 <Link
+                  href="/profile/deposit"
+                  className="block px-4 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-300"
+                >
+                  帳戶儲值
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/profile/transactions"
                   className="block px-4 py-2 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-300"
                 >

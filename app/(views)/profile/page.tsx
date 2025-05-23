@@ -1,3 +1,5 @@
+"use client";
+
 // profile/page.tsx - 許願池用戶個人主頁
 //
 // 提供用戶個人中心主頁，展示用戶基本資訊、統計數據和最近活動摘要。
@@ -60,7 +62,9 @@ export default function ProfilePage() {
                   <span className="text-gray-600 dark:text-gray-300">帳戶餘額：</span>
                   <span className="font-semibold text-purple-600 dark:text-purple-300 ml-1">${user.balance}</span>
                 </div>
-                <Button className="mt-3 md:mt-0">儲值</Button>
+                <Link href="/profile/deposit">
+                  <Button className="mt-3 md:mt-0">儲值</Button>
+                </Link>
               </div>
             </div>
           </div>
