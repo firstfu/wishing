@@ -81,10 +81,12 @@ export default function ConversationPage() {
   const conversationPartner = {
     name:
       messages.length > 0 && messages[0].senderId !== "current-user"
-        ? "對方" // 如果有訊息，且第一條是對方發的，可以從中提取用戶名
+        ? messages[0].senderId.includes("-")
+          ? messages[0].senderId.split("-")[1] // 從發送者ID提取名稱部分
+          : "對話者"
         : userId.includes("-")
-        ? userId.split("-")[1]
-        : userId, // 否則從 userId 提取
+        ? userId.split("-")[1] // 從URL參數中提取名稱部分
+        : "對話者",
     isOnline: Math.random() > 0.5, // 模擬在線狀態
   };
 
