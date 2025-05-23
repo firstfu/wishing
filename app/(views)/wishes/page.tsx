@@ -10,9 +10,9 @@
 // ====================================================================
 import React from "react";
 import { Suspense } from "react";
-import WishesHeader from "@/app/wishes/components/WishesHeader";
-import WishesList from "@/app/wishes/components/WishesList";
-import WishesFilter from "@/app/wishes/components/WishesFilter";
+import WishesHeader from "./components/WishesHeader";
+import WishesList from "./components/WishesList";
+import WishesFilter from "./components/WishesFilter";
 import { Button } from "@/app/components/ui/Button";
 import Link from "next/link";
 
