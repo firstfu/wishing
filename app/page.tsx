@@ -555,19 +555,19 @@ export default function Home() {
 
               <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                  <p className="text-4xl font-bold mb-2">1,200+</p>
+                  <p className="text-4xl font-bold mb-2">320+</p>
                   <p className="text-white/70">已實現願望</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold mb-2">2,500+</p>
+                  <p className="text-4xl font-bold mb-2">680+</p>
                   <p className="text-white/70">註冊用戶</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold mb-2">850+</p>
+                  <p className="text-4xl font-bold mb-2">210+</p>
                   <p className="text-white/70">成功配對</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold mb-2">4.7/5</p>
+                  <p className="text-4xl font-bold mb-2">4.6/5</p>
                   <p className="text-white/70">用戶滿意度</p>
                 </div>
               </div>
