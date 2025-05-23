@@ -215,15 +215,6 @@ export default function Home() {
               <div className="mt-12 flex items-center space-x-4">
                 <p className="text-sm font-medium">已有 12,000+ 願望實現</p>
               </div>
-
-              <div className="mt-4">
-                <Link href="/wishes/mock-demo" className="inline-flex items-center text-sm font-medium text-white/80 hover:text-white">
-                  <span className="mr-1">查看 Mock 資料示範</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5l7.5 7.5-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
-              </div>
             </div>
 
             {/* 右側漂浮卡片效果 */}
