@@ -9,7 +9,7 @@ import { formatPrice } from "@/app/lib/utils";
 // ---------------------------------------------
 // 用途：
 //   - 提供用戶儲值點數功能的介面
-//   - 支援多種點數選擇和信用卡支付
+//   - 支援多種點數選擇和支付方式
 // 設計重點：
 //   - 簡潔直觀的儲值流程
 //   - 預設點數選項
@@ -30,10 +30,20 @@ const POINT_PACKAGES = [
   { points: 500, bonus: 200, price: 500 },
 ];
 
+// 支付方式選項
+const PAYMENT_METHODS = [
+  { id: "credit_card", name: "信用卡", icon: "💳" },
+  // 未來可能會新增更多支付方式
+  // { id: "line_pay", name: "LINE Pay", icon: "📱" },
+  // { id: "apple_pay", name: "Apple Pay", icon: "🍎" },
+  // { id: "bank_transfer", name: "銀行轉帳", icon: "🏦" },
+];
+
 export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [selectedPackage, setSelectedPackage] = useState<(typeof POINT_PACKAGES)[0]>(POINT_PACKAGES[1]);
+  const [paymentMethod, setPaymentMethod] = useState<string>(PAYMENT_METHODS[0].id);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [step, setStep] = useState<"amount" | "confirm">("amount");
+  const [step, setStep] = useState<"amount" | "payment" | "confirm">("amount");
 
   // 計算總點數（購買點數 + 贈送點數）
   const calculateTotalPoints = (points: number) => {
@@ -49,17 +59,34 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     setSelectedPackage(packageOption);
   };
 
+  // 處理支付方式選擇
+  const handlePaymentMethodChange = (id: string) => {
+    setPaymentMethod(id);
+  };
+
   // 處理繼續按鈕
   const handleContinue = () => {
     if (step === "amount") {
+      if (PAYMENT_METHODS.length > 1) {
+        setStep("payment");
+      } else {
+        setStep("confirm");
+      }
+    } else if (step === "payment") {
       setStep("confirm");
     }
   };
 
   // 處理返回按鈕
   const handleBack = () => {
-    if (step === "confirm") {
+    if (step === "payment") {
       setStep("amount");
+    } else if (step === "confirm") {
+      if (PAYMENT_METHODS.length > 1) {
+        setStep("payment");
+      } else {
+        setStep("amount");
+      }
     }
   };
 
@@ -80,6 +107,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
       // 重置表單
       setSelectedPackage(POINT_PACKAGES[1]);
+      setPaymentMethod(PAYMENT_METHODS[0].id);
       setStep("amount");
     } catch (error) {
       console.error("購買點數失敗", error);
@@ -93,8 +121,14 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const handleClose = () => {
     // 重置表單
     setSelectedPackage(POINT_PACKAGES[1]);
+    setPaymentMethod(PAYMENT_METHODS[0].id);
     setStep("amount");
     onClose();
+  };
+
+  // 獲取當前支付方式名稱
+  const getCurrentPaymentMethodName = () => {
+    return PAYMENT_METHODS.find(m => m.id === paymentMethod)?.name || "信用卡";
   };
 
   return (
@@ -123,8 +157,72 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
             </div>
           </div>
 
+          {/* 支付方式選擇區塊永遠顯示 */}
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">選擇支付方式</label>
+            <div className="grid grid-cols-2 gap-3">
+              {PAYMENT_METHODS.map(method => (
+                <div
+                  key={method.id}
+                  onClick={() => handlePaymentMethodChange(method.id)}
+                  className={`flex items-center p-3 border rounded-md cursor-pointer transition-colors ${
+                    paymentMethod === method.id ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30" : "border-gray-300 dark:border-gray-600"
+                  }`}
+                >
+                  <span className="text-xl mr-3">{method.icon}</span>
+                  <span>{method.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <Button onClick={handleContinue} disabled={selectedPackage.points <= 0} className="w-full">
+              繼續
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {PAYMENT_METHODS.length > 1 && step === "payment" && (
+        <div className="space-y-6">
+          <div>
+            <p className="text-lg font-medium">
+              點數方案：<span className="text-purple-600 dark:text-purple-300">{selectedPackage.points} 點</span>
+              {selectedPackage.bonus > 0 && <span className="text-green-600 dark:text-green-400">（送 {selectedPackage.bonus} 點）</span>}
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">選擇支付方式</label>
+            <div className="space-y-2">
+              {PAYMENT_METHODS.map(method => (
+                <label
+                  key={method.id}
+                  className={`flex items-center p-3 border rounded-md cursor-pointer transition-colors ${
+                    paymentMethod === method.id ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30" : "border-gray-300 dark:border-gray-600"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="payment-method"
+                    value={method.id}
+                    checked={paymentMethod === method.id}
+                    onChange={() => handlePaymentMethodChange(method.id)}
+                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 dark:focus:ring-purple-400"
+                  />
+                  <span className="text-xl mr-2">{method.icon}</span>
+                  <span className="ml-1">{method.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <Button variant="outline" onClick={handleBack} className="flex-1">
+              返回
+            </Button>
+            <Button onClick={handleContinue} className="flex-1">
               繼續
             </Button>
           </div>
@@ -148,7 +246,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
               )}
               <div className="flex justify-between">
                 <span className="text-gray-600 dark:text-gray-400">支付方式：</span>
-                <span>信用卡</span>
+                <span>{getCurrentPaymentMethodName()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600 dark:text-gray-400">手續費：</span>

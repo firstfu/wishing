@@ -32,14 +32,29 @@ const POINT_PACKAGES = [
   { points: 500, bonus: 200, price: 500 },
 ];
 
+// 支付方式選項
+const PAYMENT_METHODS = [
+  { id: "credit_card", name: "信用卡", icon: "💳" },
+  // 未來可能會新增更多支付方式
+  // { id: "line_pay", name: "LINE Pay", icon: "📱" },
+  // { id: "apple_pay", name: "Apple Pay", icon: "🍎" },
+  // { id: "bank_transfer", name: "銀行轉帳", icon: "🏦" },
+];
+
 export default function DepositPage() {
   const [selectedPackage, setSelectedPackage] = useState<(typeof POINT_PACKAGES)[0]>(POINT_PACKAGES[1]);
+  const [paymentMethod, setPaymentMethod] = useState<string>(PAYMENT_METHODS[0].id);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
 
   // 處理點數方案選擇
   const handlePackageSelect = (packageOption: (typeof POINT_PACKAGES)[0]) => {
     setSelectedPackage(packageOption);
+  };
+
+  // 處理支付方式選擇
+  const handlePaymentMethodChange = (id: string) => {
+    setPaymentMethod(id);
   };
 
   // 處理儲值提交
@@ -61,12 +76,23 @@ export default function DepositPage() {
 
       // 重置表單
       setSelectedPackage(POINT_PACKAGES[1]);
+      setPaymentMethod(PAYMENT_METHODS[0].id);
     } catch (error) {
       console.error("購買點數失敗", error);
       alert("購買點數失敗，請稍後再試");
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // 獲取當前支付方式名稱
+  const getCurrentPaymentMethodName = () => {
+    return PAYMENT_METHODS.find(m => m.id === paymentMethod)?.name || "信用卡";
+  };
+
+  // 獲取當前支付方式圖示
+  const getCurrentPaymentMethodIcon = () => {
+    return PAYMENT_METHODS.find(m => m.id === paymentMethod)?.icon || "💳";
   };
 
   return (
@@ -125,6 +151,25 @@ export default function DepositPage() {
                 </div>
               </div>
 
+              {/* 支付方式選擇區塊永遠顯示 */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">選擇支付方式</label>
+                <div className="grid grid-cols-2 gap-3">
+                  {PAYMENT_METHODS.map(method => (
+                    <div
+                      key={method.id}
+                      onClick={() => handlePaymentMethodChange(method.id)}
+                      className={`flex items-center p-3 border rounded-md cursor-pointer transition-colors ${
+                        paymentMethod === method.id ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30" : "border-gray-300 dark:border-gray-600"
+                      }`}
+                    >
+                      <span className="text-xl mr-3">{method.icon}</span>
+                      <span>{method.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* 交易摘要 */}
               <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg">
                 <h4 className="font-medium mb-3">交易摘要</h4>
@@ -141,7 +186,10 @@ export default function DepositPage() {
                   )}
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-400">支付方式：</span>
-                    <span>信用卡</span>
+                    <span>
+                      <span className="inline-block mr-1">{getCurrentPaymentMethodIcon()}</span>
+                      {getCurrentPaymentMethodName()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-400">手續費：</span>
@@ -197,7 +245,7 @@ export default function DepositPage() {
                 <span className="font-medium text-gray-900 dark:text-gray-200">點數價值：</span> 每點等值 1 元新台幣，依照方案贈送不同點數。
               </p>
               <p>
-                <span className="font-medium text-gray-900 dark:text-gray-200">支付方式：</span> 目前僅支援信用卡付款，交易安全有保障。
+                <span className="font-medium text-gray-900 dark:text-gray-200">支付方式：</span> 目前支援信用卡付款，交易安全有保障。未來將支援更多支付方式。
               </p>
               <p>
                 <span className="font-medium text-gray-900 dark:text-gray-200">處理時間：</span> 信用卡支付通常立即到帳，可直接使用點數。
