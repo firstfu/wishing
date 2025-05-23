@@ -705,44 +705,124 @@ export interface CreateWishInput {
 export function generateMoreWishes(count: number): Wish[] {
   const wishes: Wish[] = [];
 
-  const wishTitles = [
-    "尋找會計師協助報稅事宜",
-    "需要搬家工人本週六搬運家具",
-    "徵求有經驗的寵物攝影師為毛小孩拍照",
-    "找尋共學夥伴一起準備多益考試",
-    "徵求烹飪老師教授台式家常菜",
-    "需要專業健身教練制定減重計畫",
-    "徵求經驗豐富的日語家教",
-    "尋找園藝專家協助陽台花園規劃",
-    "招募桌遊同好週末一起玩聚會遊戲",
-    "尋找兒童繪畫老師教導基礎素描",
-    "徵求專業履歷顧問優化求職履歷",
-    "需要經驗豐富的月子媽媽",
-    "尋找修電腦達人解決軟體問題",
-    "徵求兼職司機代駕返鄉過節",
-    "尋找居家收納顧問整理小套房",
-  ];
-
-  const descriptions = [
-    "希望能找到專業人士協助，價格合理即可。",
-    "時間有點急，希望能盡快找到幫手。",
-    "預算有限，但很重視品質和專業度。",
-    "第一次嘗試，需要有耐心的人指導。",
-    "長期合作機會，希望能建立穩定的合作關係。",
-  ];
+  // 按類別定義願望模板
+  const wishTemplates = {
+    technology: [
+      {
+        title: "尋找經驗豐富的網站開發工程師",
+        description:
+          "我有一個電商網站創業想法，需要專業的前後端工程師協助開發。希望能找到熟悉React、Node.js和資料庫的開發者，能夠從需求分析、網站架構到最終實現全程參與。預計開發時間約3個月，願意提供合理報酬。希望應徵者能提供過往作品集和開發經驗說明。",
+      },
+      {
+        title: "徵求App測試人員",
+        description:
+          "我們正在開發一款生活服務類App，在正式上線前需要招募測試人員進行功能測試和用戶體驗反饋。測試期約為2週，每天需測試3-5個功能點並填寫詳細反饋表。有測試經驗者佳，但認真負責的新手也歡迎。測試結束後提供測試費用和App使用優惠券。",
+      },
+    ],
+    education: [
+      {
+        title: "尋找大學學測英文家教",
+        description:
+          "高二學生，英文程度中等，希望能在學測前強化英文閱讀和寫作能力。尤其需要加強文法和長文閱讀理解。希望家教有耐心，能針對學測命題方向給予適當指導。每週兩次課程，每次2小時，地點可在台北市文山區或線上進行。",
+      },
+      {
+        title: "徵求研究所考試指導老師",
+        description:
+          "計劃明年報考政治大學企管所，需要在統計學和經濟學方面尋找專業指導老師。我已經自學了基礎內容，但需要有經驗的老師針對考試重點和解題技巧進行指導。希望老師有相關科系背景，最好本身有考取研究所的經驗。",
+      },
+    ],
+    lifestyle: [
+      {
+        title: "尋找台中市搬家服務",
+        description:
+          "計劃下個月從台中市西區搬到北區，是一間兩房一廳的住家，主要家具包括雙人床、衣櫃、書桌、餐桌椅、沙發和電視櫃等。希望搬家公司能提供打包服務，並小心處理貴重物品如電視和電腦設備。預計搬家日期為5/25週六，希望能提供合理估價。",
+      },
+      {
+        title: "徵求居家收納整理專家",
+        description:
+          "家中雜物太多且擺放凌亂，需要專業收納師協助規劃空間利用並建立合理的收納系統。特別是廚房和衣物收納需要改善。希望收納師能提供實用的建議並協助執行，最好能一起採購必要的收納用品。居住在新北市三重區，房子約25坪。",
+      },
+    ],
+    health: [
+      {
+        title: "尋找專業瑜伽老師一對一指導",
+        description:
+          "因為長期久坐辦公導致肩頸僵硬和輕微駝背，希望通過瑜伽改善身體狀況。我是瑜伽初學者，需要老師從基礎動作教起，特別注重正確姿勢和呼吸法。希望每週安排1-2次課程，每次60分鐘，可以在我家或瑜伽教室進行。",
+      },
+      {
+        title: "徵求體重管理營養師",
+        description:
+          "近一年因工作壓力大導致體重增加15公斤，希望在專業營養師指導下健康減重。需要個人化的飲食計劃，考慮我的生活習慣和食物偏好。希望能學習健康烹飪和飲食搭配知識，建立長期可持續的飲食習慣。願意配合定期體重和身體數據監測。",
+      },
+    ],
+    food: [
+      {
+        title: "尋找私人烘焙老師教製作生日蛋糕",
+        description:
+          "想為女友親手製作生日蛋糕，但烘焙經驗為零，需要老師從基本教起。希望學習製作巧克力慕斯蛋糕，包括麵糊調製、烘烤技巧和裝飾藝術。最好能在5月中前完成學習，上課地點希望在台北市松山區或老師工作室。願意支付材料費和合理的教學費用。",
+      },
+      {
+        title: "徵求家常菜教學",
+        description:
+          "剛搬出來獨立生活，想學習10-15道簡單實用的家常菜。希望老師能教導基本烹飪技巧、食材選購和保存方法。菜色偏好台式和簡易中式料理，如三杯雞、炒青菜、滷肉飯等。希望老師有耐心且能用簡單易懂的方式教學。上課地點在我家（新北市新莊區）。",
+      },
+    ],
+    travel: [
+      {
+        title: "尋找花蓮三天兩夜私人導遊",
+        description:
+          "計畫6月初與家人（4大2小）前往花蓮旅遊，希望找當地熟悉的導遊安排行程。希望能體驗在地文化和自然景點，不要過於商業化的路線。特別想去太魯閣和海洋公園，也希望品嚐道地美食。需要導遊協助安排住宿、交通和餐飲，全程陪同並提供解說服務。",
+      },
+      {
+        title: "徵求登山嚮導帶隊玉山主峰",
+        description:
+          "三位登山初學者計畫8月攀登玉山主峰，需要經驗豐富的嚮導帶隊。我們有基本健行經驗但未挑戰過高山，希望嚮導能協助行前準備、裝備建議、體能訓練計畫和路線安排。重視安全第一，希望嚮導有豐富帶隊經驗和急救知識。需要協助申請入山證和安排食宿。",
+      },
+    ],
+    entertainment: [
+      {
+        title: "尋找婚禮攝影師",
+        description:
+          "將於9月在台北市內舉辦婚禮，需要專業攝影師紀錄這重要時刻。希望風格自然真實，捕捉真情流露的瞬間而非過多擺拍。需求包括訂婚儀式、婚禮當天全程拍攝和精修照片製作。希望攝影師有豐富婚禮攝影經驗，能提供作品集參考。",
+      },
+      {
+        title: "徵求吉他教學老師",
+        description:
+          "30歲上班族想學習木吉他，完全零基礎。希望從基本指法開始學起，目標是能彈唱簡單民謠歌曲。因工作繁忙，希望每週能有一次固定課程，時間約90分鐘，最好能在平日晚上或週末。教學地點希望在台北市信義區。希望老師有耐心，教學方式生動有趣。",
+      },
+    ],
+    sports: [
+      {
+        title: "尋找羽球教練提升技術",
+        description:
+          "打羽球約兩年，已有基本技術但希望能更進步。特別想改善殺球技巧和步法移動，提高比賽中的應變能力。希望每週安排1-2次專業指導，地點在台北市內的羽球場。希望教練有比賽經驗，能針對我的弱點給予針對性訓練。",
+      },
+      {
+        title: "徵求游泳教練一對一指導",
+        description:
+          "成人學游泳，目前只會簡單的自由式，希望能學習蛙式和仰式並改善自由式姿勢。有輕微怕水心理，需要有耐心的教練循序漸進指導。希望每週固定2次課程，每次1小時，地點希望在新北市板橋區的公立游泳池。期望3個月內能熟練掌握三種泳姿。",
+      },
+    ],
+  };
 
   for (let i = 0; i < count; i++) {
+    // 隨機選擇類別
+    const categories = Object.keys(wishTemplates);
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+
+    // 從該類別中隨機選擇一個願望模板
+    const categoryTemplates = wishTemplates[randomCategory as keyof typeof wishTemplates];
+    const randomTemplate = categoryTemplates[Math.floor(Math.random() * categoryTemplates.length)];
+
+    // 隨機選擇用戶
     const randomUser = users[Math.floor(Math.random() * users.length)];
-    const randomTitle = wishTitles[Math.floor(Math.random() * wishTitles.length)];
-    const randomDesc = descriptions[Math.floor(Math.random() * descriptions.length)];
-    const randomCategory = ["technology", "education", "lifestyle", "health", "food", "travel", "entertainment", "sports"][Math.floor(Math.random() * 8)];
     const randomPrice = Math.floor(Math.random() * 10000);
     const randomDate = new Date(Date.now() - Math.floor(Math.random() * 30) * 86400000).toISOString();
 
     wishes.push({
       id: `wish-extra-${i + 1}`,
-      title: randomTitle,
-      description: `${randomDesc}\n\n這是一個詳細的說明，包含我的需求和期望。希望能找到合適的人選協助我完成這個願望。`,
+      title: randomTemplate.title,
+      description: randomTemplate.description,
       price: randomPrice,
       isPinned: Math.random() > 0.8, // 20%機率為置頂
       category: randomCategory,
