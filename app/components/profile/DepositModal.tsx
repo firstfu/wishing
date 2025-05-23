@@ -12,7 +12,7 @@ import { formatPrice } from "@/app/lib/utils";
 //   - 支援多種點數選擇和信用卡支付
 // 設計重點：
 //   - 簡潔直觀的儲值流程
-//   - 預設點數選項和自訂點數輸入
+//   - 預設點數選項
 //   - 點數購買贈送機制
 //   - 交易確認和反饋
 // ---------------------------------------------
@@ -27,12 +27,11 @@ const POINT_PACKAGES = [
   { points: 30, bonus: 0, price: 30 },
   { points: 100, bonus: 50, price: 100 },
   { points: 200, bonus: 100, price: 200 },
-  { points: 500, bonus: 700, price: 500 },
+  { points: 500, bonus: 200, price: 500 },
 ];
 
 export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const [selectedPackage, setSelectedPackage] = useState<(typeof POINT_PACKAGES)[0]>(POINT_PACKAGES[1]);
-  const [customPoints, setCustomPoints] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [step, setStep] = useState<"amount" | "confirm">("amount");
 
@@ -41,32 +40,13 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
     if (points === 30) return 30; // 30點不送
     if (points === 100) return 150; // 100點送50
     if (points === 200) return 300; // 200點送100
-    if (points === 500) return 1200; // 500點送700
-    return points; // 自訂點數不送
+    if (points === 500) return 700; // 500點送200
+    return points;
   };
 
   // 處理點數方案選擇
   const handlePackageSelect = (packageOption: (typeof POINT_PACKAGES)[0]) => {
     setSelectedPackage(packageOption);
-    setCustomPoints("");
-  };
-
-  // 處理自訂點數輸入
-  const handleCustomPointsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // 只允許數字輸入
-    if (/^\d*$/.test(value)) {
-      setCustomPoints(value);
-      if (value) {
-        const points = parseInt(value, 10);
-        // 自訂點數不享有贈送優惠
-        setSelectedPackage({
-          points,
-          bonus: 0,
-          price: points,
-        });
-      }
-    }
   };
 
   // 處理繼續按鈕
@@ -100,7 +80,6 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
 
       // 重置表單
       setSelectedPackage(POINT_PACKAGES[1]);
-      setCustomPoints("");
       setStep("amount");
     } catch (error) {
       console.error("購買點數失敗", error);
@@ -114,7 +93,6 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
   const handleClose = () => {
     // 重置表單
     setSelectedPackage(POINT_PACKAGES[1]);
-    setCustomPoints("");
     setStep("amount");
     onClose();
   };
@@ -132,7 +110,7 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                   type="button"
                   onClick={() => handlePackageSelect(pkg)}
                   className={`py-3 px-4 rounded-md border text-center transition-colors ${
-                    selectedPackage.points === pkg.points && !customPoints
+                    selectedPackage.points === pkg.points
                       ? "border-purple-500 bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
                       : "border-gray-300 hover:border-purple-300 dark:border-gray-600 dark:hover:border-purple-700"
                   }`}
@@ -143,26 +121,6 @@ export default function DepositModal({ isOpen, onClose }: DepositModalProps) {
                 </button>
               ))}
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="custom-points" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-              自訂點數
-            </label>
-            <div className="mt-1 relative rounded-md shadow-sm">
-              <input
-                type="text"
-                id="custom-points"
-                value={customPoints}
-                onChange={handleCustomPointsChange}
-                placeholder="輸入點數"
-                className="block w-full pl-3 pr-12 py-2 border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                <span className="text-gray-500 sm:text-sm">點</span>
-              </div>
-            </div>
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">自訂點數無贈送優惠，1點 = 1元</p>
           </div>
 
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">

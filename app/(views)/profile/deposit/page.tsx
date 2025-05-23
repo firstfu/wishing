@@ -20,7 +20,7 @@ import { formatPrice, formatDate } from "@/app/lib/utils";
 const MOCK_TRANSACTIONS = [
   { id: "tx-001", points: 100, bonus: 50, amount: 100, method: "信用卡", status: "成功", date: "2023-12-15T08:30:00Z" },
   { id: "tx-002", points: 30, bonus: 0, amount: 30, method: "信用卡", status: "成功", date: "2023-11-28T14:45:00Z" },
-  { id: "tx-003", points: 500, bonus: 700, amount: 500, method: "信用卡", status: "成功", date: "2023-10-05T11:20:00Z" },
+  { id: "tx-003", points: 500, bonus: 200, amount: 500, method: "信用卡", status: "成功", date: "2023-10-05T11:20:00Z" },
   { id: "tx-004", points: 200, bonus: 100, amount: 200, method: "信用卡", status: "處理中", date: "2023-09-18T16:10:00Z" },
 ];
 
@@ -29,37 +29,17 @@ const POINT_PACKAGES = [
   { points: 30, bonus: 0, price: 30 },
   { points: 100, bonus: 50, price: 100 },
   { points: 200, bonus: 100, price: 200 },
-  { points: 500, bonus: 700, price: 500 },
+  { points: 500, bonus: 200, price: 500 },
 ];
 
 export default function DepositPage() {
   const [selectedPackage, setSelectedPackage] = useState<(typeof POINT_PACKAGES)[0]>(POINT_PACKAGES[1]);
-  const [customPoints, setCustomPoints] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
 
   // 處理點數方案選擇
   const handlePackageSelect = (packageOption: (typeof POINT_PACKAGES)[0]) => {
     setSelectedPackage(packageOption);
-    setCustomPoints("");
-  };
-
-  // 處理自訂點數輸入
-  const handleCustomPointsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // 只允許數字輸入
-    if (/^\d*$/.test(value)) {
-      setCustomPoints(value);
-      if (value) {
-        const points = parseInt(value, 10);
-        // 自訂點數不享有贈送優惠
-        setSelectedPackage({
-          points,
-          bonus: 0,
-          price: points,
-        });
-      }
-    }
   };
 
   // 處理儲值提交
@@ -81,7 +61,6 @@ export default function DepositPage() {
 
       // 重置表單
       setSelectedPackage(POINT_PACKAGES[1]);
-      setCustomPoints("");
     } catch (error) {
       console.error("購買點數失敗", error);
       alert("購買點數失敗，請稍後再試");
@@ -133,7 +112,7 @@ export default function DepositPage() {
                       type="button"
                       onClick={() => handlePackageSelect(pkg)}
                       className={`py-3 px-4 rounded-md border text-center transition-colors ${
-                        selectedPackage.points === pkg.points && !customPoints
+                        selectedPackage.points === pkg.points
                           ? "border-purple-500 bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
                           : "border-gray-300 hover:border-purple-300 dark:border-gray-600 dark:hover:border-purple-700"
                       }`}
@@ -144,27 +123,6 @@ export default function DepositPage() {
                     </button>
                   ))}
                 </div>
-              </div>
-
-              {/* 自訂點數 */}
-              <div>
-                <label htmlFor="custom-points" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  自訂點數
-                </label>
-                <div className="mt-1 relative rounded-md shadow-sm">
-                  <input
-                    type="text"
-                    id="custom-points"
-                    value={customPoints}
-                    onChange={handleCustomPointsChange}
-                    placeholder="輸入點數"
-                    className="block w-full pl-3 pr-12 py-2 border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">點</span>
-                  </div>
-                </div>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">自訂點數無贈送優惠，1點 = 1元</p>
               </div>
 
               {/* 交易摘要 */}
@@ -263,7 +221,7 @@ export default function DepositPage() {
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-gray-200">購買哪種方案最划算？</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">500 點方案最划算，贈送 700 點，相當於 58% 折扣。</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">500 點方案贈送 200 點，相當於 28.6% 折扣。</p>
               </div>
               <div>
                 <h4 className="font-medium text-gray-900 dark:text-gray-200">點數會過期嗎？</h4>
