@@ -1,6 +1,18 @@
+// wishes/WishesHeader.tsx - 願望列表頁頭部組件
+//
+// 用途：提供願望列表頁的搜尋和排序功能區塊。
+// 功能：
+// - 搜尋框：允許用戶使用關鍵詞搜尋願望
+// - 排序選擇器：提供多種排序選項（最新、熱門、價格高低等）
+// - 可保留並同步當前搜尋和排序條件到 URL
+// - 表單提交時觸發搜尋行為
+// - 採用響應式設計，在移動裝置上自適應
+//
+// 本組件與 WishesList 和 WishesFilter 配合使用，共同構成願望瀏覽的完整界面。
+
 "use client";
 
-import { useState, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 // 許願池 WishesHeader 元件
@@ -73,7 +85,11 @@ export default function WishesHeader({ search = "", sort = "latest" }: WishesHea
               onChange={e => setSearchTerm(e.target.value)}
               className="w-full rounded-full border border-input py-2 pl-4 pr-10 bg-background focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors"
             />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors" aria-label="搜尋">
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors"
+              aria-label="搜尋"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>

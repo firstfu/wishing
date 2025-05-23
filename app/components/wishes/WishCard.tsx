@@ -121,7 +121,9 @@ export default function WishCard({ wish, variant = "default" }: WishCardProps) {
           <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{formatDescription(wish.description, 120)}</p>
           <div className="flex justify-between items-center pt-3 border-t border-border">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">{wish.user.name.charAt(0)}</div>
+              <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">
+                {wish.user.name.charAt(0)}
+              </div>
               <span className="text-sm">{wish.user.name}</span>
             </div>
             <div className="font-medium text-primary">{formatPrice(wish.price)}</div>

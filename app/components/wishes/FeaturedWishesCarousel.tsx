@@ -1,3 +1,16 @@
+// wishes/FeaturedWishesCarousel.tsx - 特色願望輪播元件
+//
+// 用途：在首頁展示置頂或精選願望，以輪播的形式吸引用戶注意。
+// 功能：
+// - 以滑動輪播方式展示特色願望卡片
+// - 支援觸屏滑動和箭頭按鈕控制輪播
+// - 顯示當前輪播位置指示器
+// - 願望卡片包含標題、簡介、分類和價格資訊
+// - 自適應響應式設計，適合不同螢幕尺寸
+// - 實現滑動動畫效果，提升使用體驗
+//
+// 本元件用於提高特色願望的曝光率，並增強首頁的視覺吸引力。
+
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -108,7 +121,10 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
           return (
             <div
               key={wish.id}
-              className={cn("absolute inset-0 transition-opacity duration-500 ease-in-out grid grid-cols-1 md:grid-cols-12", isActive ? "opacity-100 z-10" : "opacity-0 z-0")}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-500 ease-in-out grid grid-cols-1 md:grid-cols-12",
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+              )}
             >
               {/* 左側內容 */}
               <div className="md:col-span-6 flex flex-col justify-center p-8 md:p-12 z-20">
@@ -150,7 +166,9 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
                     </div>
                   </div>
                   <Link href={`/wishes/${wish.id}`}>
-                    <Button className="bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white rounded-full px-6">查看詳情</Button>
+                    <Button className="bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white rounded-full px-6">
+                      查看詳情
+                    </Button>
                   </Link>
                 </div>
               </div>
@@ -171,7 +189,12 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
                     <path d="M28 56 Q 40 52, 50 56 Q 60 60, 72 56" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none" />
 
                     {/* 閃亮的星星 - 大星星 */}
-                    <path d="M50 12 L53 21 L62 21 L55 27 L58 36 L50 30 L42 36 L45 27 L38 21 L47 21 Z" fill="rgba(255,223,91,1)" stroke="white" strokeWidth="0.5" />
+                    <path
+                      d="M50 12 L53 21 L62 21 L55 27 L58 36 L50 30 L42 36 L45 27 L38 21 L47 21 Z"
+                      fill="rgba(255,223,91,1)"
+                      stroke="white"
+                      strokeWidth="0.5"
+                    />
 
                     {/* 小星星 */}
                     <path d="M75 30 L76.5 34 L81 34 L77.5 36.5 L79 40.5 L75 38 L71 40.5 L72.5 36.5 L69 34 L73.5 34 Z" fill="rgba(255,223,91,0.8)" />
@@ -209,7 +232,11 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
       {/* 輪播控制按鈕 */}
       {wishes.length > 1 && (
         <>
-          <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20" onClick={prevSlide} aria-label="上一個">
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20"
+            onClick={prevSlide}
+            aria-label="上一個"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -223,7 +250,11 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20" onClick={nextSlide} aria-label="下一個">
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20"
+            onClick={nextSlide}
+            aria-label="下一個"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

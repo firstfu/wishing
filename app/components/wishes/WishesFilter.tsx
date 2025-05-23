@@ -5,10 +5,18 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/ui/Button";
 import { getCategories } from "@/app/lib/data";
 
-// wishes/WishesFilter.tsx - 許願篩選側邊欄元件
+// wishes/WishesFilter.tsx - 願望篩選側邊欄組件
 //
-// 提供分類、價格區間等篩選功能，支援套用/重設，並自動更新 URL 參數。
-// 用於 /wishes 頁面，資料來源 getCategories，支援 sticky 側邊欄。
+// 用途：提供願望列表的進階篩選功能，包括分類和價格範圍篩選。
+// 功能：
+// - 分類選擇器：以圖標和名稱顯示所有願望分類
+// - 價格範圍篩選：提供最低和最高價格輸入
+// - 篩選條件應用和重置功能
+// - 將篩選條件同步到 URL 參數
+// - 支援響應式設計，在移動裝置上可折疊顯示
+// - 自動獲取可用分類列表
+//
+// 本組件與 WishesHeader 和 WishesList 配合使用，提供完整的願望瀏覽體驗。
 
 // 篩選器組件Props類型定義
 interface WishesFilterProps {

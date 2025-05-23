@@ -1,5 +1,18 @@
 // wishes/CommentList.tsx - 許願留言清單元件
 //
+// 用途：在願望詳情頁面顯示留言列表與留言輸入框。
+// 功能：
+// - 顯示願望的所有留言及數量統計
+// - 提供留言輸入表單，讓用戶發表新留言
+// - 支援分頁載入，「載入更多」功能減少初次載入時間
+// - 顯示留言者頭像、名稱、發布時間和內容
+// - 處理無留言情況的提示顯示
+// - 反饋載入狀態，確保良好的用戶體驗
+//
+// 本元件用於增強願望互動功能，讓用戶可以討論或提問關於特定願望的細節。
+
+// wishes/CommentList.tsx - 許願留言清單元件
+//
 // 顯示許願的留言列表，支援留言表單、載入更多、無留言提示。
 // 用於詳情頁留言區，資料結構對應 Comment，支援分頁。
 import { Comment } from "@/app/lib/data";
@@ -36,7 +49,9 @@ export default function CommentList({ comments, total, onLoadMore, isLoadingMore
             <div key={comment.id} className="border border-border rounded-lg p-4 bg-card">
               <div className="flex justify-between items-start mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">{comment.user.name.charAt(0)}</div>
+                  <div className="w-8 h-8 bg-primary/10 text-primary rounded-full flex items-center justify-center text-sm font-medium">
+                    {comment.user.name.charAt(0)}
+                  </div>
                   <div className="font-medium">{comment.user.name}</div>
                 </div>
                 <div className="text-xs text-muted-foreground">
