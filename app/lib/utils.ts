@@ -1,13 +1,13 @@
-// utils.ts - 共用工具函式
+// utils.ts - 共用工具函式庫
 //
 // 本檔案提供全站通用的工具函式，包括：
-// 1. cn：合併 Tailwind CSS className
-// 2. formatDate：格式化日期為繁體中文
-// 3. formatPrice：格式化金額為新台幣
-// 4. truncateText：截斷文字顯示
-// 5. generateId：產生隨機字串 ID
+// 1. cn：合併 Tailwind CSS className，優化樣式組合並解決衝突
+// 2. formatDate：格式化日期為繁體中文格式（年月日）
+// 3. formatPrice：格式化金額為新台幣格式，包含貨幣符號
+// 4. truncateText：截斷過長文字並添加省略號
+// 5. generateId：產生隨機字串 ID，用於臨時識別符
 //
-// 這些工具可於元件、頁面、API 處理等多處重複使用
+// 這些工具可於元件、頁面、API 處理等多處重複使用，確保全站功能一致性
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 

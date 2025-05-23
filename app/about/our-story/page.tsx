@@ -1,3 +1,10 @@
+// about/our-story/page.tsx - 許願池「我們的故事」頁面
+//
+// 提供關於許願池的起源、使命、價值觀和願景的詳細介紹。
+// 使用卡片式佈局和動畫效果展示不同章節，包含裝飾性背景元素。
+// 透過視覺化呈現形式，傳達許願池的創立理念和目標。
+// 頁面結尾包含邀請使用者加入的呼籲及聯絡資訊。
+
 import React from "react";
 
 export const metadata = {
@@ -32,7 +39,14 @@ export default function OurStoryPage() {
             <div className="bg-card border border-border rounded-xl p-8 shadow-sm animate-fade-in">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -45,14 +59,23 @@ export default function OurStoryPage() {
               <p>
                 在現代社會中，人與人之間的聯繫似乎越來越薄弱，而實際上，每個人心中都有想要幫助他人的善意。許願池的創始團隊相信，如果能夠建立一個橋樑，連接有需求的人和願意伸出援手的人，世界將會變得更加美好。
               </p>
-              <p className="mb-0">我們的靈感來自於傳統文化中的「許願」概念，人們將心願寫下並放入許願池中，希望能被看見、被實現。我們將這個概念數位化，創造了一個現代版的許願池。</p>
+              <p className="mb-0">
+                我們的靈感來自於傳統文化中的「許願」概念，人們將心願寫下並放入許願池中，希望能被看見、被實現。我們將這個概念數位化，創造了一個現代版的許願池。
+              </p>
             </div>
 
             {/* 使命區塊 */}
             <div className="bg-card border border-border rounded-xl p-8 shadow-sm animate-fade-in animation-delay-200">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>
                 </div>
@@ -71,7 +94,14 @@ export default function OurStoryPage() {
             <div className="animate-fade-in animation-delay-400">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -108,7 +138,14 @@ export default function OurStoryPage() {
             <div className="bg-card border border-border rounded-xl p-8 shadow-sm animate-fade-in animation-delay-600">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-primary"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -119,14 +156,23 @@ export default function OurStoryPage() {
                 </div>
                 <h2 className="text-2xl font-semibold m-0">我們的願景</h2>
               </div>
-              <p>許願池的願景是成為全球最溫暖的互助平台，打破人與人之間的隔閡，創造一個更加關懷、友善的社會。我們希望有一天，每個願望都能被看見，每個人都能在需要時得到幫助。</p>
+              <p>
+                許願池的願景是成為全球最溫暖的互助平台，打破人與人之間的隔閡，創造一個更加關懷、友善的社會。我們希望有一天，每個願望都能被看見，每個人都能在需要時得到幫助。
+              </p>
             </div>
 
             {/* 加入我們區塊 */}
             <div className="bg-gradient-banner text-white rounded-xl p-8 mb-0 animate-fade-in animation-delay-800">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5 text-white"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

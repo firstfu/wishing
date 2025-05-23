@@ -1,14 +1,14 @@
 // ====================================================================
-// wishes/page.tsx - 許願列表頁面
+// wishes/page.tsx - 許願池許願列表頁面
 // ====================================================================
-// 作用：顯示所有許願的列表頁面，包括搜尋、篩選和排序功能
-// 功能：
-// - 頂部橫幅展示頁面標題和說明
-// - 搜尋欄：允許用戶搜尋許願
-// - 篩選側邊欄：提供分類、價格範圍等篩選選項
-// - 許願列表：展示符合篩選條件的許願
-// - 分頁：支援載入更多許願
+// 提供完整的許願瀏覽功能，包含搜尋、排序、篩選和分類功能。
+// 使用響應式網格佈局顯示許願卡片，支援無限滾動載入更多內容。
+// 頁面集成了多個子元件，如 WishesHeader（搜尋和排序）、WishesFilter（篩選）和 WishesList（列表顯示）。
+// 實現動態 URL 查詢參數處理，用戶可以直接分享特定篩選條件的頁面。
+// 包含載入狀態顯示和骨架屏幕，提升使用者體驗。
+// 頁面會根據 URL 參數自動套用搜尋、過濾和排序條件，實現無痕 URL 狀態同步。
 // ====================================================================
+import React from "react";
 import { Suspense } from "react";
 import WishesHeader from "@/app/wishes/components/WishesHeader";
 import WishesList from "@/app/wishes/components/WishesList";
@@ -71,7 +71,10 @@ export default function WishesPage(props: any) {
             <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">瀏覽所有許願，或使用篩選器找到您感興趣的內容</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/wishes/create">
-                <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                <Button
+                  size="lg"
+                  className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
                     <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                   </svg>
@@ -79,7 +82,11 @@ export default function WishesPage(props: any) {
                 </Button>
               </Link>
               <Link href="#wishList">
-                <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
                     <path
                       fillRule="evenodd"

@@ -1,12 +1,13 @@
-// 許願池首頁頁面組件
-// - 展示 Hero 區塊、熱門分類、熱門許願、最新許願與社群號召
-// - 熱門許願為靜態假資料，最新許願動態取得
-// - 使用多個共用元件（如 CategoryTags、LatestWishesListClientWrapper）
-// - 採用 Server Component，部分區塊用 Suspense 處理載入狀態
+// page.tsx - 許願池網站首頁
 //
-// 位置：app/page.tsx
-//
-// 本檔案為 Next.js App Router 首頁，負責網站主入口的內容展示
+// 網站的主入口頁面，展示平台核心功能和內容亮點。
+// 包含引人注目的英雄區塊，介紹平台願景和核心價值主張。
+// 展示熱門分類、置頂願望輪播、最新願望列表等關鍵內容。
+// 使用 Server Components 進行資料獲取，確保內容的 SEO 友好。
+// 實現骨架屏幕和懶加載功能，優化使用者首次加載體驗。
+// 整合 CTAs（行動召喚按鈕），引導用戶發布願望或瀏覽更多內容。
+// 設計響應式佈局，針對各種裝置和螢幕尺寸進行優化。
+// 頁面間元素使用漸變動畫和交互效果，增強視覺吸引力和用戶體驗。
 
 import { Suspense } from "react";
 import { getLatestWishes, getFeaturedWishes } from "@/app/lib/data";
@@ -140,7 +141,9 @@ function TrendingWishesDisplay() {
               <span className="text-sm font-medium">{wish.user.name}</span>
             </div>
 
-            <div className="text-sm font-medium">{wish.price > 0 ? <span className="text-pink-600">${wish.price}</span> : <span className="text-emerald-600">免費</span>}</div>
+            <div className="text-sm font-medium">
+              {wish.price > 0 ? <span className="text-pink-600">${wish.price}</span> : <span className="text-emerald-600">免費</span>}
+            </div>
           </div>
         </Link>
       ))}
@@ -200,12 +203,19 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/wishes/create">
-                  <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                  <Button
+                    size="lg"
+                    className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all"
+                  >
                     立即發布許願
                   </Button>
                 </Link>
                 <Link href="/wishes">
-                  <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all"
+                  >
                     瀏覽許願
                   </Button>
                 </Link>
@@ -505,7 +515,13 @@ export default function Home() {
               <div className="mb-4">
                 <div className="flex mb-1">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={`w-5 h-5 ${i < 4 ? "text-amber-400" : "text-gray-300"}`}>
+                    <svg
+                      key={i}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className={`w-5 h-5 ${i < 4 ? "text-amber-400" : "text-gray-300"}`}
+                    >
                       <path
                         fillRule="evenodd"
                         d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
@@ -550,12 +566,19 @@ export default function Home() {
 
               <div className="flex flex-wrap justify-center gap-4">
                 <Link href="/wishes/create">
-                  <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
+                  <Button
+                    size="lg"
+                    className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all"
+                  >
                     立即發布許願
                   </Button>
                 </Link>
                 <Link href="/wishes">
-                  <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all"
+                  >
                     探索願望
                   </Button>
                 </Link>

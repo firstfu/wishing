@@ -1,3 +1,9 @@
+// mock-demo/index.tsx - 許願池模擬資料示範頁面首頁
+//
+// 提供許願池模擬資料展示入口，解釋模擬資料的結構和使用方法。
+// 包含導向到展示頁面和整合範例的連結，以及檔案結構和主要函數的說明。
+// 目的是協助開發者理解如何使用專案中的模擬資料進行開發測試。
+
 // 許願池 Mock 資料示範頁面
 
 import Link from "next/link";
@@ -19,7 +25,10 @@ export default function MockDemoIndex() {
         <div className="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow">
           <h2 className="text-2xl font-bold mb-4 text-purple-600">模擬資料展示</h2>
           <p className="text-gray-600 mb-6">查看 mock 資料的內容和結構，了解如何使用各種模擬資料函數，包含用戶數據、許願、留言和訊息。</p>
-          <Link href="/wishes/mock-demo/page" className="inline-block bg-purple-100 text-purple-700 px-5 py-2.5 rounded-lg font-medium hover:bg-purple-200 transition-colors">
+          <Link
+            href="/wishes/mock-demo/page"
+            className="inline-block bg-purple-100 text-purple-700 px-5 py-2.5 rounded-lg font-medium hover:bg-purple-200 transition-colors"
+          >
             查看展示頁面
           </Link>
         </div>

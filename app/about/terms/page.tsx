@@ -1,3 +1,12 @@
+// about/terms/page.tsx - 許願池使用條款頁面
+//
+// 提供許願池平台的使用條款和服務協議，明確用戶權利和義務。
+// 頁面以結構化方式展示條款內容，包含使用資格、用戶帳號、內容政策、許願機制等章節。
+// 使用編號標記和視覺分隔，提升閱讀體驗，確保條款內容易於理解。
+// 特別強調許願與幫助機制的規則，以及平台免責聲明和責任限制。
+// 包含聯絡資訊，便於用戶針對條款內容提出問題或請求說明。
+// 設計包含簡潔的背景裝飾和適當的視覺層次，確保法律文件內容清晰可讀。
+
 import React from "react";
 
 export const metadata = {
@@ -30,7 +39,10 @@ export default function TermsPage() {
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">1</span>
               使用資格
             </h2>
-            <p>您必須年滿 13 歲才能使用我們的服務。如果您未滿 18 歲，您應當在父母或法定監護人的同意下使用我們的服務。使用我們的服務，即表示您聲明並保證您符合上述資格要求。</p>
+            <p>
+              您必須年滿 13 歲才能使用我們的服務。如果您未滿 18
+              歲，您應當在父母或法定監護人的同意下使用我們的服務。使用我們的服務，即表示您聲明並保證您符合上述資格要求。
+            </p>
 
             <h2 className="text-2xl font-semibold mt-10 mb-4 flex items-center">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">2</span>
@@ -48,7 +60,9 @@ export default function TermsPage() {
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">3</span>
               用戶內容
             </h2>
-            <p>我們平台允許用戶發布願望、回應和其他內容（「用戶內容」）。您對您創建並發布的所有用戶內容負完全責任，並聲明您擁有或已獲得發布這些內容的所有必要權利。</p>
+            <p>
+              我們平台允許用戶發布願望、回應和其他內容（「用戶內容」）。您對您創建並發布的所有用戶內容負完全責任，並聲明您擁有或已獲得發布這些內容的所有必要權利。
+            </p>
             <p>您同意不會發布：</p>
             <ul className="list-disc pl-6 mb-6 space-y-2">
               <li>違法、有害、威脅、虐待、騷擾、誹謗、侮辱或其他令人反感的內容</li>
@@ -77,13 +91,17 @@ export default function TermsPage() {
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">5</span>
               免責聲明
             </h2>
-            <p>許願池的服務按「現狀」和「可用性」提供，不提供任何明示或暗示的保證。我們不保證服務將不間斷或無錯誤，也不保證將修復任何缺陷。您使用服務的風險由您自行承擔。</p>
+            <p>
+              許願池的服務按「現狀」和「可用性」提供，不提供任何明示或暗示的保證。我們不保證服務將不間斷或無錯誤，也不保證將修復任何缺陷。您使用服務的風險由您自行承擔。
+            </p>
 
             <h2 className="text-2xl font-semibold mt-10 mb-4 flex items-center">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">6</span>
               責任限制
             </h2>
-            <p>在法律允許的最大範圍內，許願池及其管理人員、董事、員工和代理人對於因使用或無法使用我們的服務而導致的任何間接、附帶、特殊、後果性或懲罰性損害不承擔責任。</p>
+            <p>
+              在法律允許的最大範圍內，許願池及其管理人員、董事、員工和代理人對於因使用或無法使用我們的服務而導致的任何間接、附帶、特殊、後果性或懲罰性損害不承擔責任。
+            </p>
 
             <h2 className="text-2xl font-semibold mt-10 mb-4 flex items-center">
               <span className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-3 text-sm text-primary">7</span>

@@ -1,3 +1,10 @@
+// mock-demo/page.tsx - 許願池模擬資料展示頁面
+//
+// 實際展示許願池專案中的模擬資料及其使用方法。
+// 包含用戶資料、許願資料、留言資料的範例展示，以及如何調用模擬 API 函數。
+// 提供交互式的類別篩選功能，展示如何使用 getWishesByFilter 等函數。
+// 頁面底部包含程式碼範例，協助開發者了解如何在專案中整合和使用模擬資料。
+
 "use client";
 
 import { useState, useEffect } from "react";
