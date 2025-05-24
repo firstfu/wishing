@@ -55,7 +55,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-3">
           <Link href={isLoggedIn ? "/wishes/create" : "/auth/signin"}>
             <Button variant="outline" size="sm" className="rounded-full px-4">
-              {isLoggedIn ? "發布許願" : "發布許願 (請先登入)"}
+              {isLoggedIn ? "發布許願" : "發布許願"}
             </Button>
           </Link>
 
