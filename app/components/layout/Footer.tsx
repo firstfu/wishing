@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center space-x-2 group">
               <div className="w-8 h-8 rounded-full group-hover:scale-110 transition-transform overflow-hidden">
-                <Image src="/wishing-icon.svg" alt="許願池" width={32} height={32} className="w-full h-full" />
+                <Image src="/wishing-icon-v2.svg" alt="許願池" width={32} height={32} className="w-full h-full" />
               </div>
               <span className="text-xl font-bold bg-gradient text-transparent bg-clip-text">許願池</span>
             </Link>

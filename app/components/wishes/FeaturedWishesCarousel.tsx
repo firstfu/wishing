@@ -175,7 +175,7 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
 
               {/* 右側圖案/圖片 */}
               <div className="hidden md:flex md:col-span-6 items-center justify-center relative z-10">
-                <div className="w-64 h-64">
+                <div className="w-80 h-80">
                   <img src="/wishing-icon-v2.svg" alt="许愿池" className="w-full h-full" />
                 </div>
                 <div className="absolute -left-10 top-1/4 w-20 h-20 rounded-full bg-blue-100 opacity-60 blur-sm"></div>
