@@ -175,50 +175,8 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
 
               {/* 右側圖案/圖片 */}
               <div className="hidden md:flex md:col-span-6 items-center justify-center relative z-10">
-                <div className="w-64 h-64 rounded-full bg-gradient-to-r from-indigo-200 to-pink-200 flex items-center justify-center shadow-lg">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" className="w-40 h-40 text-white">
-                    {/* 許願池外圍 */}
-                    <circle cx="50" cy="52" r="38" fill="rgba(255,255,255,0.8)" />
-
-                    {/* 許願池內圈 */}
-                    <circle cx="50" cy="52" r="30" fill="rgba(116,126,232,0.3)" />
-                    <circle cx="50" cy="52" r="25" fill="rgba(76,95,210,0.4)" />
-
-                    {/* 池水波紋 */}
-                    <path d="M25 52 Q 35 48, 50 52 Q 65 56, 75 52" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none" />
-                    <path d="M28 56 Q 40 52, 50 56 Q 60 60, 72 56" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none" />
-
-                    {/* 閃亮的星星 - 大星星 */}
-                    <path
-                      d="M50 12 L53 21 L62 21 L55 27 L58 36 L50 30 L42 36 L45 27 L38 21 L47 21 Z"
-                      fill="rgba(255,223,91,1)"
-                      stroke="white"
-                      strokeWidth="0.5"
-                    />
-
-                    {/* 小星星 */}
-                    <path d="M75 30 L76.5 34 L81 34 L77.5 36.5 L79 40.5 L75 38 L71 40.5 L72.5 36.5 L69 34 L73.5 34 Z" fill="rgba(255,223,91,0.8)" />
-                    <path d="M25 37 L26.5 41 L31 41 L27.5 43.5 L29 47.5 L25 45 L21 47.5 L22.5 43.5 L19 41 L23.5 41 Z" fill="rgba(255,223,91,0.8)" />
-
-                    {/* 金幣 */}
-                    <circle cx="35" cy="68" r="6" fill="rgba(255,215,0,1)" stroke="rgba(255,233,110,1)" strokeWidth="1" />
-                    <circle cx="35" cy="68" r="4" fill="rgba(255,183,0,0.6)" />
-                    <text x="35" y="70.5" textAnchor="middle" fontSize="6" fill="white" fontWeight="bold">
-                      ¥
-                    </text>
-
-                    <circle cx="50" cy="74" r="7" fill="rgba(255,215,0,1)" stroke="rgba(255,233,110,1)" strokeWidth="1" />
-                    <circle cx="50" cy="74" r="5" fill="rgba(255,183,0,0.6)" />
-                    <text x="50" y="76.5" textAnchor="middle" fontSize="7" fill="white" fontWeight="bold">
-                      $
-                    </text>
-
-                    <circle cx="65" cy="68" r="6" fill="rgba(255,215,0,1)" stroke="rgba(255,233,110,1)" strokeWidth="1" />
-                    <circle cx="65" cy="68" r="4" fill="rgba(255,183,0,0.6)" />
-                    <text x="65" y="70.5" textAnchor="middle" fontSize="6" fill="white" fontWeight="bold">
-                      €
-                    </text>
-                  </svg>
+                <div className="w-64 h-64">
+                  <img src="/wishing-icon-v2.svg" alt="许愿池" className="w-full h-full" />
                 </div>
                 <div className="absolute -left-10 top-1/4 w-20 h-20 rounded-full bg-blue-100 opacity-60 blur-sm"></div>
                 <div className="absolute right-16 bottom-20 w-12 h-12 rounded-full bg-pink-100 opacity-60 blur-sm"></div>

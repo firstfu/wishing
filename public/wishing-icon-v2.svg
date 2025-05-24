@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 星星装饰 -->
+  <path d="M256 60l12 36h36l-30 21 12 36-30-21-30 21 12-36-30-21h36z" fill="#FFD700" opacity="0.9"/>
+  <circle cx="150" cy="100" r="4" fill="#FFD700" opacity="0.7"/>
+  <circle cx="370" cy="110" r="3" fill="#FFD700" opacity="0.6"/>
+  <circle cx="400" cy="140" r="3.5" fill="#FFD700" opacity="0.8"/>
+  
+  <!-- 许愿池主体 - 更圆润的形状 -->
+  <ellipse cx="256" cy="280" rx="160" ry="90" fill="url(#poolGradient)" stroke="url(#poolBorder)" stroke-width="4"/>
+  
+  <!-- 内层水面 -->
+  <ellipse cx="256" cy="275" rx="140" ry="75" fill="url(#waterSurface)" opacity="0.8"/>
+  
+  <!-- 水波效果 -->
+  <ellipse cx="256" cy="270" rx="110" ry="50" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3"/>
+  <ellipse cx="256" cy="265" rx="80" ry="35" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+  
+  <!-- 金币1 - 空中 -->
+  <circle cx="180" cy="160" r="24" fill="url(#coinGold)" stroke="#FFA500" stroke-width="3"/>
+  <rect x="174" y="154" width="12" height="12" fill="#FFD700" opacity="0.8"/>
+  
+  <!-- 金币2 - 水中 -->
+  <circle cx="300" cy="270" r="20" fill="url(#coinGold)" stroke="#FFA500" stroke-width="2" opacity="0.9"/>
+  <rect x="295" y="265" width="10" height="10" fill="#FFD700" opacity="0.7"/>
+  
+  <!-- 金币3 - 水底 -->
+  <circle cx="220" cy="300" r="18" fill="url(#coinGold)" stroke="#FFA500" stroke-width="2" opacity="0.7"/>
+  <rect x="216" y="296" width="8" height="8" fill="#FFD700" opacity="0.6"/>
+  
+  <!-- 投掷轨迹 -->
+  <path d="M180 120 Q150 140 180 160" stroke="#FFD700" stroke-width="3" fill="none" opacity="0.7" stroke-dasharray="6,6"/>
+  
+  <!-- 水花效果 -->
+  <circle cx="180" cy="250" r="4" fill="rgba(255,255,255,0.7)"/>
+  <circle cx="195" cy="245" r="3" fill="rgba(255,255,255,0.6)"/>
+  <circle cx="165" cy="255" r="3.5" fill="rgba(255,255,255,0.5)"/>
+  
+  <defs>
+    <!-- 池子渐变 - 浅蓝色系 -->
+    <linearGradient id="poolGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="50%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0EA5E9"/>
+    </linearGradient>
+    
+    <!-- 池边渐变 -->
+    <linearGradient id="poolBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BAE6FD"/>
+      <stop offset="100%" stop-color="#7DD3FC"/>
+    </linearGradient>
+    
+    <!-- 水面渐变 -->
+    <radialGradient id="waterSurface" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#E0F2FE" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#7DD3FC" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.8"/>
+    </radialGradient>
+    
+    <!-- 金币渐变 -->
+    <radialGradient id="coinGold" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="70%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#FF8C00"/>
+    </radialGradient>
+  </defs>
+</svg>
