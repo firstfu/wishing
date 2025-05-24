@@ -74,7 +74,7 @@ export default function ProfilePage() {
       {/* 活動摘要區 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* 我的許願摘要 */}
-        <div className="border rounded-xl p-6">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">我的許願</h3>
             <Link href="/profile/wishes" className="text-sm text-purple-600 dark:text-purple-300 hover:underline">
@@ -99,7 +99,7 @@ export default function ProfilePage() {
         </div>
 
         {/* 我的訊息摘要 */}
-        <div className="border rounded-xl p-6">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-6">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold">訊息中心</h3>
             <Link href="/profile/messages" className="text-sm text-purple-600 dark:text-purple-300 hover:underline">
