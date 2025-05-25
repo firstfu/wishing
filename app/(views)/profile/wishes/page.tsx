@@ -23,7 +23,7 @@ type WishStatus = "全部" | "進行中" | "已完成" | "已關閉";
 // 模擬願望數據
 const MOCK_WISHES = [
   {
-    id: "wish-001",
+    id: "wish-1",
     title: "尋找二手 Macbook Pro 2019",
     description: "需要一台二手的 Macbook Pro 2019 款，配置要求 i7 處理器，16GB 內存，512GB SSD。",
     price: 35000,
@@ -34,7 +34,7 @@ const MOCK_WISHES = [
     viewCount: 120,
   },
   {
-    id: "wish-002",
+    id: "wish-2",
     title: "徵求台北到高雄的共乘夥伴",
     description: "計劃在本週六早上從台北出發到高雄，尋找 1-2 位共乘夥伴分攤油費。",
     price: 500,
@@ -45,7 +45,7 @@ const MOCK_WISHES = [
     viewCount: 245,
   },
   {
-    id: "wish-003",
+    id: "wish-3",
     title: "尋找資深 React 開發者進行專案諮詢",
     description: "需要一位有 3 年以上 React 開發經驗的工程師，協助解決專案中的性能問題。",
     price: 2000,
@@ -56,7 +56,7 @@ const MOCK_WISHES = [
     viewCount: 178,
   },
   {
-    id: "wish-004",
+    id: "wish-4",
     title: "徵求二手健身器材",
     description: "想購買二手啞鈴、健身墊和拉力繩，品相良好即可。",
     price: 1500,
@@ -67,7 +67,7 @@ const MOCK_WISHES = [
     viewCount: 89,
   },
   {
-    id: "wish-005",
+    id: "wish-5",
     title: "尋找攝影師拍攝畢業照",
     description: "需要一位專業攝影師為我拍攝畢業照，時間在下個月初，地點在台大校園。",
     price: 3000,
