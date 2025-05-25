@@ -15,6 +15,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { Wish } from "./WishCard";
 import { cn } from "@/app/lib/utils";
@@ -121,10 +122,7 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
           return (
             <div
               key={wish.id}
-              className={cn(
-                "absolute inset-0 transition-opacity duration-500 ease-in-out grid grid-cols-1 md:grid-cols-12",
-                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
-              )}
+              className={cn("absolute inset-0 transition-opacity duration-500 ease-in-out grid grid-cols-1 md:grid-cols-12", isActive ? "opacity-100 z-10" : "opacity-0 z-0")}
             >
               {/* 左側內容 */}
               <div className="md:col-span-6 flex flex-col justify-center p-8 md:p-12 z-20">
@@ -166,17 +164,15 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
                     </div>
                   </div>
                   <Link href={`/wishes/${wish.id}`}>
-                    <Button className="bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white rounded-full px-6">
-                      查看詳情
-                    </Button>
+                    <Button className="bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white rounded-full px-6">查看詳情</Button>
                   </Link>
                 </div>
               </div>
 
               {/* 右側圖案/圖片 */}
               <div className="hidden md:flex md:col-span-6 items-center justify-center relative z-10">
-                <div className="w-80 h-80">
-                  <img src="/wishing-icon-v2.svg" alt="许愿池" className="w-full h-full" />
+                <div className="w-80 h-80 relative">
+                  <Image src="/wishing-icon-v2.svg" alt="许愿池" fill priority style={{ objectFit: "contain" }} />
                 </div>
                 <div className="absolute -left-10 top-1/4 w-20 h-20 rounded-full bg-blue-100 opacity-60 blur-sm"></div>
                 <div className="absolute right-16 bottom-20 w-12 h-12 rounded-full bg-pink-100 opacity-60 blur-sm"></div>
@@ -190,11 +186,7 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
       {/* 輪播控制按鈕 */}
       {wishes.length > 1 && (
         <>
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20"
-            onClick={prevSlide}
-            aria-label="上一個"
-          >
+          <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20" onClick={prevSlide} aria-label="上一個">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -208,11 +200,7 @@ export default function FeaturedWishesCarousel({ wishes }: { wishes: Wish[] }) {
               <path d="M15 18l-6-6 6-6" />
             </svg>
           </button>
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20"
-            onClick={nextSlide}
-            aria-label="下一個"
-          >
+          <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md z-20" onClick={nextSlide} aria-label="下一個">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

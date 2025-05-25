@@ -30,18 +30,17 @@ function LoadingState() {
 }
 
 // 許願列表主組件
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function WishesPage(props: any) {
-  // 從 props 中解構 searchParams
-  const { searchParams = {} } = props;
+export default async function WishesPage({ searchParams }: { searchParams: Promise<Record<string, string>> }) {
+  // 從 Promise 解析 searchParams
+  const resolvedSearchParams = (await searchParams) || {};
 
   // 處理搜尋參數
-  const search = typeof searchParams.search === "string" ? searchParams.search : "";
-  const category = typeof searchParams.category === "string" ? searchParams.category : "";
-  const sort = typeof searchParams.sort === "string" ? searchParams.sort : "latest";
-  const page = typeof searchParams.page === "string" ? parseInt(searchParams.page) : 1;
-  const minPrice = typeof searchParams.minPrice === "string" ? parseInt(searchParams.minPrice) : undefined;
-  const maxPrice = typeof searchParams.maxPrice === "string" ? parseInt(searchParams.maxPrice) : undefined;
+  const search = typeof resolvedSearchParams.search === "string" ? resolvedSearchParams.search : "";
+  const category = typeof resolvedSearchParams.category === "string" ? resolvedSearchParams.category : "";
+  const sort = typeof resolvedSearchParams.sort === "string" ? resolvedSearchParams.sort : "latest";
+  const page = typeof resolvedSearchParams.page === "string" ? parseInt(resolvedSearchParams.page) : 1;
+  const minPrice = typeof resolvedSearchParams.minPrice === "string" ? parseInt(resolvedSearchParams.minPrice) : undefined;
+  const maxPrice = typeof resolvedSearchParams.maxPrice === "string" ? parseInt(resolvedSearchParams.maxPrice) : undefined;
 
   return (
     <div className="bg-background">
@@ -71,10 +70,7 @@ export default function WishesPage(props: any) {
             <p className="text-lg md:text-xl text-white mb-8 drop-shadow-sm">瀏覽所有許願，或使用篩選器找到您感興趣的內容</p>
             <div className="flex flex-wrap gap-4">
               <Link href="/wishes/create">
-                <Button
-                  size="lg"
-                  className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all"
-                >
+                <Button size="lg" className="rounded-full px-8 py-6 bg-white text-pink-600 hover:bg-white/90 hover:shadow-lg font-bold hover:shadow-pink-700/20 transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
                     <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
                   </svg>
@@ -82,11 +78,7 @@ export default function WishesPage(props: any) {
                 </Button>
               </Link>
               <Link href="#wishList">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all"
-                >
+                <Button variant="outline" size="lg" className="rounded-full px-8 py-6 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 transition-all">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 mr-2">
                     <path
                       fillRule="evenodd"

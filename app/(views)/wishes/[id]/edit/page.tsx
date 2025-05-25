@@ -62,7 +62,12 @@ async function WishEditProvider({ id }: { id: string }) {
   return <EditWishForm wish={wish} categories={categories} />;
 }
 
-export default function EditWishPage({ params }: { params: { id: string } }) {
+// Next.js 頁面組件
+export default async function EditWishPage({ params }: { params: Promise<{ id: string }> }) {
+  // 先 await params，再解構
+  const resolvedParams = await params;
+  const id = resolvedParams.id;
+
   return (
     <div className="bg-background min-h-screen">
       <section className="relative overflow-hidden">
@@ -83,7 +88,7 @@ export default function EditWishPage({ params }: { params: { id: string } }) {
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-3xl mx-auto bg-card border border-border rounded-xl shadow-sm p-6 md:p-8">
           <Suspense fallback={<LoadingState />}>
-            <WishEditProvider id={params.id} />
+            <WishEditProvider id={id} />
           </Suspense>
         </div>
       </div>
