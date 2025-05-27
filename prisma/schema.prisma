@@ -1,0 +1,163 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "../app/generated/prisma"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// 使用者模型：儲存所有用戶資訊
+model User {
+    id            String    @id @default(uuid()) // 使用者唯一識別碼
+    name          String? // 使用者名稱，允許為空
+    email         String    @unique // 電子郵件，唯一值
+    emailVerified DateTime? // 電子郵件驗證時間
+    image         String? // 頭像圖片 URL
+    balance       Decimal   @default(0) @db.Decimal(10, 2) // 帳戶餘額，預設為 0
+    isActive      Boolean   @default(true) // 帳戶是否啟用
+    createdAt     DateTime  @default(now()) // 創建時間
+    updatedAt     DateTime  @updatedAt // 更新時間
+
+    // 關聯
+    wishes           Wish[] // 使用者發布的許願
+    comments         Comment[] // 使用者發表的留言
+    messages         Message[]     @relation("SentMessages") // 使用者發送的訊息
+    receivedMessages Message[]     @relation("ReceivedMessages") // 使用者接收的訊息
+    transactions     Transaction[] // 使用者的交易紀錄
+}
+
+// 許願模型：儲存所有許願資訊
+model Wish {
+    id          String     @id @default(uuid()) // 許願唯一識別碼
+    title       String     @db.VarChar(100) // 許願標題，最長 100 字元
+    description String?    @db.Text // 許願詳細描述
+    imageUrl    String? // 圖片 URL
+    minBudget   Decimal?   @db.Decimal(10, 2) // 最低預算
+    maxBudget   Decimal?   @db.Decimal(10, 2) // 最高預算
+    deadline    DateTime? // 截止日期
+    isPinned    Boolean    @default(false) // 是否置頂
+    pinUntil    DateTime? // 置頂截止時間
+    status      WishStatus @default(ACTIVE) // 許願狀態
+    createdAt   DateTime   @default(now()) // 創建時間
+    updatedAt   DateTime   @updatedAt // 更新時間
+
+    // 關聯
+    userId       String // 發布者 ID
+    user         User          @relation(fields: [userId], references: [id], onDelete: Cascade) // 關聯到發布者
+    categoryId   String // 分類 ID
+    category     Category      @relation(fields: [categoryId], references: [id]) // 關聯到分類
+    comments     Comment[] // 許願的留言
+    messages     Message[] // 關聯到許願的訊息
+    transactions Transaction[] // 關聯到許願的交易
+
+    // 索引
+    @@index([userId])
+    @@index([categoryId])
+    @@index([isPinned])
+    @@index([status])
+    @@index([createdAt])
+}
+
+// 分類模型：儲存許願分類
+model Category {
+    id          String   @id @default(uuid()) // 分類唯一識別碼
+    name        String   @unique @db.VarChar(50) // 分類名稱，唯一值
+    description String?  @db.VarChar(255) // 分類描述
+    createdAt   DateTime @default(now()) // 創建時間
+
+    // 關聯
+    wishes Wish[] // 屬於此分類的許願
+}
+
+// 留言模型：儲存許願留言
+model Comment {
+    id        String   @id @default(uuid()) // 留言唯一識別碼
+    content   String   @db.Text // 留言內容
+    createdAt DateTime @default(now()) // 創建時間
+    updatedAt DateTime @updatedAt // 更新時間
+
+    // 關聯
+    wishId String // 許願 ID
+    wish   Wish   @relation(fields: [wishId], references: [id], onDelete: Cascade) // 關聯到許願
+    userId String // 留言用戶 ID
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade) // 關聯到用戶
+
+    // 索引
+    @@index([wishId])
+    @@index([userId])
+}
+
+// 訊息模型：儲存用戶間私訊
+model Message {
+    id        String   @id @default(uuid()) // 訊息唯一識別碼
+    content   String   @db.Text // 訊息內容
+    read      Boolean  @default(false) // 是否已讀
+    createdAt DateTime @default(now()) // 創建時間
+    updatedAt DateTime @updatedAt // 更新時間
+
+    // 關聯
+    senderId   String // 發送者 ID
+    sender     User    @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade) // 關聯到發送者
+    receiverId String // 接收者 ID
+    receiver   User    @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade) // 關聯到接收者
+    wishId     String? // 相關許願 ID
+    wish       Wish?   @relation(fields: [wishId], references: [id], onDelete: SetNull) // 關聯到許願，如許願刪除則設為空
+
+    // 索引
+    @@index([senderId])
+    @@index([receiverId])
+    @@index([wishId])
+}
+
+// 交易模型：儲存支付和儲值紀錄
+model Transaction {
+    id            String          @id @default(uuid()) // 交易唯一識別碼
+    amount        Decimal         @db.Decimal(10, 2) // 交易金額
+    type          TransactionType // 交易類型
+    status        PaymentStatus   @default(PENDING) // 交易狀態
+    paymentMethod String?         @db.VarChar(50) // 支付方式
+    paymentId     String?         @db.VarChar(100) // 外部支付 ID
+    createdAt     DateTime        @default(now()) // 創建時間
+    updatedAt     DateTime        @updatedAt // 更新時間
+
+    // 關聯
+    userId String // 用戶 ID
+    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade) // 關聯到用戶
+    wishId String? // 許願 ID
+    wish   Wish?   @relation(fields: [wishId], references: [id], onDelete: SetNull) // 關聯到許願，如許願刪除則設為空
+
+    // 索引
+    @@index([userId])
+    @@index([wishId])
+    @@index([type])
+    @@index([status])
+}
+
+// 許願狀態枚舉
+enum WishStatus {
+    ACTIVE // 活躍中
+    FULFILLED // 已完成
+    ARCHIVED // 已封存
+}
+
+// 交易類型枚舉
+enum TransactionType {
+    DEPOSIT // 儲值
+    WISH // 發布許願
+    PIN // 置頂許願
+}
+
+// 支付狀態枚舉
+enum PaymentStatus {
+    PENDING // 處理中
+    COMPLETED // 已完成
+    FAILED // 失敗
+}
