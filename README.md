@@ -53,3 +53,20 @@ bun dev
 最簡單的部署方式是使用 [Vercel 平台](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)。
 
 更多部署相關資訊請參考 [Next.js 部署文檔](https://nextjs.org/docs/app/building-your-application/deploying)。
+
+## Google 登入設定
+
+本專案使用 NextAuth.js 實現 Google 登入功能。設定步驟如下：
+
+1. 前往 [Google Cloud Console](https://console.cloud.google.com/) 創建專案
+2. 設定 OAuth 同意畫面
+3. 創建 OAuth 憑證（Web 應用）
+4. 添加授權的重定向 URI：`http://localhost:3000/api/auth/callback/google`（開發環境）
+5. 獲取 Client ID 和 Client Secret
+6. 更新 `.env` 文件中的 `GOOGLE_CLIENT_ID` 和 `GOOGLE_CLIENT_SECRET`
+
+詳細設定指南請參考 [Google 登入設定指南](./docs/google_auth_setup.md)
+
+## 許可證
+
+MIT License
