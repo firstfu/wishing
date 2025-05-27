@@ -26,13 +26,6 @@ model User {
     createdAt     DateTime  @default(now()) // 創建時間
     updatedAt     DateTime  @updatedAt // 更新時間
 
-    // OAuth 相關欄位 - 目前使用 accounts 關聯，這些欄位可選擇性保留用於特定場景
-    googleId String? @unique // Google 提供的用戶 ID
-    // 未來可能的其他 OAuth ID 欄位
-    // lineId        String?   @unique // LINE 提供的用戶 ID
-    // facebookId    String?   @unique // Facebook 提供的用戶 ID
-    // appleId       String?   @unique // Apple 提供的用戶 ID
-
     // 關聯
     wishes           Wish[] // 使用者發布的許願
     comments         Comment[] // 使用者發表的留言
