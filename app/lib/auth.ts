@@ -19,6 +19,15 @@ declare module "next-auth" {
   }
 }
 
+// Google Profile 擴展型別，包含 email_verified 屬性
+interface GoogleProfile {
+  sub: string;
+  name: string;
+  email: string;
+  picture: string;
+  email_verified: boolean;
+}
+
 // NextAuth 配置
 export const authOptions: AuthOptions = {
   providers: [
@@ -29,6 +38,22 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+      profile(profile: GoogleProfile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          email_verified: profile.email_verified,
+        };
+      },
     }),
     CredentialsProvider({
       name: "credentials",
@@ -105,13 +130,18 @@ export const authOptions: AuthOptions = {
     },
     async signIn({ user, account, profile }) {
       // 在這裡可以添加額外的登入條件檢查
-      // 例如檢查用戶是否被禁用、是否在特定地區等
-      return true; // 允許所有登入
+      // 對於 Google 登入，可以檢查電子郵件是否已驗證
+      if (account?.provider === "google" && profile && "email_verified" in profile && profile.email_verified === false) {
+        return false; // 拒絕未驗證的 Google 帳戶
+      }
+
+      return true; // 允許其他登入
     },
   },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 天
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
@@ -124,7 +154,6 @@ export async function getSession() {
 // 獲取當前登入用戶
 export async function getCurrentUser() {
   const session = await getSession();
-
   return session?.user;
 }
 
