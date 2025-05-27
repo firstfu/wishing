@@ -26,12 +26,70 @@ model User {
     createdAt     DateTime  @default(now()) // 創建時間
     updatedAt     DateTime  @updatedAt // 更新時間
 
+    // OAuth 相關欄位 - 目前使用 accounts 關聯，這些欄位可選擇性保留用於特定場景
+    googleId String? @unique // Google 提供的用戶 ID
+    // 未來可能的其他 OAuth ID 欄位
+    // lineId        String?   @unique // LINE 提供的用戶 ID
+    // facebookId    String?   @unique // Facebook 提供的用戶 ID
+    // appleId       String?   @unique // Apple 提供的用戶 ID
+
     // 關聯
     wishes           Wish[] // 使用者發布的許願
     comments         Comment[] // 使用者發表的留言
     messages         Message[]     @relation("SentMessages") // 使用者發送的訊息
     receivedMessages Message[]     @relation("ReceivedMessages") // 使用者接收的訊息
     transactions     Transaction[] // 使用者的交易紀錄
+    accounts         Account[] // OAuth 帳號關聯 - 支援多種登入方式
+    sessions         Session[] // 用戶會話
+}
+
+// OAuth 帳號模型：用於管理第三方認證
+model Account {
+    id                String  @id @default(cuid())
+    userId            String // 關聯的用戶 ID
+    type              String // 帳號類型 (oauth, oidc, email)
+    provider          String // 提供者 (google, line, facebook, apple)
+    providerAccountId String // 提供者給的帳號 ID
+    refresh_token     String? @db.Text // 刷新令牌
+    access_token      String? @db.Text // 訪問令牌
+    expires_at        Int? // 令牌過期時間
+    token_type        String? // 令牌類型
+    scope             String? // 權限範圍
+    id_token          String? @db.Text // ID 令牌
+    session_state     String? // 會話狀態
+
+    // LINE 特有欄位
+    nonce String? // LINE 登入使用的 nonce 值
+
+    // Apple 特有欄位
+    auth_time Int? // Apple 登入的認證時間戳
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+    @@index([userId])
+    @@index([provider]) // 增加提供者索引以優化查詢性能
+}
+
+// 用戶會話模型：用於管理用戶登入狀態
+model Session {
+    id           String   @id @default(cuid())
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+// 密碼重設令牌模型：用於管理密碼重設流程
+model VerificationToken {
+    identifier String
+    token      String   @unique
+    expires    DateTime
+
+    @@unique([identifier, token])
 }
 
 // 許願模型：儲存所有許願資訊
