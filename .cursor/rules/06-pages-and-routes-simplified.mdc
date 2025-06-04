@@ -1,0 +1,55 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 頁面和路由詳細說明
+
+本專案使用 Next.js App Router 實現路由功能，主要頁面和路由說明如下。
+
+## 首頁
+- [app/page.tsx](mdc:app/page.tsx) - 網站首頁，展示熱門願望和平台介紹
+
+## 願望相關頁面
+- [app/(views)/wishes/page.tsx](mdc:app/(views)/wishes/page.tsx) - 願望列表頁面
+- [app/(views)/wishes/[id]/page.tsx](mdc:app/(views)/wishes/[id]/page.tsx) - 願望詳情頁面
+- [app/(views)/wishes/create/page.tsx](mdc:app/(views)/wishes/create/page.tsx) - 創建願望頁面
+- [app/(views)/wishes/[id]/edit/page.tsx](mdc:app/(views)/wishes/[id]/edit/page.tsx) - 編輯願望頁面
+
+### 願望頁面功能
+- 願望列表頁：展示所有願望，支援篩選和排序
+- 願望詳情頁：顯示願望完整資訊，留言區和聯絡發布者
+- 創建願望頁：表單提交新願望
+- 編輯願望頁：修改已有願望
+
+## 用戶資料相關頁面
+- [app/(views)/profile/page.tsx](mdc:app/(views)/profile/page.tsx) - 用戶個人資料頁面
+- [app/(views)/profile/wishes/page.tsx](mdc:app/(views)/profile/wishes/page.tsx) - 用戶願望列表頁面
+- [app/(views)/profile/transactions/page.tsx](mdc:app/(views)/profile/transactions/page.tsx) - 交易歷史記錄頁面
+- [app/(views)/profile/deposit/page.tsx](mdc:app/(views)/profile/deposit/page.tsx) - 餘額充值頁面
+- [app/(views)/profile/messages/page.tsx](mdc:app/(views)/profile/messages/page.tsx) - 訊息列表頁面
+- [app/(views)/profile/messages/[userId]/page.tsx](mdc:app/(views)/profile/messages/[userId]/page.tsx) - 與特定用戶的對話頁面
+
+### 用戶頁面功能
+- 個人資料頁：顯示和編輯用戶資料
+- 用戶願望頁：管理自己發布的願望
+- 交易記錄頁：查看所有交易歷史
+- 餘額充值頁：使用各種支付方式充值
+- 訊息相關頁面：管理和發送私人訊息
+
+## 認證相關頁面
+- [app/(views)/auth/signin/page.tsx](mdc:app/(views)/auth/signin/page.tsx) - 登入頁面
+
+## 關於平台相關頁面
+- [app/(views)/about/our-story/page.tsx](mdc:app/(views)/about/our-story/page.tsx) - 關於我們頁面
+- [app/(views)/about/privacy/page.tsx](mdc:app/(views)/about/privacy/page.tsx) - 隱私政策頁面
+- [app/(views)/about/terms/page.tsx](mdc:app/(views)/about/terms/page.tsx) - 使用條款頁面
+
+## API 路由
+- [app/api/auth/[...nextauth]/route.ts](mdc:app/api/auth/[...nextauth]/route.ts) - NextAuth.js 認證 API
+- [app/api/wishes/route.ts](mdc:app/api/wishes/route.ts) - 願望列表 API
+- [app/api/wishes/[id]/route.ts](mdc:app/api/wishes/[id]/route.ts) - 願望詳情 API
+- [app/api/wishes/[id]/comments/route.ts](mdc:app/api/wishes/[id]/comments/route.ts) - 願望留言 API
+- [app/api/messages/route.ts](mdc:app/api/messages/route.ts) - 訊息 API
+- [app/api/transactions/route.ts](mdc:app/api/transactions/route.ts) - 交易 API
+- [app/api/deposit/route.ts](mdc:app/api/deposit/route.ts) - 儲值 API

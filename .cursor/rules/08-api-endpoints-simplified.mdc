@@ -1,0 +1,70 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+
+本專案使用 Next.js API Routes 實現 RESTful API，主要端點如下：
+
+## 認證相關 API
+- [app/api/auth/[...nextauth]/route.ts](mdc:app/api/auth/[...nextauth]/route.ts) - NextAuth.js 認證
+  - `POST /api/auth/signin` - 登入
+  - `GET /api/auth/session` - 獲取當前會話
+  - `POST /api/auth/signout` - 登出
+- [app/api/auth/logout/route.ts](mdc:app/api/auth/logout/route.ts) - 登出處理
+
+## 願望相關 API
+- [app/api/wishes/route.ts](mdc:app/api/wishes/route.ts) - 願望列表
+  - `GET /api/wishes` - 獲取願望列表
+  - `POST /api/wishes` - 創建新願望
+- [app/api/wishes/[id]/route.ts](mdc:app/api/wishes/[id]/route.ts) - 願望詳情
+  - `GET /api/wishes/[id]` - 獲取願望詳情
+  - `PUT /api/wishes/[id]` - 更新願望
+  - `DELETE /api/wishes/[id]` - 刪除願望
+- [app/api/wishes/[id]/comments/route.ts](mdc:app/api/wishes/[id]/comments/route.ts) - 願望留言
+  - `GET /api/wishes/[id]/comments` - 獲取願望留言
+  - `POST /api/wishes/[id]/comments` - 發表留言
+
+## 訊息相關 API
+- [app/api/messages/route.ts](mdc:app/api/messages/route.ts) - 訊息
+  - `GET /api/messages` - 獲取對話列表
+  - `POST /api/messages` - 發送訊息
+- [app/api/messages/[userId]/route.ts](mdc:app/api/messages/[userId]/route.ts) - 與特定用戶的對話
+  - `GET /api/messages/[userId]` - 獲取與特定用戶的對話
+
+## 交易相關 API
+- [app/api/transactions/route.ts](mdc:app/api/transactions/route.ts) - 交易
+  - `GET /api/transactions` - 獲取交易歷史
+  - `POST /api/transactions` - 創建交易
+- [app/api/deposit/route.ts](mdc:app/api/deposit/route.ts) - 儲值
+  - `POST /api/deposit` - 處理儲值請求
+
+## 用戶相關 API
+- [app/api/users/route.ts](mdc:app/api/users/route.ts) - 用戶資料
+  - `GET /api/users` - 獲取用戶列表
+- [app/api/users/[id]/route.ts](mdc:app/api/users/[id]/route.ts) - 用戶詳情
+  - `GET /api/users/[id]` - 獲取用戶詳情
+- [app/api/users/me/route.ts](mdc:app/api/users/me/route.ts) - 當前用戶
+  - `GET /api/users/me` - 獲取當前用戶資料
+  - `PUT /api/users/me` - 更新當前用戶資料
+
+## API 回應格式
+
+所有 API 回應遵循統一格式：
+
+```json
+{
+  "success": true/false,
+  "data": { ... } 或 [ ... ],
+  "error": { "code": "ERROR_CODE", "message": "錯誤描述" },
+  "meta": { ... }
+}
+```
+
+## API 開發規範
+- 使用 Next.js API Routes 的最佳實踐
+- 適當處理錯誤並返回統一格式的錯誤訊息
+- 使用中間件進行身份驗證和權限檢查
+- 使用 Zod 進行請求驗證
+# API 端點概覽
+

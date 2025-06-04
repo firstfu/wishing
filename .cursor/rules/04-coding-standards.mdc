@@ -9,19 +9,36 @@ alwaysApply: false
 - 盡可能使用 TypeScript 類型，避免使用 `any`
 - 為共用的資料結構定義介面或類型
 - 使用類型推斷簡化程式碼，但關鍵位置仍應明確標註類型
+- 在 types/ 目錄中維護共用類型定義
 
 ## React & Next.js
 - 使用函數式元件和 React Hooks
-- 路由元件使用 Server Components，除非需要客戶端交互
+- 路由元件預設使用 Server Components，除非需要客戶端交互
 - 客戶端交互元件使用 "use client" 指令
 - 適當拆分元件，保持每個元件專注於單一職責
+- 使用 App Router 的最佳實踐和新特性
+
+## 狀態管理
+- 使用 React 內建的 useState 和 useReducer 管理組件狀態
+- 使用 React Context 管理共享狀態
+- 對於表單狀態，使用 React Hook Form
+- 使用 SWR 或 React Query 進行資料獲取和狀態管理
 
 ## 樣式
 - 使用 Tailwind CSS 進行樣式設計
 - 遵循移動優先的響應式設計原則
 - 複雜元件使用 CSS 模組或 styled-components
+- 使用 shadcn/ui 的設計系統和元件
 
 ## 效能考量
 - 使用 Next.js 的 Image 元件優化圖片
 - 合理使用 React.memo() 和 useMemo() / useCallback() 減少不必要的重渲染
 - 使用 SWR 進行資料獲取和快取管理
+- 適當使用動態導入和代碼分割
+- 使用 Server Components 減少客戶端 JavaScript 大小
+
+## 程式碼組織
+- 元件文件命名使用 PascalCase（如 WishCard.tsx）
+- Hook 文件命名使用 use 前綴（如 useWishData.ts）
+- 工具函數文件使用 camelCase（如 formatDate.ts）
+- 路由處理函數使用動詞前綴（如 getWishes.ts, createWish.ts）
