@@ -5,12 +5,29 @@ alwaysApply: false
 ---
 # Next.js 應用程式結構
 
-本專案使用 Next.js 15 的 App Router 結構。
+本專案使用 Next.js 15 的 App Router 結構，採用分組路由方式組織頁面。
 
 ## 核心文件
 - [app/layout.tsx](mdc:app/layout.tsx) - 根布局，包含全域樣式和字體設定
 - [app/page.tsx](mdc:app/page.tsx) - 首頁組件
 - [app/globals.css](mdc:app/globals.css) - 全域 CSS 樣式
+
+## 目錄結構
+- [app/(views)/](mdc:app/(views)/) - 所有頁面視圖，使用分組路由
+  - [wishes/](mdc:app/(views)/wishes/) - 願望相關頁面
+  - [profile/](mdc:app/(views)/profile/) - 用戶資料相關頁面
+  - [auth/](mdc:app/(views)/auth/) - 認證相關頁面
+  - [about/](mdc:app/(views)/about/) - 關於頁面系列
+- [app/components/](mdc:app/components) - 共用元件
+  - [auth/](mdc:app/components/auth) - 認證相關元件
+  - [layout/](mdc:app/components/layout) - 布局相關元件
+  - [messages/](mdc:app/components/messages) - 訊息相關元件
+  - [profile/](mdc:app/components/profile) - 用戶資料相關元件
+  - [ui/](mdc:app/components/ui) - UI 基礎元件
+  - [wishes/](mdc:app/components/wishes) - 願望相關元件
+- [app/api/](mdc:app/api) - API 路由
+- [app/lib/](mdc:app/lib) - 工具函數和共用邏輯
+- [app/types/](mdc:app/types) - TypeScript 類型定義
 
 ## 命名約定
 - 路由文件: `page.tsx`
@@ -18,8 +35,10 @@ alwaysApply: false
 - CSS 模組: `*.module.css`
 - 元件: PascalCase (如 `WishCard.tsx`)
 - Hooks: 使用 `use` 前綴 (如 `useWishData.ts`)
+- Actions: 使用 camelCase (如 `createWish.ts`)
 
-## 目錄結構約定
-- `/components` - 共用元件
-- `/lib` - 工具函數和共用邏輯
-- `/(routes)` - 按功能區分的路由目錄
+## 路由分組策略
+- 使用 (parentheses) 分組路由，如 `(views)` 不影響 URL 路徑
+- 所有用戶頁面放在 `(views)` 目錄下
+- 每個主要功能區域有自己的子目錄
+- 動態路由使用 `[param]` 語法，如 `[id]` 或 `[userId]`

@@ -5,23 +5,44 @@ alwaysApply: false
 ---
 # 路由架構
 
-Wishing 應用使用 Next.js App Router 進行路由管理。
+本專案使用 Next.js App Router 進行路由管理，並採用分組路由架構。
 
-## 主要頁面路由
+## 頁面路由結構
 
-- `/` - 首頁
-- `/wishes` - 願望列表頁
-- `/wishes/[id]` - 願望詳情頁
-- `/wishes/create` - 創建新願望
-- `/wishes/mock-demo` - 願望展示 Demo
-- `/auth/signin` - 用戶登入
-- `/profile/messages/[userId]` - 用戶消息頁面
-- `/about` - 關於頁面系列
-  - `/about/our-story` - 我們的故事
-  - `/about/privacy` - 隱私政策
-  - `/about/terms` - 使用條款
+### 核心頁面
+- `/` - 首頁 [app/page.tsx](mdc:app/page.tsx)
+- `/wishes` - 願望列表頁 [app/(views)/wishes/page.tsx](mdc:app/(views)/wishes/page.tsx)
+- `/wishes/[id]` - 願望詳情頁 [app/(views)/wishes/[id]/page.tsx](mdc:app/(views)/wishes/[id]/page.tsx)
+- `/wishes/create` - 創建新願望 [app/(views)/wishes/create/page.tsx](mdc:app/(views)/wishes/create/page.tsx)
+- `/wishes/[id]/edit` - 編輯願望 [app/(views)/wishes/[id]/edit/page.tsx](mdc:app/(views)/wishes/[id]/edit/page.tsx)
+
+### 認證相關
+- `/auth/signin` - 用戶登入 [app/(views)/auth/signin/page.tsx](mdc:app/(views)/auth/signin/page.tsx)
+
+### 用戶資料
+- `/profile` - 用戶資料頁 [app/(views)/profile/page.tsx](mdc:app/(views)/profile/page.tsx)
+- `/profile/wishes` - 用戶的願望 [app/(views)/profile/wishes/page.tsx](mdc:app/(views)/profile/wishes/page.tsx)
+- `/profile/transactions` - 交易記錄 [app/(views)/profile/transactions/page.tsx](mdc:app/(views)/profile/transactions/page.tsx)
+- `/profile/deposit` - 儲值頁面 [app/(views)/profile/deposit/page.tsx](mdc:app/(views)/profile/deposit/page.tsx)
+- `/profile/messages` - 訊息列表 [app/(views)/profile/messages/page.tsx](mdc:app/(views)/profile/messages/page.tsx)
+- `/profile/messages/[userId]` - 與特定用戶的對話 [app/(views)/profile/messages/[userId]/page.tsx](mdc:app/(views)/profile/messages/[userId]/page.tsx)
+
+### 關於頁面
+- `/about/our-story` - 我們的故事 [app/(views)/about/our-story/page.tsx](mdc:app/(views)/about/our-story/page.tsx)
+- `/about/privacy` - 隱私政策 [app/(views)/about/privacy/page.tsx](mdc:app/(views)/about/privacy/page.tsx)
+- `/about/terms` - 使用條款 [app/(views)/about/terms/page.tsx](mdc:app/(views)/about/terms/page.tsx)
 
 ## API 路由
 
-- `/api/auth/[...nextauth]` - NextAuth.js 認證 API
-- `/api/auth/logout` - 登出 API
+### 認證 API
+- `/api/auth/[...nextauth]` - NextAuth.js 認證 API [app/api/auth/[...nextauth]/route.ts](mdc:app/api/auth/[...nextauth]/route.ts)
+- `/api/auth/logout` - 登出 API [app/api/auth/logout/route.ts](mdc:app/api/auth/logout/route.ts)
+
+### 資料 API
+- `/api/wishes` - 願望列表 API
+- `/api/wishes/[id]` - 願望詳情 API
+- `/api/wishes/[id]/comments` - 願望留言 API
+- `/api/messages` - 訊息 API
+- `/api/users` - 用戶資料 API
+- `/api/transactions` - 交易 API
+- `/api/deposit` - 儲值 API

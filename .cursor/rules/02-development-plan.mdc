@@ -3,19 +3,44 @@ description:
 globs: *
 alwaysApply: false
 ---
-# 許願池開發計劃概要
+# 許願池開發計劃
 
 此專案是一個許願池平台，讓使用者可以發布願望並獲得他人幫助。
 
+## 主要功能
+1. **許願功能** - 用戶可以發布、編輯和管理願望
+2. **用戶資料管理** - 用戶個人資料、願望列表和交易記錄
+3. **社交互動** - 留言、私訊系統
+4. **支付系統** - 餘額儲值、願望資助
+5. **置頂功能** - 付費置頂願望以增加曝光
+
 ## 開發階段
-- **第一階段 (6週)**: 核心功能開發，包括基礎架構、許願功能和社交功能
-- **第二階段 (4週)**: 功能強化與優化，包括進階功能和整合測試
+- **第一階段 (6週)**: 核心功能開發
+  - 基礎架構搭建
+  - 用戶認證系統
+  - 願望 CRUD 功能
+  - 基本 UI 實現
+- **第二階段 (4週)**: 功能強化與優化
+  - 留言和私訊系統
+  - 支付和交易系統
+  - 願望置頂功能
+  - 搜索和篩選功能
 - **第三階段**: 發布與持續改進
+  - 性能優化
+  - UI/UX 改進
+  - 新功能開發
 
 ## 技術選擇
-- **前端**: Next.js, Tailwind CSS, shadcn/ui
-- **後端**: Next.js API Routes, Prisma, PostgreSQL
+- **前端**: Next.js 15, React 19, Tailwind CSS, shadcn/ui
+- **後端**: Next.js API Routes, Prisma ORM
+- **資料庫**: PostgreSQL
 - **認證**: NextAuth.js
 - **部署**: Vercel
+
+## 開發方法
+- 使用 Git 進行版本控制
+- 遵循 TypeScript 和 React 最佳實踐
+- 使用 Server Components 優化性能
+- 實現響應式設計支援各種設備
 
 詳細的開發計劃在 [wishing_pool_development_plan.md](mdc:docs/wishing_pool_development_plan.md) 中有完整描述。

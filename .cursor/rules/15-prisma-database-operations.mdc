@@ -3,13 +3,63 @@ description:
 globs: *
 alwaysApply: false
 ---
-# Prisma 和資料庫操作
+# Prisma 和資料庫結構
 
 本專案使用 Prisma ORM 進行資料庫操作，提供類型安全的資料庫訪問。
 
 ## 核心文件
 - [prisma/schema.prisma](mdc:prisma/schema.prisma) - Prisma 模型定義文件
 - [app/lib/prisma.ts](mdc:app/lib/prisma.ts) - Prisma 客戶端實例
+
+## 主要資料模型
+
+### User
+- id: 唯一識別碼
+- name: 使用者名稱
+- email: 電子郵件
+- emailVerified: 電子郵件驗證時間
+- image: 頭像圖片
+- balance: 帳戶餘額
+- isActive: 帳戶是否啟用
+- 關聯: wishes, comments, messages, transactions, accounts, sessions
+
+### Wish
+- id: 唯一識別碼
+- title: 願望標題
+- description: 願望描述
+- imageUrl: 願望圖片
+- minBudget/maxBudget: 預算範圍
+- deadline: 截止日期
+- isPinned: 是否置頂
+- pinUntil: 置頂截止時間
+- status: 願望狀態 (ACTIVE/FULFILLED/ARCHIVED)
+- 關聯: user, category, comments, messages, transactions
+
+### Category
+- id: 唯一識別碼
+- name: 分類名稱
+- description: 分類描述
+- 關聯: wishes
+
+### Comment
+- id: 唯一識別碼
+- content: 留言內容
+- 關聯: wish, user
+
+### Message
+- id: 唯一識別碼
+- content: 訊息內容
+- read: 是否已讀
+- 關聯: sender, receiver, wish
+
+### Transaction
+- id: 唯一識別碼
+- amount: 交易金額
+- type: 交易類型 (DEPOSIT/WISH/PIN)
+- status: 交易狀態 (PENDING/COMPLETED/FAILED)
+- paymentMethod: 支付方式
+- paymentId: 外部支付 ID
+- 關聯: user, wish
 
 ## 數據庫連接
 - 開發環境使用本地 PostgreSQL 資料庫
