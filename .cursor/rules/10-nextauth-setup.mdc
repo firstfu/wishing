@@ -1,0 +1,31 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# NextAuth 認證系統設置
+
+本專案使用 NextAuth.js 進行用戶認證，支援多種登入方式。
+
+## 核心文件
+- [app/api/auth/[...nextauth]/route.ts](mdc:app/api/auth/[...nextauth]/route.ts) - NextAuth 主要配置
+- [app/api/auth/logout/route.ts](mdc:app/api/auth/logout/route.ts) - 登出處理
+
+## 支援的認證方式
+- Google OAuth
+- 未來可能添加：LINE、Facebook、Apple 等
+
+## 用戶會話和狀態管理
+- 使用 Prisma 適配器將會話存儲在資料庫中
+- 通過 NextAuth 的 session provider 在客戶端元件中訪問用戶狀態
+- 在伺服器元件中使用 getServerSession 獲取用戶信息
+
+## 用戶認證流程
+1. 用戶點擊登入按鈕
+2. 重定向到身份提供者頁面
+3. 用戶授權後重定向回應用程式
+4. NextAuth 創建會話並將用戶重定向到預期頁面
+
+## 相關元件
+- [app/components/auth/LoginButton.tsx](mdc:app/components/auth/LoginButton.tsx) - 登入按鈕元件
+- [app/components/auth/UserMenu.tsx](mdc:app/components/auth/UserMenu.tsx) - 用戶選單元件

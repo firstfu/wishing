@@ -1,0 +1,57 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 訊息和留言功能
+
+本專案包含用戶間的訊息交流和願望留言功能，促進社交互動。
+
+## 訊息相關頁面
+- [app/(views)/profile/messages/page.tsx](mdc:app/(views)/profile/messages/page.tsx) - 訊息列表頁面
+- [app/(views)/profile/messages/[userId]/page.tsx](mdc:app/(views)/profile/messages/[userId]/page.tsx) - 與特定用戶的對話頁面
+
+## 留言相關元件
+- [app/components/wishes/CommentSection.tsx](mdc:app/components/wishes/CommentSection.tsx) - 願望留言區元件
+- [app/components/wishes/CommentForm.tsx](mdc:app/components/wishes/CommentForm.tsx) - 留言表單元件
+- [app/components/wishes/CommentList.tsx](mdc:app/components/wishes/CommentList.tsx) - 留言列表元件
+
+## 訊息相關元件
+- [app/components/messages/MessageList.tsx](mdc:app/components/messages/MessageList.tsx) - 訊息列表元件
+- [app/components/messages/MessageForm.tsx](mdc:app/components/messages/MessageForm.tsx) - 發送訊息表單
+- [app/components/messages/ConversationList.tsx](mdc:app/components/messages/ConversationList.tsx) - 對話列表元件
+
+## 數據模型
+### Message 模型
+- id: 唯一識別碼
+- content: 訊息內容
+- senderId: 發送者ID
+- receiverId: 接收者ID
+- wishId: 相關願望ID (可選)
+- read: 是否已讀
+- createdAt: 創建時間
+
+### Comment 模型
+- id: 唯一識別碼
+- content: 留言內容
+- userId: 用戶ID
+- wishId: 願望ID
+- createdAt: 創建時間
+
+## 功能流程
+### 訊息功能
+1. 用戶可以從願望詳情頁面發起與願望發布者的對話
+2. 用戶可以查看所有進行中的對話
+3. 訊息支援未讀提示和即時更新
+
+### 留言功能
+1. 用戶可以在願望詳情頁面留言
+2. 留言按時間順序顯示
+3. 願望發布者可以回覆留言
+
+## 相關API
+- POST /api/messages - 發送新訊息
+- GET /api/messages - 獲取對話列表
+- GET /api/messages/:userId - 獲取與特定用戶的對話
+- POST /api/wishes/:id/comments - 發表留言
+- GET /api/wishes/:id/comments - 獲取願望留言

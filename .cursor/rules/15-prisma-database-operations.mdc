@@ -1,0 +1,61 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# Prisma 和資料庫操作
+
+本專案使用 Prisma ORM 進行資料庫操作，提供類型安全的資料庫訪問。
+
+## 核心文件
+- [prisma/schema.prisma](mdc:prisma/schema.prisma) - Prisma 模型定義文件
+- [app/lib/prisma.ts](mdc:app/lib/prisma.ts) - Prisma 客戶端實例
+
+## 數據庫連接
+- 開發環境使用本地 PostgreSQL 資料庫
+- 生產環境使用託管 PostgreSQL 資料庫 (如 Vercel Postgres)
+- 連接字串通過環境變數 `DATABASE_URL` 配置
+
+## 模型操作工具函數
+- [app/lib/actions/wish.ts](mdc:app/lib/actions/wish.ts) - 願望相關資料庫操作
+- [app/lib/actions/user.ts](mdc:app/lib/actions/user.ts) - 用戶相關資料庫操作
+- [app/lib/actions/message.ts](mdc:app/lib/actions/message.ts) - 訊息相關資料庫操作
+- [app/lib/actions/transaction.ts](mdc:app/lib/actions/transaction.ts) - 交易相關資料庫操作
+
+## 使用方式
+1. 伺服器元件中直接使用 Prisma 客戶端
+2. API 路由中使用 Prisma 客戶端
+3. 客戶端元件通過 API 路由間接使用
+
+## 最佳實踐
+- 使用 Prisma 事務 (transactions) 確保數據一致性
+- 實施適當的資料庫索引提高查詢效能
+- 使用關聯載入 (include) 減少 N+1 查詢問題
+- 適當使用 select 只獲取需要的欄位
+
+## 示例查詢
+```typescript
+// 獲取帶有用戶和分類資訊的願望列表
+const wishes = await prisma.wish.findMany({
+  where: { status: 'ACTIVE' },
+  include: {
+    user: true,
+    category: true
+  },
+  orderBy: { createdAt: 'desc' }
+});
+
+// 創建新願望
+const wish = await prisma.wish.create({
+  data: {
+    title: '願望標題',
+    description: '願望描述',
+    userId: user.id,
+    categoryId: category.id
+  }
+});
+```
+
+## 資料庫遷移
+- 開發中使用 `npx prisma migrate dev` 創建和應用遷移
+- 生產環境使用 `npx prisma migrate deploy` 應用遷移

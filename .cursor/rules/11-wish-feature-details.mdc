@@ -1,0 +1,45 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 許願功能詳細說明
+
+許願功能是本應用程式的核心功能，允許使用者發布願望並由其他使用者幫助實現。
+
+## 主要頁面和元件
+- [app/(views)/wishes/page.tsx](mdc:app/(views)/wishes/page.tsx) - 願望列表頁面
+- [app/(views)/wishes/[id]/page.tsx](mdc:app/(views)/wishes/[id]/page.tsx) - 願望詳情頁面
+- [app/(views)/wishes/create/page.tsx](mdc:app/(views)/wishes/create/page.tsx) - 創建願望頁面
+- [app/(views)/wishes/[id]/edit/page.tsx](mdc:app/(views)/wishes/[id]/edit/page.tsx) - 編輯願望頁面
+
+## 核心元件
+- [app/components/wishes/WishCard.tsx](mdc:app/components/wishes/WishCard.tsx) - 願望卡片元件
+- [app/components/wishes/WishForm.tsx](mdc:app/components/wishes/WishForm.tsx) - 願望表單元件
+- [app/components/wishes/WishList.tsx](mdc:app/components/wishes/WishList.tsx) - 願望列表元件
+- [app/components/wishes/WishFilterControls.tsx](mdc:app/components/wishes/WishFilterControls.tsx) - 願望篩選控制元件
+
+## 數據模型
+Wish 模型在 Prisma Schema 中定義，包含以下主要欄位：
+- id: 唯一識別碼
+- title: 願望標題
+- description: 願望描述
+- imageUrl: 願望圖片
+- minBudget/maxBudget: 預算範圍
+- deadline: 截止日期
+- status: 願望狀態 (ACTIVE/FULFILLED/ARCHIVED)
+- isPinned: 是否置頂
+- categoryId: 分類ID
+
+## 願望流程
+1. 使用者創建願望，填寫必要信息
+2. 願望發布到平台，其他使用者可以瀏覽
+3. 使用者可以透過留言或私訊與願望發布者溝通
+4. 願望完成後，狀態更新為已完成
+
+## 相關API
+- POST /api/wishes - 創建新願望
+- GET /api/wishes - 獲取願望列表
+- GET /api/wishes/:id - 獲取特定願望詳情
+- PUT /api/wishes/:id - 更新願望
+- DELETE /api/wishes/:id - 刪除願望

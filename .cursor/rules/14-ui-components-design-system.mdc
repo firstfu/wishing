@@ -1,0 +1,48 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# UI 元件庫和設計系統
+
+本專案使用 Tailwind CSS 和自定義 UI 元件構建統一的設計系統。
+
+## UI 元件目錄
+- [app/components/ui/](mdc:app/components/ui) - 包含所有共用的 UI 元件
+
+## 核心 UI 元件
+- [app/components/ui/Button.tsx](mdc:app/components/ui/Button.tsx) - 按鈕元件
+- [app/components/ui/Card.tsx](mdc:app/components/ui/Card.tsx) - 卡片元件
+- [app/components/ui/Input.tsx](mdc:app/components/ui/Input.tsx) - 輸入框元件
+- [app/components/ui/Avatar.tsx](mdc:app/components/ui/Avatar.tsx) - 頭像元件
+- [app/components/ui/Dropdown.tsx](mdc:app/components/ui/Dropdown.tsx) - 下拉選單元件
+- [app/components/ui/Modal.tsx](mdc:app/components/ui/Modal.tsx) - 模態視窗元件
+
+## 布局元件
+- [app/components/layout/Header.tsx](mdc:app/components/layout/Header.tsx) - 頁面頂部導航
+- [app/components/layout/Footer.tsx](mdc:app/components/layout/Footer.tsx) - 頁面底部
+- [app/components/layout/Sidebar.tsx](mdc:app/components/layout/Sidebar.tsx) - 側邊欄
+
+## 全域樣式
+- [app/globals.css](mdc:app/globals.css) - 全域 CSS 樣式
+- Tailwind 配置在 [tailwind.config.js](mdc:tailwind.config.js) 中定義
+
+## 設計系統特點
+- 響應式設計：支援多種設備尺寸
+- 主題系統：支援淺色/深色模式
+- 可訪問性：符合 WCAG 2.1 AA 標準
+- 模組化：元件可組合以創建複雜的 UI
+
+## 設計原則
+1. 一致性：所有 UI 元素保持一致的視覺風格
+2. 簡潔性：界面簡潔，重點突出核心功能
+3. 直觀性：用戶可以輕鬆理解和使用界面
+4. 響應式：在各種設備上提供最佳體驗
+
+## 使用方法
+所有 UI 元件通過導入模式使用：
+```tsx
+import { Button } from "@/components/ui/Button";
+
+// 使用元件
+<Button variant="primary" size="md">按鈕文字</Button>

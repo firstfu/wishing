@@ -1,0 +1,45 @@
+---
+description:
+globs: *
+alwaysApply: false
+---
+# 用戶資料和交易功能
+
+本專案包含用戶資料管理和交易功能，用於管理用戶餘額和支付流程。
+
+## 用戶資料頁面
+- [app/(views)/profile/page.tsx](mdc:app/(views)/profile/page.tsx) - 用戶個人資料頁面
+- [app/(views)/profile/wishes/page.tsx](mdc:app/(views)/profile/wishes/page.tsx) - 用戶願望列表頁面
+- [app/(views)/profile/transactions/page.tsx](mdc:app/(views)/profile/transactions/page.tsx) - 交易歷史記錄頁面
+- [app/(views)/profile/deposit/page.tsx](mdc:app/(views)/profile/deposit/page.tsx) - 餘額充值頁面
+
+## 用戶相關元件
+- [app/components/profile/ProfileHeader.tsx](mdc:app/components/profile/ProfileHeader.tsx) - 個人資料頁頭部元件
+- [app/components/profile/UserStats.tsx](mdc:app/components/profile/UserStats.tsx) - 用戶統計數據元件
+- [app/components/profile/ProfileMenu.tsx](mdc:app/components/profile/ProfileMenu.tsx) - 個人資料頁選單
+
+## 交易相關元件
+- [app/components/profile/TransactionHistory.tsx](mdc:app/components/profile/TransactionHistory.tsx) - 交易歷史記錄元件
+- [app/components/profile/DepositForm.tsx](mdc:app/components/profile/DepositForm.tsx) - 儲值表單元件
+
+## 數據模型
+Transaction 模型在 Prisma Schema 中定義，包含以下主要欄位：
+- id: 唯一識別碼
+- amount: 交易金額
+- type: 交易類型 (DEPOSIT/WISH/PIN)
+- status: 交易狀態 (PENDING/COMPLETED/FAILED)
+- userId: 用戶ID
+- wishId: 相關願望ID (可選)
+- createdAt: 創建時間
+
+## 交易流程
+1. 用戶充值：用戶選擇金額並選擇支付方式
+2. 支付處理：系統處理支付並更新用戶餘額
+3. 使用餘額：用戶可以使用餘額發布願望或置頂願望
+4. 交易記錄：所有交易都記錄在交易歷史中
+
+## 相關API
+- POST /api/transactions - 創建新交易
+- GET /api/transactions - 獲取用戶交易歷史
+- POST /api/deposit - 處理充值請求
+- GET /api/user/balance - 獲取用戶當前餘額
