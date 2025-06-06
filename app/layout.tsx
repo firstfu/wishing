@@ -7,7 +7,7 @@
 //
 // 本檔案為 Next.js App Router 架構的全域布局，所有子頁面都會套用此結構
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/layout/Navbar";
@@ -25,12 +25,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "許願池 - 讓願望被看見，讓幫助更容易傳遞",
-  description: "在許願池發布您的願望，獲得來自社群的幫助和支持。",
+  title: "許願池 - 實現願望的社群平台",
+  description: "許願池是一個幫助人們發布願望並獲得幫助的社群平台，連結有愛心和能力的人，共同實現美好願望。",
+  keywords: "許願池, 願望, 幫助, 社群, 募資, 心願, 夢想實現",
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/wishing-icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/wishing-icon.svg", type: "image/svg+xml" }],
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

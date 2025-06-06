@@ -1,100 +1,84 @@
-# Google 登入設定指南
+# Google OAuth 認證設置指南
 
-本文檔提供設定許願池專案 Google 登入功能的完整步驟。
+本指南將幫助您設置 Google OAuth 認證，以便在許願池應用程式中實現 Google 登入功能。
 
-## 步驟 1: 創建 Google Cloud 專案
+## 1. 建立 Google Cloud 專案
 
 1. 前往 [Google Cloud Console](https://console.cloud.google.com/)
-2. 點擊右上角的專案選擇器，然後點擊「新增專案」
-3. 輸入專案名稱 (如「許願池」)，點擊「建立」
-4. 等待專案建立完成
+2. 點擊頁面頂部的專案下拉選單，然後點擊「新建專案」
+3. 輸入專案名稱（例如「許願池」），然後點擊「建立」
+4. 等待專案建立完成，然後切換到新建立的專案
 
-## 步驟 2: 設定 OAuth 同意畫面
+## 2. 設置 OAuth 同意畫面
 
-1. 在左側導航選單中，進入「APIs & Services」>「OAuth consent screen」
-2. 選擇使用者類型 (建議開發階段選「External」)，點擊「CREATE」
+1. 在左側選單中，找到並點擊「API 和服務」>「OAuth 同意畫面」
+2. 選擇使用者類型（建議選擇「外部」，除非您有 Google Workspace），然後點擊「建立」
 3. 填寫應用程式資訊：
    - 應用程式名稱：許願池
    - 使用者支援電子郵件：您的電子郵件
    - 開發者聯絡資訊：您的電子郵件
-4. 點擊「SAVE AND CONTINUE」
-5. 在「Scopes」頁面，點擊「ADD OR REMOVE SCOPES」，選擇以下範圍：
+4. 點擊「儲存並繼續」
+5. 在「範圍」步驟中，點擊「新增或移除範圍」，選擇以下範圍：
    - `userinfo.email`
    - `userinfo.profile`
    - `openid`
-6. 點擊「UPDATE」，然後「SAVE AND CONTINUE」
-7. 在「Test users」頁面，點擊「ADD USERS」，添加您的電子郵件和測試用戶的電子郵件
-8. 點擊「SAVE AND CONTINUE」，然後「BACK TO DASHBOARD」
+6. 點擊「更新」，然後點擊「儲存並繼續」
+7. 在「測試使用者」步驟中，您可以新增測試使用者電子郵件以便測試。在開發階段，這是必要的。
+8. 點擊「儲存並繼續」
 
-## 步驟 3: 創建 OAuth 憑證
+## 3. 建立 OAuth 憑證
 
-1. 在左側導航選單中，進入「APIs & Services」>「Credentials」
-2. 點擊頂部的「CREATE CREDENTIALS」，選擇「OAuth client ID」
-3. 選擇應用程式類型為「Web application」
-4. 輸入名稱 (如「許願池 Web Client」)
-5. 在「Authorized JavaScript origins」中，點擊「ADD URI」，添加：
-   - 開發環境：`http://localhost:3000`
-   - 生產環境：您的實際網域 (例如 `https://wishing.example.com`)
-6. 在「Authorized redirect URIs」中，點擊「ADD URI」，添加：
-   - 開發環境：`http://localhost:3000/api/auth/callback/google`
-   - 生產環境：`https://wishing.example.com/api/auth/callback/google`
-7. 點擊「CREATE」
-8. 系統會顯示您的「Client ID」和「Client Secret」，請妥善記錄這些資訊
+1. 在左側選單中，找到並點擊「API 和服務」>「憑證」
+2. 點擊頁面頂部的「建立憑證」，然後選擇「OAuth 用戶端 ID」
+3. 應用程式類型選擇「Web 應用程式」
+4. 名稱輸入「許願池 Web 用戶端」
+5. 在「已授權的重新導向 URI」下，點擊「新增 URI」
+6. 針對本地開發，輸入：`http://localhost:3000/api/auth/callback/google`
+7. 如果您有生產環境 URL，也請添加：`https://您的網域/api/auth/callback/google`
+8. 點擊「建立」
+9. 將顯示的「用戶端 ID」和「用戶端密鑰」保存下來，這些將用於環境變數
 
-## 步驟 4: 設定環境變數
+## 4. 設置環境變數
 
-1. 在專案根目錄中，創建或更新 `.env` 文件
-2. 添加以下環境變數：
+1. 在項目根目錄中，將 `envLocal.example` 檔案複製並重命名為 `.env.local`
+2. 編輯 `.env.local` 檔案，填入您的 Google OAuth 憑證：
+
+```
+# 基本設定
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=生成一個隨機字串作為密鑰
+
+# 資料庫連接
+DATABASE_URL="postgresql://username:password@localhost:5432/wishing_pool?schema=public"
+
+# Google OAuth 設定
+GOOGLE_CLIENT_ID=您的Google客戶端ID
+GOOGLE_CLIENT_SECRET=您的Google客戶端密鑰
+```
+
+3. 生成 `NEXTAUTH_SECRET`：您可以使用以下命令生成一個隨機字串：
 
    ```
-   # NextAuth.js 設定
-   NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=your_nextauth_secret_key_here  # 可使用 openssl rand -base64 32 生成
-
-   # Google OAuth 設定
-   GOOGLE_CLIENT_ID=您剛才獲取的Client_ID
-   GOOGLE_CLIENT_SECRET=您剛才獲取的Client_Secret
-
-   # 資料庫連接
-   DATABASE_URL=您的資料庫連接字串
+   openssl rand -base64 32
    ```
 
-3. 在生產環境，請更新 `NEXTAUTH_URL` 為您的實際網域
-4. 確保將 `.env` 文件添加到 `.gitignore` 中，避免洩漏敏感資訊
+   或者在 Node.js 中運行：
 
-## 步驟 5: 用戶資料處理機制
+   ```javascript
+   require("crypto").randomBytes(32).toString("hex");
+   ```
 
-本專案使用手動方式處理 Google 登入後的用戶資料，主要在 NextAuth.js 的 JWT 回調中實現：
+4. 確保將正確的資料庫連接資訊填入 `DATABASE_URL`
 
-1. 當用戶通過 Google 登入時，會觸發 JWT 回調
-2. 系統會檢查該電子郵件是否已存在於資料庫
-3. 如果不存在，創建新用戶記錄
-4. 如果已存在，更新用戶資訊（名稱、頭像等）
-5. 將用戶 ID 和餘額等資訊添加到 JWT token 中
-6. Session 回調會從 token 中讀取用戶資訊，並添加到 session 中
+## 5. 啟動應用程式
 
-這種手動處理方式的優點：
+設置完成後，您可以啟動應用程式：
 
-- 對用戶資料處理有更大的控制權
-- 可以實現自定義的用戶資料處理邏輯
-- 不依賴特定的適配器，降低套件依賴性
+```
+npm run dev
+```
 
-## 步驟 6: 測試登入功能
-
-1. 啟動開發伺服器：`npm run dev`
-2. 前往登入頁面：http://localhost:3000/auth/signin
-3. 點擊「使用 Google 帳號登入」按鈕
-4. 選擇或輸入您的 Google 帳號
-5. 授權應用程式存取您的資訊
-6. 確認是否成功重定向到應用程式，並且登入狀態正確
-
-## 注意事項
-
-1. 在開發階段，Google OAuth 同意畫面處於「測試」模式，只有添加的測試用戶可以登入
-2. 發布前，請將 OAuth 同意畫面設為「正式版」，以允許所有用戶登入
-3. 確保生產環境中的重定向 URI 正確配置
-4. 定期檢查 OAuth 憑證的有效性和安全性
-5. 定期審核應用程式的權限請求，確保只請求必要的權限
+然後訪問 http://localhost:3000/auth/signin 來測試 Google 登入功能。
 
 ## 常見問題
 
