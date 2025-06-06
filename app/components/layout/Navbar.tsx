@@ -8,7 +8,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/Button";
 import { useState, useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import LogoutButton from "../auth/LogoutButton";
+import LoginButton from "../auth/LoginButton";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
@@ -70,16 +72,14 @@ export default function Navbar() {
                   )}
                 </div>
               </Link>
-              <Button variant="ghost" size="sm" className="text-foreground/70 hover:text-foreground" onClick={() => signOut({ callbackUrl: "/" })}>
+              <LogoutButton variant="ghost" size="sm" className="text-foreground/70 hover:text-foreground" redirectUrl="/">
                 登出
-              </Button>
+              </LogoutButton>
             </div>
           ) : (
-            <Link href="/auth/signin">
-              <Button variant="default" size="sm" className="rounded-full px-4 bg-gradient hover:shadow-md hover:shadow-primary/20">
-                登入
-              </Button>
-            </Link>
+            <LoginButton variant="default" size="sm" className="rounded-full px-4 bg-gradient hover:shadow-md hover:shadow-primary/20" callbackUrl="/">
+              登入
+            </LoginButton>
           )}
         </div>
       </div>
